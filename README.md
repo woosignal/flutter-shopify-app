@@ -10,8 +10,6 @@
 
 ![alt text](https://woosignal.com/images/woocommerce_app_preview_2.png "Shopify app checkout experience")
 
-![alt text](https://woosignal.com/images/woocommerce_app_preview_3.png "Shopify app Login/Register for customers via WordPress")
-
 ![alt text](https://woosignal.com/images/woocommerce_app_preview_1.png "Full integration with Shopify")
 
 ![alt text](https://woosignal.com/images/mock_dark_light_mode.png "Dark and light mode shopping")
