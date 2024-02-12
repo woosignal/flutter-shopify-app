@@ -10,7 +10,7 @@
 
 ![alt text](https://woosignal.com/images/woocommerce_app_preview_2.png "Shopify app checkout experience")
 
-![alt text](https://woosignal.com/images/woocommerce_app_preview_3.png "Shopify app Login/Register for customers via WordPress")
+![alt text](https://woosignal.com/images/woocommerce_app_preview_3.png "Shopify app Login/Register for customers via Shopify")
 
 ![alt text](https://woosignal.com/images/woocommerce_app_preview_1.png "Full integration with Shopify")
 
@@ -18,7 +18,7 @@
 
 ### About ShopMax
 
-ShopMax is an App Template for Shopify stores. Your customers will be able to browse products, make orders and login via WordPress. You can also customise the look and feel of the app in the WooSignal dashboard.
+ShopMax is an App Template for Shopify stores. Your customers will be able to browse products, make orders and login via Shopify. You can also customise the look and feel of the app in the WooSignal dashboard.
 
 You can upload the app to the IOS app store and Google play store using Flutter.
 
@@ -40,7 +40,7 @@ Full documentation this available [here](https://woosignal.com/docs/app/shopmax)
 
 - App Store Ready
 - Simple configuration
-- Browse products, make orders, customer login (via WordPress)
+- Browse products, make orders, customer login (via Shopify)
 - Change app name, logo, customize default language, currency + more
 - Light and dark mode
 - Stripe, Cash On Delivery, PayPal, RazorPay
