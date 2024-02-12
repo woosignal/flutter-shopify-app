@@ -8,11 +8,7 @@
 
 [Official WooSignal Shopify App](https://woosignal.com)
 
-![alt text](https://woosignal.com/images/woocommerce_app_preview_2.png "Shopify app checkout experience")
-
-![alt text](https://woosignal.com/images/woocommerce_app_preview_1.png "Full integration with Shopify")
-
-![alt text](https://woosignal.com/images/mock_dark_light_mode.png "Dark and light mode shopping")
+<img height="525" src="https://woosignal.com/images/mock_shopify_app_web.png" alt="Shopify app integration WooSignal">
 
 ### About ShopMax
 
@@ -44,6 +40,10 @@ Full documentation this available [here](https://woosignal.com/docs/app/shopmax)
 - Stripe, Cash On Delivery, PayPal, RazorPay
 - Localized for en, es, pt, it, hi, fr, zh, tr, nl, de, th, id
 - Orders show as normal in Shopify
+
+<img height="525" src="https://woosignal.com/images/shopmax_demo_1.png" alt="Shopify app checkout experience">
+
+![alt text](https://woosignal.com/images/mock_dark_light_mode.png "Dark and light mode shopping")
 
 ## Security Vulnerabilities
 If you discover a security vulnerability within WooSignal, please send an e-mail support@woosignal.com
