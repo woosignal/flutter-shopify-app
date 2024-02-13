@@ -1,3 +1,7 @@
+## [1.0.2] - 2024-02-13
+
+* pubspec.yaml updates
+
 ## [1.0.1] - 2024-02-12
 
 * Update langs for id, th
