@@ -99,32 +99,35 @@ class _CartPageState extends NyState<CartPage> {
 
     if (!(await Auth.loggedIn(key: StorageKey.shopifyCustomer))) {
       // show modal to ask customer if they would like to checkout as guest or login
-      showAdaptiveDialog(context: context, builder: (context) {
-        return AlertDialog.adaptive(
-          content: Text("Checkout as guest or login to continue".tr()).headingMedium(context),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                routeTo(CheckoutConfirmationPage.path);
-              },
-              child: Text("Checkout as guest".tr()),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                UserAuth.instance.redirect = CheckoutConfirmationPage.path;
-                routeTo(AccountLandingPage.path);
-              },
-              child: Text("Login / Create an account".tr()),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text("Cancel".tr()),
-            )
-          ],
-        );
-      });
+      showAdaptiveDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog.adaptive(
+              content: Text("Checkout as guest or login to continue".tr())
+                  .headingMedium(context),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    routeTo(CheckoutConfirmationPage.path);
+                  },
+                  child: Text("Checkout as guest".tr()),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    UserAuth.instance.redirect = CheckoutConfirmationPage.path;
+                    routeTo(AccountLandingPage.path);
+                  },
+                  child: Text("Login / Create an account".tr()),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Cancel".tr()),
+                )
+              ],
+            );
+          });
       return;
     }
 

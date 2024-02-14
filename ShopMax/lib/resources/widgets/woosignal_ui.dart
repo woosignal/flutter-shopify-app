@@ -11,8 +11,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '/app/models/shopify/cart.dart' as shopify;
-import '/app/models/shopify/checkout_session.dart'
-    as shopify;
+import '/app/models/shopify/checkout_session.dart' as shopify;
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/extensions.dart';
 import '/bootstrap/helpers.dart';
@@ -361,7 +360,9 @@ class ProductItem extends StatelessWidget {
     this.name,
     this.price,
     this.productAddedAt,
-    this.onTap, this.comparePrice, this.productId,
+    this.onTap,
+    this.comparePrice,
+    this.productId,
     this.height = 280,
   });
 
@@ -380,11 +381,12 @@ class ProductItem extends StatelessWidget {
       : featureImage = product.featuredImage?.url,
         name = product.title,
         price = product.priceRange?.minVariantPrice?.amount,
-  productId = product.uId,
+        productId = product.uId,
         comparePrice = product.compareAtPriceRange?.minVariantPrice?.amount,
         productAddedAt = product.createdAt.toDateTime();
 
-  bool get isOnSale => double.parse(comparePrice ?? "0") > double.parse(price ?? "0");
+  bool get isOnSale =>
+      double.parse(comparePrice ?? "0") > double.parse(price ?? "0");
 
   final Function? onTap;
   final DateTime? productAddedAt;
@@ -398,6 +400,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 280,
       child: ListView(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -414,68 +417,69 @@ class ProductItem extends StatelessWidget {
                     width: double.infinity,
                   ),
                   CachedImageWidget(
-                    image: (featureImage ?? getEnv("PRODUCT_PLACEHOLDER_IMAGE")),
+                    image:
+                        (featureImage ?? getEnv("PRODUCT_PLACEHOLDER_IMAGE")),
                     fit: BoxFit.contain,
                     height: height,
                     width: double.infinity,
                   ),
                   if (productAddedAt.isNewProduct())
-                  Container(
-                    padding: EdgeInsets.all(4),
-                    child: Text(
-                      "New",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    decoration: BoxDecoration(color: Colors.black),
-                  ),
-                  if (isOnSale)
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
+                    Container(
+                      padding: EdgeInsets.all(4),
+                      child: Text(
+                        "New",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: '',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text:
-                              "${workoutSaleDiscount(salePrice: price, priceBefore: comparePrice)}% ${trans("off")}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                color: Colors.black,
-                                fontSize: 13,
+                      decoration: BoxDecoration(color: Colors.black),
+                    ),
+                  if (isOnSale)
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: Colors.white70,
+                        ),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: '',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text:
+                                    "${workoutSaleDiscount(salePrice: price, priceBefore: comparePrice)}% ${trans("off")}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                    ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
           ),
-         Container(
-           height: 50,
-           child: Text(
-             name ?? "",
-             style: Theme.of(context)
-                 .textTheme
-                 .bodyMedium!
-                 .copyWith(fontSize: 15),
-             maxLines: 2,
-             overflow: TextOverflow.ellipsis,
-           ),
-         ),
+          Container(
+            height: 50,
+            child: Text(
+              name ?? "",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 15),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           Container(
             padding: EdgeInsets.only(top: 4),
             child: Column(
@@ -491,26 +495,24 @@ class ProductItem extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
                 if (isOnSale)
-                RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: '${trans("Was")}: ',
-                      style:
-                      Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontSize: 11,
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: '${trans("Was")}: ',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 11,
+                            ),
                       ),
-                    ),
-                    TextSpan(
-                      text: comparePrice.toMoney(),
-                      style:
-                      Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        decoration: TextDecoration.lineThrough,
-                        color: Colors.grey,
-                        fontSize: 11,
+                      TextSpan(
+                        text: comparePrice.toMoney(),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey,
+                              fontSize: 11,
+                            ),
                       ),
-                    ),
-                  ]),
-                ),
+                    ]),
+                  ),
               ].toList(),
             ),
           ),

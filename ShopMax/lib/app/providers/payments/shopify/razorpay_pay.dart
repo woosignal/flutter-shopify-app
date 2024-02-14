@@ -25,21 +25,21 @@ razorPay(context) async {
 
   razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
       (PaymentSuccessResponse response) async {
-        ShopifyOrder orderShopify = await buildOrderShopify(markPaid: true);
-        OrderCreatedResponse? order =
+    ShopifyOrder orderShopify = await buildOrderShopify(markPaid: true);
+    OrderCreatedResponse? order =
         await (appWooSignalShopify((api) => api.createOrder(orderShopify)));
 
-        if (order == null) {
-          showToastNotification(
-            context,
-            title: trans("Error"),
-            description: trans("Something went wrong, please contact our store"),
-          );
-          updateState(CheckoutConfirmationPage.path, data: {"reloadState": false});
-          return;
-        }
-        routeTo(CheckoutStatusPage.path,
-            navigationType: NavigationType.pushAndForgetAll, data: order);
+    if (order == null) {
+      showToastNotification(
+        context,
+        title: trans("Error"),
+        description: trans("Something went wrong, please contact our store"),
+      );
+      updateState(CheckoutConfirmationPage.path, data: {"reloadState": false});
+      return;
+    }
+    routeTo(CheckoutStatusPage.path,
+        navigationType: NavigationType.pushAndForgetAll, data: order);
   });
 
   razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, (PaymentFailureResponse response) {

@@ -27,12 +27,6 @@ class ProductDetailController extends Controller {
   ws_shopify.Variants? variant;
   final Map<int, dynamic> _tmpAttributeObj = {};
 
-  @override
-  construct(BuildContext context) {
-    super.construct(context);
-
-  }
-
   addQuantityTapped({Function? onSuccess}) {
     if (variant?.inventoryPolicy == "deny") {
       if (quantity >= (variant?.inventoryQuantity ?? 0)) {
@@ -70,11 +64,14 @@ class ProductDetailController extends Controller {
       {required Function onSuccess,
       required WishlistAction wishlistAction}) async {
     String subtitleMsg;
+    if (product == null) {
+      return;
+    }
     if (wishlistAction == WishlistAction.remove) {
-      // await removeWishlistProduct(product: product);
+      await removeWishlistProduct(productId: product!.id.toString());
       subtitleMsg = trans("This product has been removed from your wishlist");
     } else {
-      // await saveWishlistProduct(product: product);
+      await saveWishlistProduct(productId: product!.id.toString());
       subtitleMsg = trans("This product has been added to your wishlist");
     }
     showStatusAlert(

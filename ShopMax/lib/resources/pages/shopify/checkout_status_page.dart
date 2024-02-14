@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import '/app/controllers/checkout_status_controller.dart';
+import 'package:flutter_app/app/controllers/controller.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/buttons.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -18,11 +18,8 @@ import '/app/models/shopify/cart.dart';
 import '/app/models/shopify/checkout_session.dart';
 import '/resources/widgets/woosignal_ui.dart';
 
-class CheckoutStatusPage extends NyStatefulWidget {
+class CheckoutStatusPage extends NyStatefulWidget<Controller> {
   static String path = "/checkout-status";
-
-  @override
-  final CheckoutStatusController controller = CheckoutStatusController();
 
   CheckoutStatusPage({Key? key})
       : super(path, key: key, child: _CheckoutStatusState());

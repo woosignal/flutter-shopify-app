@@ -1,3 +1,9 @@
+## [1.0.3] - 2024-02-15
+
+* Tweaks to the Mello Template
+* Format project
+* pubspec.yaml updates
+
 ## [1.0.2] - 2024-02-13
 
 * pubspec.yaml updates

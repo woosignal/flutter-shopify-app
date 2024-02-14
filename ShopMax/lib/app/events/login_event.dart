@@ -9,7 +9,5 @@ class LoginEvent implements NyEvent {
 
 class DefaultListener extends NyListener {
   @override
-  handle(dynamic event) async {
-
-  }
+  handle(dynamic event) async {}
 }

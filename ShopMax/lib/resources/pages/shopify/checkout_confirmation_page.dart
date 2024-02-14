@@ -104,15 +104,12 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
           ],
         ),
         centerTitle: false,
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              CheckoutSession.getInstance.coupon = null;
-              Navigator.pop(context);
-            },
-          ),
-          margin: EdgeInsets.only(left: 0),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            CheckoutSession.getInstance.coupon = null;
+            Navigator.pop(context);
+          },
         ),
       ),
       resizeToAvoidBottomInset: false,
@@ -139,7 +136,6 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
                     checkoutSession: checkoutSession,
                     wooSignalApp: _wooSignalApp,
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       boxShadow: wsBoxShadow(),
@@ -169,16 +165,15 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
                             ShopifyCheckoutSubtotal(
                               title: trans("Subtotal"),
                             ),
-                              CheckoutMetaLine(
-                                  title: trans("Shipping fee"),
-                                  amount: CheckoutSession
-                                              .getInstance.shippingType ==
-                                          null
-                                      ? trans("Select shipping")
-                                      : CheckoutSession
-                                          .getInstance.shippingType!
-                                          .getTotal(withFormatting: true),
-                              ),
+                            CheckoutMetaLine(
+                              title: trans("Shipping fee"),
+                              amount: CheckoutSession
+                                          .getInstance.shippingType ==
+                                      null
+                                  ? trans("Select shipping")
+                                  : CheckoutSession.getInstance.shippingType!
+                                      .getTotal(withFormatting: true),
+                            ),
                             ShopifyCheckoutTaxTotal(),
                             Padding(
                                 padding:
@@ -259,8 +254,8 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
     );
   }
 
-  _openTermsLink() =>
-      openBrowserTab(url: AppHelper.instance.shopifyAppConfig?.appTermsLink ?? "");
+  _openTermsLink() => openBrowserTab(
+      url: AppHelper.instance.shopifyAppConfig?.appTermsLink ?? "");
 
   _handleCheckout() async {
     CheckoutSession checkoutSession = CheckoutSession.getInstance;

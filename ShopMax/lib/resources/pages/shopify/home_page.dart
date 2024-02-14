@@ -20,13 +20,11 @@ class HomePage extends NyStatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final WooSignalApp? _wooSignalApp = AppHelper.instance.shopifyAppConfig;
 
   @override
   Widget build(BuildContext context) {
-    Widget theme =
-        MelloThemeWidget(wooSignalApp: _wooSignalApp);
+    Widget theme = MelloThemeWidget(wooSignalApp: _wooSignalApp);
     return theme;
   }
 }

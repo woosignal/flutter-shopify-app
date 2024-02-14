@@ -42,7 +42,8 @@ class _ProductDetailState extends NyState<ProductDetailPage> {
   boot() async {
     int? productId = widget.controller.data();
     if (productId != null) {
-      _product = await appWooSignalShopify((api) => api.getProduct(productId: productId));
+      _product = await appWooSignalShopify(
+          (api) => api.getProduct(productId: productId));
     }
     if (_product == null) {
       showToastOops(description: "Product not found".tr());

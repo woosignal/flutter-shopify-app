@@ -19,14 +19,13 @@ const appPaymentGateways = ["Stripe", "PayPal"];
 // e.g. app_payment_gateways = ["Stripe"]; will only use Stripe.
 
 List<PaymentType> paymentTypeList = [
-
   addPayment(
-      id: 1,
-      name: "Stripe",
-      description: trans("Debit or Credit Card"),
-      assetImage: "dark_powered_by_stripe.png",
-      pay: stripePay,
-    ),
+    id: 1,
+    name: "Stripe",
+    description: trans("Debit or Credit Card"),
+    assetImage: "dark_powered_by_stripe.png",
+    pay: stripePay,
+  ),
 
   addPayment(
     id: 4,

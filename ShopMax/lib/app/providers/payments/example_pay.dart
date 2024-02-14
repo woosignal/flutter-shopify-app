@@ -48,7 +48,8 @@ examplePay(context) async {
   ShopifyOrder orderShopify = ShopifyOrder();
 
   // CREATES ORDER IN Shopify
-  OrderCreatedResponse? orderCreatedResponse = await (appWooSignalShopify((api) => api.createOrder(orderShopify)));
+  OrderCreatedResponse? orderCreatedResponse =
+      await (appWooSignalShopify((api) => api.createOrder(orderShopify)));
 
   // CHECK IF ORDER IS NULL
   if (orderCreatedResponse == null) {
@@ -61,5 +62,6 @@ examplePay(context) async {
     return;
   }
 
-  Navigator.pushNamed(context, CheckoutStatusPage.path, arguments: orderCreatedResponse);
+  Navigator.pushNamed(context, CheckoutStatusPage.path,
+      arguments: orderCreatedResponse);
 }

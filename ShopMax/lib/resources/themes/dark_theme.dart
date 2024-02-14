@@ -13,7 +13,6 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 ThemeData darkTheme(ColorStyles darkColors) {
-
   if (AppHelper.instance.shopifyAppConfig != null) {
     try {
       appFont = GoogleFonts.getFont(

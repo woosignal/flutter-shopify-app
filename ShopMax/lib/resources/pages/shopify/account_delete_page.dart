@@ -72,10 +72,10 @@ class _AccountDeletePageState extends NyState<AccountDeletePage> {
   _deleteAccount() async {
     confirmAction(() async {
       await lockRelease('delete_account', perform: () async {
-
         await event<DeleteAccountEvent>();
 
-        showToast(title: trans("Success"), description: trans("Account deleted"));
+        showToast(
+            title: trans("Success"), description: trans("Account deleted"));
         await event<LogoutEvent>();
       });
     }, title: "Delete my account".tr());

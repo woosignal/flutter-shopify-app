@@ -9,7 +9,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:woosignal_shopify_api/models/response/auth/auth_customer_address_updated.dart' as auth_customer_address_updated;
+import 'package:woosignal_shopify_api/models/response/auth/auth_customer_address_updated.dart'
+    as auth_customer_address_updated;
 import '/app/models/billing_details.dart';
 import '/app/models/customer_address.dart';
 import '/app/models/customer_country.dart';
@@ -235,54 +236,62 @@ class _AccountShippingDetailsPageState
   _useDetailsTapped() async {
     String billingEmail = _txtBillingEmailAddress.text;
 
-    validate(rules: {
-      "Billing email address": [billingEmail, 'email', "${trans("Oops")}|${trans("Please enter a valid shipping email")}"],
-    }, onSuccess: () async {
+    validate(
+        rules: {
+          "Billing email address": [
+            billingEmail,
+            'email',
+            "${trans("Oops")}|${trans("Please enter a valid shipping email")}"
+          ],
+        },
+        onSuccess: () async {
+          CustomerAddress userBillingAddress = _setCustomerAddress(
+                firstName: _txtBillingFirstName.text,
+                lastName: _txtBillingLastName.text,
+                addressLine: _txtBillingAddressLine.text,
+                city: _txtBillingCity.text,
+                postalCode: _txtBillingPostalCode.text,
+                phoneNumber: _txtBillingPhoneNumber.text,
+                emailAddress: _txtBillingEmailAddress.text.trim(),
+                customerCountry: _billingCountry,
+              ),
+              userShippingAddress = _setCustomerAddress(
+                firstName: _txtShippingFirstName.text,
+                lastName: _txtShippingLastName.text,
+                addressLine: _txtShippingAddressLine.text,
+                city: _txtShippingCity.text,
+                postalCode: _txtShippingPostalCode.text,
+                customerCountry: _shippingCountry,
+              );
 
-      CustomerAddress userBillingAddress = _setCustomerAddress(
-        firstName: _txtBillingFirstName.text,
-        lastName: _txtBillingLastName.text,
-        addressLine: _txtBillingAddressLine.text,
-        city: _txtBillingCity.text,
-        postalCode: _txtBillingPostalCode.text,
-        phoneNumber: _txtBillingPhoneNumber.text,
-        emailAddress: _txtBillingEmailAddress.text.trim(),
-        customerCountry: _billingCountry,
-      ), userShippingAddress = _setCustomerAddress(
-            firstName: _txtShippingFirstName.text,
-            lastName: _txtShippingLastName.text,
-            addressLine: _txtShippingAddressLine.text,
-            city: _txtShippingCity.text,
-            postalCode: _txtShippingPostalCode.text,
-            customerCountry: _shippingCountry,
-          );
+          auth_customer_address_updated.AuthCustomerAddressUpdated?
+              authCustomerAddressUpdated =
+              await appWooSignalShopify((api) => api.authCustomerUpdateAddress(
+                    address1: _txtBillingAddressLine.text,
+                    city: _txtBillingCity.text,
+                    country: _billingCountry?.name,
+                    firstName: _txtBillingFirstName.text,
+                    lastName: _txtBillingLastName.text,
+                    phone: _txtBillingPhoneNumber.text,
+                    zip: _txtBillingPostalCode.text,
+                  ));
 
-      auth_customer_address_updated.AuthCustomerAddressUpdated? authCustomerAddressUpdated = await appWooSignalShopify((api) => api.authCustomerUpdateAddress(
-        address1: _txtBillingAddressLine.text,
-        city: _txtBillingCity.text,
-        country: _billingCountry?.name,
-        firstName: _txtBillingFirstName.text,
-        lastName: _txtBillingLastName.text,
-        phone: _txtBillingPhoneNumber.text,
-        zip: _txtBillingPostalCode.text,
-      ));
+          if (authCustomerAddressUpdated == null) {
+            showToastWarning(description: trans("Something went wrong"));
+            return;
+          }
 
-      if (authCustomerAddressUpdated == null) {
-        showToastWarning(description: trans("Something went wrong"));
-        return;
-      }
+          if (authCustomerAddressUpdated.isSuccessful() == false) {
+            showToastWarning(description: trans("Something went wrong"));
+            return;
+          }
 
-      if (authCustomerAddressUpdated.isSuccessful() == false) {
-        showToastWarning(description: trans("Something went wrong"));
-        return;
-      }
-
-      showToastNotification(context,
-          title: trans("Success"),
-          description: trans("Account updated"),
-          style: ToastNotificationStyleType.SUCCESS);
-
-    }, lockRelease: 'update_details');
+          showToastNotification(context,
+              title: trans("Success"),
+              description: trans("Account updated"),
+              style: ToastNotificationStyleType.SUCCESS);
+        },
+        lockRelease: 'update_details');
   }
 
   CustomerAddress _setCustomerAddress(
@@ -328,7 +337,8 @@ class _AccountShippingDetailsPageState
   }
 
   _fetchUserDetails() async {
-    AuthCustomerInfo? authCustomerInfo = await appWooSignalShopify((api) => api.authCustomer());
+    AuthCustomerInfo? authCustomerInfo =
+        await appWooSignalShopify((api) => api.authCustomer());
 
     if (authCustomerInfo == null) {
       showToastNotification(
@@ -341,15 +351,14 @@ class _AccountShippingDetailsPageState
       return;
     }
 
-      BillingDetails billingDetails =
-      await billingDetailsFromShopifyCustomerInfoResponse(authCustomerInfo);
+    BillingDetails billingDetails =
+        await billingDetailsFromShopifyCustomerInfoResponse(authCustomerInfo);
 
-      _setFieldsFromCustomerAddress(billingDetails.shippingAddress,
-          type: "shipping");
-      _setFieldsFromCustomerAddress(billingDetails.billingAddress,
-          type: "billing");
+    _setFieldsFromCustomerAddress(billingDetails.shippingAddress,
+        type: "shipping");
+    _setFieldsFromCustomerAddress(billingDetails.billingAddress,
+        type: "billing");
 
-      setState(() {});
-
+    setState(() {});
   }
 }

@@ -138,33 +138,39 @@ class _RegisterPageState extends NyState<RegisterPage> {
       email = email.trim();
     }
 
-    validate(rules: {
-      "email": [email, "email", "${trans("Oops")}|${trans("That email address is not valid")}"],
-      "password": [password, "password_v1"],
-      "first name": [firstName, "email"],
-      "last name": [lastName, "email"],
-    }, onSuccess: () async {
+    validate(
+        rules: {
+          "email": [
+            email,
+            "email",
+            "${trans("Oops")}|${trans("That email address is not valid")}"
+          ],
+          "password": [password, "password_v1"],
+          "first name": [firstName, "email"],
+          "last name": [lastName, "email"],
+        },
+        onSuccess: () async {
+          AuthCustomer? authCustomer =
+              await appWooSignalShopify((api) => api.authCustomerRegister(
+                    email: email,
+                    password: password,
+                    loginUser: true,
+                  ));
 
-      AuthCustomer? authCustomer = await appWooSignalShopify((api) => api.authCustomerRegister(
-          email: email,
-          password: password,
-          loginUser: true,
-      ));
+          if (authCustomer == null) {
+            return;
+          }
 
-      if (authCustomer == null) {
-        return;
-      }
+          showToastNotification(context,
+              title: "${trans("Hello")} $firstName",
+              description: trans("you're now logged in"),
+              style: ToastNotificationStyleType.SUCCESS,
+              icon: Icons.account_circle);
 
-      showToastNotification(context,
-          title: "${trans("Hello")} $firstName",
-          description: trans("you're now logged in"),
-          style: ToastNotificationStyleType.SUCCESS,
-          icon: Icons.account_circle);
-
-      navigatorPush(context,
-          routeName: UserAuth.instance.redirect, forgetLast: 2);
-
-    }, lockRelease: "register_user");
+          navigatorPush(context,
+              routeName: UserAuth.instance.redirect, forgetLast: 2);
+        },
+        lockRelease: "register_user");
   }
 
   _viewTOSModal() async {

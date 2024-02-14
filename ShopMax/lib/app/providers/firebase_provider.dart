@@ -52,7 +52,6 @@ class FirebaseProvider implements NyProvider {
       bool? firebaseFcmIsEnabled =
           AppHelper.instance.shopifyAppConfig?.firebaseFcmIsEnabled;
 
-
       firebaseFcmIsEnabled ??= getEnv('FCM_ENABLED', defaultValue: false);
 
       if (firebaseFcmIsEnabled != true) return;

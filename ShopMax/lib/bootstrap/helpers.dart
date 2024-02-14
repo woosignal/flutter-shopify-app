@@ -11,8 +11,7 @@
 import 'dart:convert';
 import 'package:collection/collection.dart' show IterableExtension;
 import '/app/models/billing_details.dart';
-import '/app/models/shopify/checkout_session.dart'
-    as shopify;
+import '/app/models/shopify/checkout_session.dart' as shopify;
 import '/app/models/default_shipping.dart';
 import '/app/models/payment_type.dart';
 import '/app/models/user.dart';
@@ -63,11 +62,12 @@ extension WooSignalDateTime on DateTime? {
     return isProductNew(this);
   }
 }
+
 bool isProductNew(DateTime? createdAt) {
   if (createdAt == null) false;
   try {
     return createdAt.isBetween(
-        DateTime.now().subtract(Duration(days: 2)), DateTime.now()) ??
+            DateTime.now().subtract(Duration(days: 2)), DateTime.now()) ??
         false;
   } on Exception catch (e) {
     NyLogger.error(e.toString());
@@ -96,7 +96,7 @@ Future<List<PaymentType?>> getShopifyPaymentTypes() async {
 
   for (var appPaymentGateway in appPaymentGateways) {
     paymentTypes.add(paymentTypeList.firstWhereOrNull(
-            (paymentTypeList) => paymentTypeList.name == appPaymentGateway));
+        (paymentTypeList) => paymentTypeList.name == appPaymentGateway));
   }
 
   return paymentTypes.where((v) => v != null).toList();
@@ -143,7 +143,8 @@ String moneyFormatter(double amount) {
     MoneyFormatter fmf = MoneyFormatter(
       amount: amount,
       settings: MoneyFormatterSettings(
-          symbol: AppHelper.instance.shopifyAppConfig?.currencyMeta?.symbolNative,
+          symbol:
+              AppHelper.instance.shopifyAppConfig?.currencyMeta?.symbolNative,
           symbolAndNumberSeparator: ""),
     );
     if (appCurrencySymbolPosition == SymbolPositionType.left) {
@@ -193,7 +194,8 @@ bool isNumeric(String? str) {
   return double.tryParse(str) != null;
 }
 
-checkoutShopify(Function(String total, BillingDetails? billingDetails, Cart cart)
+checkoutShopify(
+    Function(String total, BillingDetails? billingDetails, Cart cart)
         completeCheckout) async {
   String cartTotal =
       await shopify.CheckoutSession.getInstance.total(withFormat: false);
@@ -287,42 +289,26 @@ String truncateString(String data, int length) {
   return (data.length >= length) ? '${data.substring(0, length)}...' : data;
 }
 
-Future<List<dynamic>> getWishlistProducts() async {
-  List<dynamic> favouriteProducts = [];
-  String? currentProductsJSON =
-      await (NyStorage.read(StorageKey.wishlistProducts));
-  if (currentProductsJSON != null) {
-    favouriteProducts = (jsonDecode(currentProductsJSON)).toList();
-  }
-  return favouriteProducts;
+Future<List<String>> getWishlistProducts() async {
+  List<String> currentProductsJSON =
+      await (NyStorage.readCollection(StorageKey.wishlistProducts));
+
+  return currentProductsJSON;
 }
 
-hasAddedWishlistProduct(int? productId) async {
-  List<dynamic> favouriteProducts = await getWishlistProducts();
-  List<int> productIds =
-      favouriteProducts.map((e) => e['id']).cast<int>().toList();
-  if (productIds.isEmpty) {
-    return false;
-  }
-  return productIds.contains(productId);
+Future<bool> hasAddedWishlistProduct(int? productId) async {
+  List<String> favouriteProducts = await getWishlistProducts();
+  return favouriteProducts.contains(productId.toString());
 }
 
-saveWishlistProduct({required dynamic product}) async {
-  List<dynamic> products = await getWishlistProducts();
-  if (products.any((wishListProduct) => wishListProduct['id'] == product!.id) ==
-      false) {
-    products.add({"id": product!.id});
-  }
-  String json = jsonEncode(products.map((i) => {"id": i['id']}).toList());
-  await NyStorage.store(StorageKey.wishlistProducts, json);
+saveWishlistProduct({required String productId}) async {
+  await NyStorage.addToCollection(StorageKey.wishlistProducts,
+      item: productId, allowDuplicates: false);
 }
 
-removeWishlistProduct({required dynamic product}) async {
-  List<dynamic> products = await getWishlistProducts();
-  products.removeWhere((element) => element['id'] == product!.id);
-
-  String json = jsonEncode(products.map((i) => {"id": i['id']}).toList());
-  await NyStorage.store(StorageKey.wishlistProducts, json);
+removeWishlistProduct({required String productId}) async {
+  await NyStorage.deleteFromCollectionWhere((value) => value == productId,
+      key: StorageKey.wishlistProducts);
 }
 
 Future<BillingDetails> billingDetailsFromShopifyCustomerInfoResponse(
@@ -333,19 +319,23 @@ Future<BillingDetails> billingDetailsFromShopifyCustomerInfoResponse(
   billingDetails.billingAddress?.firstName = customerInfo.firstName;
   billingDetails.billingAddress?.lastName = customerInfo.lastName;
 
-  billingDetails.billingAddress?.addressLine = customerInfo.defaultAddress?.address1;
+  billingDetails.billingAddress?.addressLine =
+      customerInfo.defaultAddress?.address1;
   billingDetails.billingAddress?.city = customerInfo.defaultAddress?.city;
-  billingDetails.billingAddress?.phoneNumber = customerInfo.defaultAddress?.phone;
+  billingDetails.billingAddress?.phoneNumber =
+      customerInfo.defaultAddress?.phone;
   billingDetails.billingAddress?.emailAddress = customerInfo.email;
 
-  billingDetails.billingAddress?.customerCountry?.name = customerInfo.defaultAddress?.country;
-  billingDetails.billingAddress?.customerCountry?.countryCode = customerInfo.defaultAddress?.countryCode?.toLowerCase();
-  billingDetails.billingAddress?.customerCountry?.state?.name = customerInfo.defaultAddress?.province;
-  billingDetails.billingAddress?.customerCountry?.state?.code = customerInfo.defaultAddress?.provinceCode;
+  billingDetails.billingAddress?.customerCountry?.name =
+      customerInfo.defaultAddress?.country;
+  billingDetails.billingAddress?.customerCountry?.countryCode =
+      customerInfo.defaultAddress?.countryCode?.toLowerCase();
+  billingDetails.billingAddress?.customerCountry?.state?.name =
+      customerInfo.defaultAddress?.province;
+  billingDetails.billingAddress?.customerCountry?.state?.code =
+      customerInfo.defaultAddress?.provinceCode;
 
   billingDetails.billingAddress?.postalCode = customerInfo.defaultAddress?.zip;
-
-  print(['billingDetails.billingAddress.toJson()', billingDetails.billingAddress?.toJson()]);
 
   return billingDetails;
 }

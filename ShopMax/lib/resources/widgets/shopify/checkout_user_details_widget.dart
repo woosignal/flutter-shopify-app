@@ -16,11 +16,11 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class CheckoutUserDetailsWidget extends StatelessWidget {
-  const CheckoutUserDetailsWidget(
-      {super.key,
-      required this.context,
-      required this.checkoutSession,
-      });
+  const CheckoutUserDetailsWidget({
+    super.key,
+    required this.context,
+    required this.checkoutSession,
+  });
   final CheckoutSession checkoutSession;
   final BuildContext context;
 

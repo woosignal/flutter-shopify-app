@@ -22,8 +22,7 @@ import 'package:woosignal_shopify_api/models/response/shopify_product_response.d
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 
 class MelloThemeWidget extends StatefulWidget {
-  MelloThemeWidget(
-      {super.key, required this.wooSignalApp});
+  MelloThemeWidget({super.key, required this.wooSignalApp});
   final WooSignalApp? wooSignalApp;
 
   @override
@@ -31,7 +30,6 @@ class MelloThemeWidget extends StatefulWidget {
 }
 
 class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
-
   bool? hasNextPage = true;
   String? endCursor;
 
@@ -57,39 +55,41 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
       ),
       body: SafeAreaWidget(
         child: NyPullToRefresh.grid(
-          mainAxisSpacing: 15,
+            mainAxisSpacing: 15,
             crossAxisSpacing: 10,
             crossAxisCount: 2,
-            header: Column(
-              children: [
-                Container(
-            child: Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                return CachedImageWidget(
-                  image: bannerImages?[index],
-                  fit: BoxFit.contain,
-                );
-              },
-              itemCount: bannerImages?.length ?? 0,
-              viewportFraction: 0.8,
-              scale: 0.9,
-            ),
-            height: MediaQuery.of(context).size.height / 3.5,
-                        ),
-              ]
-            ),
+            header: (bannerImages?.isNotEmpty ?? false)
+                ? Column(children: [
+                    Container(
+                      child: Swiper(
+                        itemBuilder: (BuildContext context, int index) {
+                          return CachedImageWidget(
+                            image: bannerImages?[index],
+                            fit: BoxFit.contain,
+                          );
+                        },
+                        itemCount: bannerImages?.length ?? 0,
+                        viewportFraction: 0.8,
+                        scale: 0.9,
+                      ),
+                      height: MediaQuery.of(context).size.height / 3.5,
+                    ),
+                  ])
+                : null,
             child: (context, data) {
               data as ShopifyProduct;
               return ProductItem.fromShopifyProduct(data);
-            }, data: (int iteration) async {
-          if (hasNextPage == false) return [];
-          ShopifyProductResponse product = await appWooSignalShopify((api) => api.getProducts(after: endCursor, first: 50));
-          if (product.pageInfo?.hasNextPage != true) {
-            hasNextPage = false;
-          }
-          endCursor = product.pageInfo?.endCursor;
-          return product.products;
-        },
+            },
+            data: (int iteration) async {
+              if (hasNextPage == false) return [];
+              ShopifyProductResponse product = await appWooSignalShopify(
+                  (api) => api.getProducts(after: endCursor, first: 50));
+              if (product.pageInfo?.hasNextPage != true) {
+                hasNextPage = false;
+              }
+              endCursor = product.pageInfo?.endCursor;
+              return product.products;
+            },
             beforeRefresh: () {
               hasNextPage = true;
               endCursor = null;

@@ -15,7 +15,6 @@ extension NyText on Text {
 }
 
 extension WooSignalUtil on String? {
-
   String toMoney() {
     return formatStringCurrency(total: this ?? "0");
   }

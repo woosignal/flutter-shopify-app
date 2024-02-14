@@ -126,8 +126,8 @@ class _LoginPageState extends NyState<LoginPage> {
             LinkButton(
                 title: trans("Forgot Password"),
                 action: () {
-                  String? forgotPasswordUrl =
-                      AppHelper.instance.shopifyAppConfig?.wpLoginForgotPasswordUrl;
+                  String? forgotPasswordUrl = AppHelper
+                      .instance.shopifyAppConfig?.wpLoginForgotPasswordUrl;
                   if (forgotPasswordUrl != null) {
                     openBrowserTab(url: forgotPasswordUrl);
                   } else {

@@ -16,7 +16,10 @@ class DefaultShipping {
   List<DefaultShippingState> states;
   ShopifyCountry? shopifyCountry;
   DefaultShipping(
-      {required this.code, required this.country, required this.states, this.shopifyCountry});
+      {required this.code,
+      required this.country,
+      required this.states,
+      this.shopifyCountry});
 }
 
 class DefaultShippingState {

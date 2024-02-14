@@ -24,7 +24,8 @@ import '/resources/widgets/shopify/switch_address_tab.dart';
 import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:validated/validated.dart' as validate;
-import 'package:woosignal_shopify_api/models/response/auth/auth_customer_address_updated.dart' as auth_customer_address_updated;
+import 'package:woosignal_shopify_api/models/response/auth/auth_customer_address_updated.dart'
+    as auth_customer_address_updated;
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 import 'package:woosignal_shopify_api/models/response/shopify_country_response.dart';
 import '/app/models/default_shipping.dart';
@@ -93,6 +94,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
   @override
   boot() async {
     isLoggedIn = (await Auth.loggedIn(key: StorageKey.shopifyCustomer));
+
     if (isLoggedIn == true) {
       await _fetchUserDetails();
       return;
@@ -371,29 +373,25 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
       }
 
       if (shippingEmail.isNotEmpty && !validate.isEmail(shippingEmail)) {
-        showToastOops(description: trans("Please enter a valid shipping email"));
+        showToastOops(
+            description: trans("Please enter a valid shipping email"));
         return;
       }
 
       // Update Shopify shipping info for user
       bool isLoggedIn = (await Auth.loggedIn(key: StorageKey.shopifyCustomer));
       if (isLoggedIn == true) {
-
-      }
-
-      if (valRememberDetails == true) {
-        await CheckoutSession.getInstance.saveBillingAddress();
-        await CheckoutSession.getInstance.saveShippingAddress();
-
-        auth_customer_address_updated.AuthCustomerAddressUpdated? authCustomerAddressUpdated = await appWooSignalShopify((api) => api.authCustomerUpdateAddress(
-          address1: _txtBillingAddressLine.text,
-          city: _txtBillingCity.text,
-          country: _billingCountry?.name,
-          firstName: _txtBillingFirstName.text,
-          lastName: _txtBillingLastName.text,
-          phone: _txtBillingPhoneNumber.text,
-          zip: _txtBillingPostalCode.text,
-        ));
+        auth_customer_address_updated.AuthCustomerAddressUpdated?
+            authCustomerAddressUpdated =
+            await appWooSignalShopify((api) => api.authCustomerUpdateAddress(
+                  address1: _txtBillingAddressLine.text,
+                  city: _txtBillingCity.text,
+                  country: _billingCountry?.name,
+                  firstName: _txtBillingFirstName.text,
+                  lastName: _txtBillingLastName.text,
+                  phone: _txtBillingPhoneNumber.text,
+                  zip: _txtBillingPostalCode.text,
+                ));
 
         if (authCustomerAddressUpdated == null) {
           showToastWarning(description: trans("Something went wrong"));
@@ -404,6 +402,11 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
           showToastWarning(description: trans("Something went wrong"));
           return;
         }
+      }
+
+      if (valRememberDetails == true) {
+        await CheckoutSession.getInstance.saveBillingAddress();
+        await CheckoutSession.getInstance.saveShippingAddress();
       } else {
         await CheckoutSession.getInstance.clearBillingAddress();
         await CheckoutSession.getInstance.clearShippingAddress();
@@ -492,7 +495,8 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
   }
 
   _fetchUserDetails() async {
-    AuthCustomerInfo? authCustomerInfo = await appWooSignalShopify((api) => api.authCustomer());
+    AuthCustomerInfo? authCustomerInfo =
+        await appWooSignalShopify((api) => api.authCustomer());
     if (authCustomerInfo == null) {
       showToastNotification(
         context,
@@ -505,7 +509,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
     }
 
     BillingDetails billingDetails =
-    await billingDetailsFromShopifyCustomerInfoResponse(authCustomerInfo);
+        await billingDetailsFromShopifyCustomerInfoResponse(authCustomerInfo);
 
     _setFieldsFromCustomerAddress(billingDetails.shippingAddress,
         type: "shipping");

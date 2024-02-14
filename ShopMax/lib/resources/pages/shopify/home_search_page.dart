@@ -35,7 +35,8 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     Navigator.pushNamed(context, "/product-search",
             arguments: _txtSearchController.text)
         .then((search) {
-      if (["notic", "compo"].contains(AppHelper.instance.shopifyAppConfig?.theme) ==
+      if (["notic", "compo"]
+              .contains(AppHelper.instance.shopifyAppConfig?.theme) ==
           false) {
         Navigator.pop(context);
       }

@@ -17,7 +17,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 class AccountDetailSettings extends StatefulWidget {
   AccountDetailSettings({super.key});
-  
+
   static String state = "account_detail_settings";
 
   @override
@@ -25,16 +25,13 @@ class AccountDetailSettings extends StatefulWidget {
 }
 
 class _AccountDetailSettingsState extends NyState<AccountDetailSettings> {
-
   _AccountDetailSettingsState() {
     stateName = AccountDetailSettings.state;
   }
 
   @override
-  init() async {
-    
-  }
-  
+  init() async {}
+
   @override
   stateUpdated(dynamic data) async {}
 

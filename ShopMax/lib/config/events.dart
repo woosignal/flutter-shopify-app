@@ -17,6 +17,5 @@ final Map<Type, NyEvent> events = {
   LoginEvent: LoginEvent(),
   LogoutEvent: LogoutEvent(),
   AuthUserEvent: AuthUserEvent(),
-
   DeleteAccountEvent: DeleteAccountEvent(),
-  };
+};

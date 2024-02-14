@@ -9,25 +9,21 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import '/app/controllers/browse_search_controller.dart';
+import 'package:flutter_app/app/controllers/controller.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/safearea_widget.dart';
 import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/shopify_product_search_response.dart';
 
-class ProductSearchPage extends NyStatefulWidget {
+class ProductSearchPage extends NyStatefulWidget<Controller> {
   static String path = "/product-search";
-
-  @override
-  final BrowseSearchController controller = BrowseSearchController();
 
   ProductSearchPage({Key? key})
       : super(path, key: key, child: _BrowseSearchState());
 }
 
 class _BrowseSearchState extends NyState<ProductSearchPage> {
-
   String? _search;
   bool hasNextPage = true;
   String? cursor;
@@ -53,27 +49,28 @@ class _BrowseSearchState extends NyState<ProductSearchPage> {
         centerTitle: true,
       ),
       body: SafeAreaWidget(
-        child: NyPullToRefresh.grid(
-          crossAxisCount: 2,
-          child: (context, product) {
-            product as ProductSearch;
-            return ProductItem.fromShopifyProductSearch(product);
-          },
-          data: (int iteration) async {
-            if (hasNextPage == false) return [];
-            ShopifyProductSearch? productSearch = await appWooSignalShopify((api) => api.productSearch(query: _search, after: cursor, first: 50));
-            cursor = productSearch?.pageInfo?.endCursor;
-            if (productSearch?.pageInfo?.hasNextPage != true) {
-              hasNextPage = false;
-            }
-            return productSearch?.products ?? [];
-          },
-          beforeRefresh: () {
-            cursor = null;
-            hasNextPage = true;
-          },
-        )
-      ),
+          child: NyPullToRefresh.grid(
+        crossAxisCount: 2,
+        child: (context, product) {
+          product as ProductSearch;
+          return ProductItem.fromShopifyProductSearch(product);
+        },
+        data: (int iteration) async {
+          if (hasNextPage == false) return [];
+          ShopifyProductSearch? productSearch = await appWooSignalShopify(
+              (api) =>
+                  api.productSearch(query: _search, after: cursor, first: 50));
+          cursor = productSearch?.pageInfo?.endCursor;
+          if (productSearch?.pageInfo?.hasNextPage != true) {
+            hasNextPage = false;
+          }
+          return productSearch?.products ?? [];
+        },
+        beforeRefresh: () {
+          cursor = null;
+          hasNextPage = true;
+        },
+      )),
     );
   }
 }

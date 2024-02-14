@@ -46,7 +46,7 @@ class AppProvider implements NyProvider {
 
     // WooSignal Setup
     shopify.WooSignalApp? wooSignalApp = await (appWooSignalShopify(
-            (api) => api.getApp(encrypted: shouldEncrypt())));
+        (api) => api.getApp(encrypted: shouldEncrypt())));
     Locale locale = Locale('en');
 
     if (wooSignalApp != null) {

@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import '/app/controllers/account_order_detail_controller.dart';
+import 'package:flutter_app/app/controllers/controller.dart';
 import '/bootstrap/extensions.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/safearea_widget.dart';
@@ -17,19 +17,14 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/order_response.dart';
 
-class AccountOrderDetailPage extends NyStatefulWidget {
+class AccountOrderDetailPage extends NyStatefulWidget<Controller> {
   static String path = "/account-order-detail";
-
-  @override
-  final AccountOrderDetailController controller =
-      AccountOrderDetailController();
 
   AccountOrderDetailPage({Key? key})
       : super(path, key: key, child: _AccountOrderDetailPageState());
 }
 
 class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
-
   OrderResponse? _order;
 
   @override
@@ -67,8 +62,7 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
             ),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
-              padding:
-              EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,12 +93,10 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                boxShadow:
-                (Theme.of(context).brightness == Brightness.light)
+                boxShadow: (Theme.of(context).brightness == Brightness.light)
                     ? wsBoxShadow()
                     : null,
-                color:
-                (Theme.of(context).brightness == Brightness.light)
+                color: (Theme.of(context).brightness == Brightness.light)
                     ? Colors.white
                     : Color(0xFF2C2C2C),
               ),
@@ -115,19 +107,18 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
                   LineItems lineItem = _order!.lineItems![i];
                   return Card(
                     child: ListTile(
-                      contentPadding: EdgeInsets.only(
-                          top: 5, bottom: 5, left: 8, right: 6),
+                      contentPadding:
+                          EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 6),
                       title: Container(
                         decoration: BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(
-                                color: Color(0xFFFCFCFC), width: 1),
+                            bottom:
+                                BorderSide(color: Color(0xFFFCFCFC), width: 1),
                           ),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Flexible(
                               child: Text(
@@ -140,11 +131,12 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
                               width: 70,
                               alignment: Alignment.topRight,
                               child: Text(
-                                lineItem.originalTotalSet?.shopMoney?.amount?.toMoney() ?? "",
+                                lineItem.originalTotalSet?.shopMoney?.amount
+                                        ?.toMoney() ??
+                                    "",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
@@ -153,36 +145,32 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
                       subtitle: Container(
                         decoration: BoxDecoration(
                             border: Border(
-                                top: BorderSide(
-                                    color: Colors.grey[100]!))),
+                                top: BorderSide(color: Colors.grey[100]!))),
                         padding: const EdgeInsets.only(top: 10),
                         margin: EdgeInsets.only(top: 4),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              mainAxisAlignment:
-                              MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  lineItem.originalTotalSet?.shopMoney?.amount?.toMoney() ?? "",
+                                  lineItem.originalTotalSet?.shopMoney?.amount
+                                          ?.toMoney() ??
+                                      "",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                   textAlign: TextAlign.left,
                                 ),
                                 Text(
                                   "x ${lineItem.quantity.toString()}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge,
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                   textAlign: TextAlign.left,
                                 ),
                               ],

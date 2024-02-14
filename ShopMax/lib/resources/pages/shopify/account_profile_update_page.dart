@@ -103,7 +103,8 @@ class _AccountProfileUpdatePageState extends NyState<AccountProfileUpdatePage> {
   }
 
   _fetchUserDetails() async {
-    AuthCustomerInfo? authCustomerInfo = await appWooSignalShopify((api) => api.authCustomer());
+    AuthCustomerInfo? authCustomerInfo =
+        await appWooSignalShopify((api) => api.authCustomer());
     _tfFirstName.text = authCustomerInfo?.firstName ?? "";
     _tfLastName.text = authCustomerInfo?.lastName ?? "";
   }
@@ -122,54 +123,54 @@ class _AccountProfileUpdatePageState extends NyState<AccountProfileUpdatePage> {
         elevation: 1,
       ),
       body: SafeArea(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      child: Row(
                         children: <Widget>[
                           Flexible(
-                            child: Row(
-                              children: <Widget>[
-                                Flexible(
-                                  child: TextEditingRow(
-                                    heading: trans("First Name"),
-                                    controller: _tfFirstName,
-                                    keyboardType: TextInputType.text,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: TextEditingRow(
-                                    heading: trans("Last Name"),
-                                    controller: _tfLastName,
-                                    keyboardType: TextInputType.text,
-                                  ),
-                                ),
-                              ],
+                            child: TextEditingRow(
+                              heading: trans("First Name"),
+                              controller: _tfFirstName,
+                              keyboardType: TextInputType.text,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5),
+                          Flexible(
+                            child: TextEditingRow(
+                              heading: trans("Last Name"),
+                              controller: _tfLastName,
+                              keyboardType: TextInputType.text,
+                            ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                          ),
-                          PrimaryButton(
-                            title: trans("Update Details"),
-                            isLoading: isLocked('update_details'),
-                            action: _updateDetails,
-                          )
                         ],
                       ),
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.all(8),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 5),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                    ),
+                    PrimaryButton(
+                      title: trans("Update Details"),
+                      isLoading: isLocked('update_details'),
+                      action: _updateDetails,
+                    )
+                  ],
+                ),
+                margin: EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
               ),
             ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -177,33 +178,36 @@ class _AccountProfileUpdatePageState extends NyState<AccountProfileUpdatePage> {
     String firstName = _tfFirstName.text;
     String lastName = _tfLastName.text;
 
-    validate(rules: {
-      "First name": [firstName, 'not_empty'],
-      "Last name": [lastName, 'not_empty'],
-    }, onSuccess: () async {
+    validate(
+        rules: {
+          "First name": [firstName, 'not_empty'],
+          "Last name": [lastName, 'not_empty'],
+        },
+        onSuccess: () async {
+          AuthCustomerUpdateResponse? authCustomerUpdateResponse =
+              await appWooSignalShopify((api) => api.authCustomerUpdate(
+                  firstName: firstName, lastName: lastName));
 
-      AuthCustomerUpdateResponse? authCustomerUpdateResponse = await appWooSignalShopify((api) => api.authCustomerUpdate(firstName: firstName, lastName: lastName));
+          if (authCustomerUpdateResponse == null) {
+            showToastOops(description: 'Failed to update account');
+            return;
+          }
 
-      if (authCustomerUpdateResponse == null) {
-        showToastOops(description: 'Failed to update account');
-        return;
-      }
+          if (authCustomerUpdateResponse.status != 200) {
+            showToastOops(description: 'Failed to update account');
+            return;
+          }
 
-      if (authCustomerUpdateResponse.status != 200) {
-        showToastOops(description: 'Failed to update account');
-        return;
-      }
+          updateState(AccountLandingPage.path, data: {
+            'action': 'refresh-page',
+          });
 
-      updateState(AccountLandingPage.path, data: {
-        'action' : 'refresh-page',
-      });
-
-      showToastNotification(context,
-          title: trans("Success"),
-          description: trans("Account updated"),
-          style: ToastNotificationStyleType.SUCCESS);
-      pop();
-
-    }, lockRelease: 'update_details');
+          showToastNotification(context,
+              title: trans("Success"),
+              description: trans("Account updated"),
+              style: ToastNotificationStyleType.SUCCESS);
+          pop();
+        },
+        lockRelease: 'update_details');
   }
 }

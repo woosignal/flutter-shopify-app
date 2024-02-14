@@ -1,5 +1,3 @@
-import '/app/controllers/account_order_detail_controller.dart';
-import '/app/controllers/checkout_status_controller.dart';
 import '/app/models/user.dart';
 import '/app/networking/api_service.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -49,8 +47,5 @@ final Map<Type, NyApiService> apiDecoders = {
 |--------------------------------------------------------------------------
 */
 final Map<Type, dynamic> controllers = {
-  AccountOrderDetailController: () => AccountOrderDetailController(),
-  CheckoutStatusController: () => CheckoutStatusController(),
-
   // ...
 };

@@ -16,21 +16,23 @@ class DefaultFirebaseOptions {
 
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        if (AppHelper.instance.shopifyAppConfig?.firebaseOptionsAndroid == null) {
+        if (AppHelper.instance.shopifyAppConfig?.firebaseOptionsAndroid ==
+            null) {
           throw UnsupportedError(
             'Add a valid Firebase json config on https://woosignal.com for your Shopify store',
           );
         }
         return FirebaseOptions(
-          apiKey:
-          AppHelper.instance.shopifyAppConfig?.firebaseOptionsAndroid!['apiKey'],
-          appId: AppHelper.instance.shopifyAppConfig?.firebaseOptionsAndroid!['appId'],
-          messagingSenderId: AppHelper
-              .instance.shopifyAppConfig?.firebaseOptionsAndroid!['messagingSenderId'],
+          apiKey: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsAndroid!['apiKey'],
+          appId: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsAndroid!['appId'],
+          messagingSenderId: AppHelper.instance.shopifyAppConfig
+              ?.firebaseOptionsAndroid!['messagingSenderId'],
           projectId: AppHelper
               .instance.shopifyAppConfig?.firebaseOptionsAndroid!['projectId'],
-          storageBucket: AppHelper
-              .instance.shopifyAppConfig?.firebaseOptionsAndroid!['storageBucket'],
+          storageBucket: AppHelper.instance.shopifyAppConfig
+              ?.firebaseOptionsAndroid!['storageBucket'],
         );
       case TargetPlatform.iOS:
         if (AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos == null) {
@@ -39,33 +41,35 @@ class DefaultFirebaseOptions {
           );
         }
         return FirebaseOptions(
-          apiKey: AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['apiKey'],
-          appId: AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['appId'],
-          messagingSenderId: AppHelper
-              .instance.shopifyAppConfig?.firebaseOptionsIos!['messagingSenderId'],
-          projectId:
-          AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['projectId'],
+          apiKey: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsIos!['apiKey'],
+          appId:
+              AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['appId'],
+          messagingSenderId: AppHelper.instance.shopifyAppConfig
+              ?.firebaseOptionsIos!['messagingSenderId'],
+          projectId: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsIos!['projectId'],
           storageBucket: AppHelper
               .instance.shopifyAppConfig?.firebaseOptionsIos!['storageBucket'],
-          iosClientId:
-          AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['iosClientId'],
-          iosBundleId:
-          AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['iosBundleId'],
+          iosClientId: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsIos!['iosClientId'],
+          iosBundleId: AppHelper
+              .instance.shopifyAppConfig?.firebaseOptionsIos!['iosBundleId'],
         );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-              'you can reconfigure this by running the FlutterFire CLI again.',
+          'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-              'you can reconfigure this by running the FlutterFire CLI again.',
+          'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-              'you can reconfigure this by running the FlutterFire CLI again.',
+          'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(

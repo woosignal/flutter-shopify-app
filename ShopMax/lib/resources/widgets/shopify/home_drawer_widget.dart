@@ -70,29 +70,29 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                     ),
                     padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
                   ),
-                    ListTile(
-                      title: Text(
-                        trans("Profile"),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 16),
-                      ),
-                      leading: Icon(Icons.account_circle),
-                      onTap: _actionProfile,
+                  ListTile(
+                    title: Text(
+                      trans("Profile"),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: 16),
                     ),
+                    leading: Icon(Icons.account_circle),
+                    onTap: _actionProfile,
+                  ),
                   if (widget.wooSignalApp!.wishlistEnabled == true)
-                    ListTile(
-                      title: Text(
-                        trans("Wishlist"),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 16),
-                      ),
-                      leading: Icon(Icons.favorite_border),
-                      onTap: _actionWishlist,
-                    ),
+                    // ListTile(
+                    //   title: Text(
+                    //     trans("Wishlist"),
+                    //     style: Theme.of(context)
+                    //         .textTheme
+                    //         .bodyMedium!
+                    //         .copyWith(fontSize: 16),
+                    //   ),
+                    //   leading: Icon(Icons.favorite_border),
+                    //   onTap: _actionWishlist,
+                    // ),
                   ListTile(
                     title: Text(
                       trans("Cart"),

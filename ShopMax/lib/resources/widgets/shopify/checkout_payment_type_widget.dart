@@ -17,9 +17,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 class CheckoutPaymentTypeWidget extends StatelessWidget {
   const CheckoutPaymentTypeWidget(
-      {super.key,
-      required this.context,
-      required this.checkoutSession});
+      {super.key, required this.context, required this.checkoutSession});
   final CheckoutSession checkoutSession;
   final BuildContext context;
 

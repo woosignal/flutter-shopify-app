@@ -11,14 +11,14 @@ import '/resources/themes/styles/color_styles.dart';
 class DarkThemeColors implements ColorStyles {
   // general
   @override
-  Color get background => Color(int.parse(
-      getThemeColorForTemplate()!['dark']['background']));
+  Color get background =>
+      Color(int.parse(getThemeColorForTemplate()!['dark']['background']));
   @override
   Color get backgroundContainer => const Color(0xFF4a4a4a);
 
   @override
-  Color get primaryContent => Color(int.parse(
-      getThemeColorForTemplate()?['dark']['primary_text']));
+  Color get primaryContent =>
+      Color(int.parse(getThemeColorForTemplate()?['dark']['primary_text']));
   @override
   Color get primaryAccent => const Color(0xFF818181);
 
@@ -29,23 +29,22 @@ class DarkThemeColors implements ColorStyles {
 
   // app bar
   @override
-  Color get appBarBackground =>
-      Color(int.parse(getThemeColorForTemplate()!['dark']
-          ['app_bar_background']));
+  Color get appBarBackground => Color(
+      int.parse(getThemeColorForTemplate()!['dark']['app_bar_background']));
   @override
-  Color get appBarPrimaryContent => Color(int.parse(
-      getThemeColorForTemplate()?['dark']['app_bar_text']));
+  Color get appBarPrimaryContent =>
+      Color(int.parse(getThemeColorForTemplate()?['dark']['app_bar_text']));
 
   @override
   Color get inputPrimaryContent => Colors.white;
 
   // buttons
   @override
-  Color get buttonBackground => Color(int.parse(
-      getThemeColorForTemplate()?['dark']['button_background']));
+  Color get buttonBackground => Color(
+      int.parse(getThemeColorForTemplate()?['dark']['button_background']));
   @override
-  Color get buttonPrimaryContent => Color(int.parse(
-      getThemeColorForTemplate()?['dark']['button_text']));
+  Color get buttonPrimaryContent =>
+      Color(int.parse(getThemeColorForTemplate()?['dark']['button_text']));
 
   // bottom tab bar
   @override

@@ -4,7 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 
 class DeleteAccountEvent implements NyEvent {
-
   @override
   final listeners = {
     _DefaultListener: _DefaultListener(),
@@ -12,11 +11,10 @@ class DeleteAccountEvent implements NyEvent {
 }
 
 class _DefaultListener extends NyListener {
-
   @override
   handle(dynamic event) async {
-    
-    AuthCustomerInfo? authCustomerInfo = await appWooSignalShopify((api) => api.authCustomer());
+    AuthCustomerInfo? authCustomerInfo =
+        await appWooSignalShopify((api) => api.authCustomer());
     if (authCustomerInfo == null) {
       return;
     }
@@ -49,8 +47,7 @@ ${authCustomerInfo.firstName}
         queryParameters: {
           'subject': 'Request for Account Deletion - ${getEnv('APP_NAME')}',
           'body': body
-        }
-    );
+        });
 
     return await launchUrl(deleteAccount);
   }

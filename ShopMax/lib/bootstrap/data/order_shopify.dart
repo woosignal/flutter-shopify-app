@@ -44,7 +44,8 @@ Future<ShopifyOrder> buildOrderShopify({bool markPaid = true}) async {
   order.currency = shopifyApp.currencyMeta?.code?.toUpperCase();
 
   if (await Auth.loggedIn(key: StorageKey.shopifyCustomer)) {
-    AuthCustomerInfo? customer = await appWooSignalShopify((api) => api.authCustomer());
+    AuthCustomerInfo? customer =
+        await appWooSignalShopify((api) => api.authCustomer());
     order.customer = customer?.uid;
     print(['order.customer', order.customer]);
   }

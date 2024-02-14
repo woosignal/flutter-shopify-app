@@ -241,7 +241,8 @@ class _CheckoutShippingTypePageState extends NyState<CheckoutShippingTypePage> {
                                                     shippingMethod
                                             ? Icon(Icons.check)
                                             : null),
-                                        onTap: () => _handleCheckoutTapped(shippingMethod),
+                                        onTap: () => _handleCheckoutTapped(
+                                            shippingMethod),
                                       );
                                     },
                                     empty: Text(

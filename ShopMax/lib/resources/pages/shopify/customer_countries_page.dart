@@ -21,14 +21,14 @@ class CustomerCountriesPage extends NyStatefulWidget {
 }
 
 class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
-
   final TextEditingController _tfSearchCountry = TextEditingController();
 
   List<ShopifyCountry> _countries = [], _activeShippingResults = [];
 
   @override
   boot() async {
-    ShopifyCountryResponse? shopifyCountryResponse = await appWooSignalShopify((api) => api.getCountries());
+    ShopifyCountryResponse? shopifyCountryResponse =
+        await appWooSignalShopify((api) => api.getCountries());
     if (shopifyCountryResponse == null) {
       showToastDanger(description: trans("Something went wrong"));
       pop();
@@ -54,16 +54,16 @@ class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
               padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               margin: EdgeInsets.only(bottom: 10, top: 10),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                  color: ThemeColor.get(context).background,
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 2,
+                    blurRadius: 3,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+                color: ThemeColor.get(context).background,
               ),
               height: 60,
               child: Row(
@@ -99,7 +99,8 @@ class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
             Expanded(
               child: ListView.builder(
                   itemBuilder: (context, index) {
-                    ShopifyCountry defaultShipping = _activeShippingResults[index];
+                    ShopifyCountry defaultShipping =
+                        _activeShippingResults[index];
                     return InkWell(
                       onTap: () => _handleCountryTapped(defaultShipping),
                       child: Container(
@@ -125,7 +126,7 @@ class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
   _handleOnChanged(String value) {
     _activeShippingResults = _countries
         .where((country) =>
-        country.name!.toLowerCase().contains(value.toLowerCase()))
+            country.name!.toLowerCase().contains(value.toLowerCase()))
         .toList();
     setState(() {});
   }
@@ -172,8 +173,7 @@ class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
     );
   }
 
-  _popWithShippingResult(ShopifyCountry defaultShipping,
-      {Provinces? state}) {
+  _popWithShippingResult(ShopifyCountry defaultShipping, {Provinces? state}) {
     if (state != null) {
       defaultShipping.provinces = [];
       defaultShipping.provinces?.add(state);

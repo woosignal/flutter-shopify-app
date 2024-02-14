@@ -34,7 +34,6 @@ class _CheckoutPaymentTypePageState extends NyState<CheckoutPaymentTypePage> {
     super.init();
 
     _paymentTypes = await getShopifyPaymentTypes();
-    print(['_paymentTypes', _paymentTypes]);
 
     if (_paymentTypes.isEmpty &&
         getEnv('APP_DEBUG', defaultValue: false) == true) {

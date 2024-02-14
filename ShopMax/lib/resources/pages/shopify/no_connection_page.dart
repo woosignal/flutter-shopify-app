@@ -63,7 +63,8 @@ class _NoConnectionPageState extends State<NoConnectionPage> {
   }
 
   _retry() async {
-    WooSignalApp? wooSignalApp = await (appWooSignalShopify((api) => api.getApp()));
+    WooSignalApp? wooSignalApp =
+        await (appWooSignalShopify((api) => api.getApp()));
 
     if (wooSignalApp == null) {
       showToastNotification(context,
