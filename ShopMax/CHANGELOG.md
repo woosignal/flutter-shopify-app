@@ -1,3 +1,8 @@
+## [1.0.4] - 2024-02-15
+
+* Fix Wishlist page
+* pubspec.yaml updates
+
 ## [1.0.3] - 2024-02-15
 
 * Tweaks to the Mello Template

@@ -12,10 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bootstrap/extensions.dart';
 import 'package:flutter_app/resources/pages/shopify/product_detail_page.dart';
 import 'package:flutter_app/resources/widgets/safearea_widget.dart';
+import 'package:woosignal_shopify_api/models/product.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/cached_image_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
-import 'package:woosignal_shopify_api/models/response/shopify_product_response.dart';
 
 class WishListPageWidget extends NyStatefulWidget {
   static String path = "/wishlist";
@@ -23,8 +23,6 @@ class WishListPageWidget extends NyStatefulWidget {
 }
 
 class _WishListPageWidgetState extends NyState<WishListPageWidget> {
-  bool? hasNextPage = true;
-  String? endCursor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,74 +32,77 @@ class _WishListPageWidgetState extends NyState<WishListPageWidget> {
         title: Text(trans("Wishlist")),
       ),
       body: SafeAreaWidget(
-        child: NyPullToRefresh.grid(
-          crossAxisCount: 1,
-          mainAxisSpacing: 20,
-          data: (page) async {
-            if (hasNextPage == false) return [];
+        child: NyListView.separated(
+          separatorBuilder: (context, index) => Divider(
+            height: 1,
+            color: Colors.grey.shade100,
+          ),
+          data: () async {
             List<String> favouriteProducts = await getWishlistProducts();
-            ShopifyProductResponse? shopifyProductResponse =
-                await (appWooSignalShopify(
-                    (api) => api.getProductsJson(ids: favouriteProducts.map((e) => int.parse(e)).toList())));
-            if (shopifyProductResponse?.pageInfo?.hasNextPage != true) {
-              hasNextPage = false;
+            if (favouriteProducts.isEmpty) {
+              return [];
             }
-            endCursor = shopifyProductResponse?.pageInfo?.endCursor;
-            return shopifyProductResponse?.products ?? [];
+            List<Product>? products =
+                await (appWooSignalShopify(
+                    (api) => api.getProductsRestApi(ids: favouriteProducts.map((e) => int.parse(e)).toList())));
+            return products;
           },
           child: (context, product) {
-            product as ShopifyProduct;
+            product as Product;
             return Container(
+              height: 160,
+              margin: EdgeInsets.symmetric(vertical: 16),
               child: Row(
                 children: [
                   Container(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: CachedImageWidget(
-                        image: (product.featuredImage?.url != null
-                            ? product.featuredImage!.url
-                            : getEnv("PRODUCT_PLACEHOLDER_IMAGE")),
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                      ),
+                      image: product.image?.src ?? getEnv("PRODUCT_PLACEHOLDER_IMAGE"),
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                                            ),
                     ),
-                    width: MediaQuery.of(context).size.width / 4,
+                    width: MediaQuery.of(context).size.width / 3.5,
+                    height: 160,
                   ).paddingOnly(right: 8),
                   Expanded(
                     child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                alignment: Alignment.topRight,
+                                icon: Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () => _removeFromWishlist(product.id.toString()),
+                              ),
+                            ],
+                          ),
                           Text(
                             product.title ?? "",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: textTheme.headlineSmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            product.priceRange?.minVariantPrice?.amount
-                                    .toMoney() ??
-                                "",
-                          ),
+                            product.price.toMoney(),
+                            style: textTheme.bodyLarge,
+                          ).fontWeightBold().paddingOnly(top: 14),
                         ],
                       ),
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 5,
-                    alignment: Alignment.center,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                      onPressed: () => _removeFromWishlist(product),
-                    ),
-                  )
                 ],
               ),
-            ).onTapRoute(ProductDetailPage.path, data: product.uId);
+            ).onTapRoute(ProductDetailPage.path, data: product.id);
           },
           empty: Center(
             child: Column(
@@ -128,8 +129,8 @@ class _WishListPageWidgetState extends NyState<WishListPageWidget> {
     );
   }
 
-  _removeFromWishlist(ShopifyProduct product) async {
-    await removeWishlistProduct(productId: product.id ?? "");
+  _removeFromWishlist(String productId) async {
+    await removeWishlistProduct(productId: productId);
     showToastNotification(
       context,
       title: trans('Success'),

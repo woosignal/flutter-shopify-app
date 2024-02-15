@@ -82,17 +82,17 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                     onTap: _actionProfile,
                   ),
                   if (widget.wooSignalApp!.wishlistEnabled == true)
-                    // ListTile(
-                    //   title: Text(
-                    //     trans("Wishlist"),
-                    //     style: Theme.of(context)
-                    //         .textTheme
-                    //         .bodyMedium!
-                    //         .copyWith(fontSize: 16),
-                    //   ),
-                    //   leading: Icon(Icons.favorite_border),
-                    //   onTap: _actionWishlist,
-                    // ),
+                    ListTile(
+                      title: Text(
+                        trans("Wishlist"),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: 16),
+                      ),
+                      leading: Icon(Icons.favorite_border),
+                      onTap: _actionWishlist,
+                    ),
                   ListTile(
                     title: Text(
                       trans("Cart"),
