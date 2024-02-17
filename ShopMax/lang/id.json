@@ -234,6 +234,7 @@
   "Logout?": "Keluar?",
   "Checkout as guest or login to continue": "Checkout sebagai tamu atau login untuk melanjutkan",
   "Login / Create an account": "Masuk / Buat akun",
+  "({{itemCount}}) items from {{appName}}": "({{itemCount}}) item dari {{appName}}",
   "Contact us for any questions on your order.": "Hubungi kami jika ada pertanyaan tentang pesanan Anda.",
   "By completing this order, I agree to all": "Dengan menyelesaikan pesanan ini, saya menyetujui semuanya"
 }

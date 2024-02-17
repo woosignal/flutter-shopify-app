@@ -1,3 +1,4 @@
+import 'package:flutter_app/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -43,7 +44,7 @@ ${authCustomerInfo.firstName}
 
     final Uri deleteAccount = Uri(
         scheme: 'mailto',
-        path: getEnv('SUPPORT_EMAIL'),
+        path: getEnv('SUPPORT_EMAIL', defaultValue: AppHelper.instance.shopifyAppConfig?.supportEmail),
         queryParameters: {
           'subject': 'Request for Account Deletion - ${getEnv('APP_NAME')}',
           'body': body

@@ -21,7 +21,12 @@ class AppProvider implements NyProvider {
     ]);
 
     await shopify.WooSignalShopify.instance
-        .init(appKey: getEnv('APP_KEY'), debugMode: getEnv('APP_DEBUG'));
+        .init(
+        appKey: getEnv('APP_KEY'),
+        debugMode: getEnv('APP_DEBUG'),
+        encryptKey: getEnv('ENCRYPT_KEY'),
+        encryptSecret: getEnv('ENCRYPT_SECRET'),
+    );
 
     AppHelper.instance.shopifyAppConfig = shopify.WooSignalApp();
     AppHelper.instance.shopifyAppConfig?.themeFont = "Poppins";

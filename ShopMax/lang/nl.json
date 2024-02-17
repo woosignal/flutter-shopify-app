@@ -229,5 +229,6 @@
   "Account deleted": "Account verwijderd",
   "Shipping is not supported for your location, sorry": "Verzending wordt niet ondersteund voor uw locatie, sorry",
   "Order Summary": "Overzicht van de bestelling",
+  "({{itemCount}}) items from {{appName}}": "({{itemCount}}) artikelen van {{appName}}",
   "By completing this order, I agree to all": "Door deze bestelling te voltooien, ga ik akkoord met alles"
 }

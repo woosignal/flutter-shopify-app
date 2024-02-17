@@ -32,8 +32,8 @@ payPalPay(context) async {
         CheckoutSession.getInstance.shippingType?.getTotal() ?? "0";
 
     String description =
-        "(${cartLineItems.length}) items from ${getEnv('APP_NAME')}"
-            .tr(arguments: {"appName": getEnv('APP_NAME')});
+        "({{itemCount}}) items from {{appName}}"
+            .tr(arguments: {"appName": getEnv('APP_NAME'), "itemCount": cartLineItems.length.toString()});
 
     Navigator.of(context).push(
       MaterialPageRoute(

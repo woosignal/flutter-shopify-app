@@ -1,3 +1,9 @@
+## [1.0.5] - 2024-02-17
+
+* Add missing translations
+* Migrate to newer Android and IOS project structure
+* pubspec.yaml updates
+
 ## [1.0.4] - 2024-02-15
 
 * Fix Wishlist page
