@@ -44,7 +44,8 @@ ${authCustomerInfo.firstName}
 
     final Uri deleteAccount = Uri(
         scheme: 'mailto',
-        path: getEnv('SUPPORT_EMAIL', defaultValue: AppHelper.instance.shopifyAppConfig?.supportEmail),
+        path: getEnv('SUPPORT_EMAIL',
+            defaultValue: AppHelper.instance.shopifyAppConfig?.supportEmail),
         queryParameters: {
           'subject': 'Request for Account Deletion - ${getEnv('APP_NAME')}',
           'body': body

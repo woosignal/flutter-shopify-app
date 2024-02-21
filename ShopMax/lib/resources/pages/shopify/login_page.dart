@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import '/bootstrap/app_helper.dart';
+import 'package:flutter_app/resources/pages/forgot_password_page.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/shopify/register_page.dart';
 import '/resources/widgets/buttons.dart';
@@ -126,14 +126,7 @@ class _LoginPageState extends NyState<LoginPage> {
             LinkButton(
                 title: trans("Forgot Password"),
                 action: () {
-                  String? forgotPasswordUrl = AppHelper
-                      .instance.shopifyAppConfig?.wpLoginForgotPasswordUrl;
-                  if (forgotPasswordUrl != null) {
-                    openBrowserTab(url: forgotPasswordUrl);
-                  } else {
-                    NyLogger.info(
-                        "No URL found for \"forgot password\".\nAdd your forgot password URL here https://woosignal.com/dashboard/apps");
-                  }
+                  routeTo(ForgotPasswordPage.path);
                 }),
             widget.showBackButton
                 ? Column(

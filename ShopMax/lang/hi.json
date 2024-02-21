@@ -230,5 +230,9 @@
   "Shipping is not supported for your location, sorry": "aapake sthaan ke lie shiping samarthit nahin hai, kshama karen",
   "Order Summary": "aadesh saaraansh",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) se aaitam {{appName}}",
+  "Invalid email address": "amaany eemel pata",
+  "Send Reset Email": "reeset eemel bhejen",
+  "Password reset email sent": "paasavard reeset eemel bheja gaya",
+  "Failed to send reset email": "reeset eemel bhejane mein viphal",
   "By completing this order, I agree to all": "is aadesh ko poora karake, main sabhee ke lie sahamat hoon"
 }

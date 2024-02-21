@@ -9,6 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import 'package:woosignal_shopify_api/models/response/collection_item_response.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/shopify/home_search_page.dart';
 import '/resources/widgets/cached_image_widget.dart';
@@ -32,15 +33,50 @@ class MelloThemeWidget extends StatefulWidget {
 class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
   bool? hasNextPage = true;
   String? endCursor;
+  List<Collections> _collections = [];
 
   @override
-  Widget build(BuildContext context) {
+  boot() async {
+    await _fetchCollectionData();
+  }
+
+  _fetchCollectionData() async {
+    if (_collections.isNotEmpty) {
+      return;
+    }
+    if (widget.wooSignalApp == null) {
+      return;
+    }
+    List<String> collectionIds = widget.wooSignalApp!.shopifyCollections
+        .map((e) => e.collectionId ?? "")
+        .toList();
+    CollectionItem? collectionItem = await appWooSignalShopify(
+        (api) => api.getCollectionsByIds(ids: collectionIds));
+    if (collectionItem == null) {
+      return;
+    }
+    setState(() {
+      _collections = collectionItem.collections ?? [];
+    });
+  }
+
+  @override
+  Widget view(BuildContext context) {
     List<String>? bannerImages = widget.wooSignalApp!.bannerImages;
     return Scaffold(
-      drawer: HomeDrawerWidget(wooSignalApp: widget.wooSignalApp),
+      drawer: HomeDrawerWidget(
+          wooSignalApp: widget.wooSignalApp, collections: _collections),
       appBar: AppBar(
         title: StoreLogo(height: 55),
         centerTitle: true,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu_rounded),
+            onPressed: () async {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             alignment: Alignment.centerLeft,

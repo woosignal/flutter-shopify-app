@@ -236,5 +236,9 @@
   "Login / Create an account": "Login / Create an account",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) items from {{appName}}",
   "Contact us for any questions on your order.": "Contact us for any questions on your order.",
+  "Invalid email address": "Invalid email address",
+  "Send Reset Email": "Send Reset Email",
+  "Password reset email sent": "Password reset email sent",
+  "Failed to send reset email": "Failed to send reset email",
   "By completing this order, I agree to all": "By completing this order, I agree to all"
 }

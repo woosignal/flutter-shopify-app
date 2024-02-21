@@ -230,5 +230,9 @@
   "Shipping is not supported for your location, sorry": "Bulunduğunuz yer için gönderim desteklenmiyor, üzgünüm",
   "Order Summary": "Sipariş özeti",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) gelen öğeler {{appName}}",
+  "Invalid email address": "Geçersiz e-posta adresi",
+  "Send Reset Email": "Sıfırlama E-postasını Gönder",
+  "Password reset email sent": "Şifre sıfırlama e-postası gönderildi",
+  "Failed to send reset email": "Sıfırlama e-postası gönderilemedi",
   "By completing this order, I agree to all": "Bu siparişi tamamlayarak, tümünü kabul ediyorum"
 }

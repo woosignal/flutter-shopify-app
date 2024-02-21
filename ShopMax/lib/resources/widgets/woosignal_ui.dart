@@ -10,6 +10,7 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:woosignal_shopify_api/models/response/product_search.dart';
 import '/app/models/shopify/cart.dart' as shopify;
 import '/app/models/shopify/checkout_session.dart' as shopify;
 import '/bootstrap/app_helper.dart';
@@ -20,7 +21,6 @@ import '/resources/widgets/cached_image_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/product.dart' as Shopify;
 import 'package:woosignal_shopify_api/models/response/shopify_product_response.dart';
-import 'package:woosignal_shopify_api/models/response/shopify_product_search_response.dart';
 
 import '/app/models/shopify/cart.dart';
 

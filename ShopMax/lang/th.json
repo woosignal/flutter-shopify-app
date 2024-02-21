@@ -236,5 +236,9 @@
   "Login / Create an account": "เข้าสู่ระบบ / สร้างบัญชี",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) รายการจาก {{appName}}",
   "Contact us for any questions on your order.": "ติดต่อเราหากมีคำถามเกี่ยวกับคำสั่งซื้อของคุณ",
+  "Invalid email address": "ที่อยู่อีเมลที่ไม่ถูกต้อง",
+  "Send Reset Email": "ส่งอีเมล์รีเซ็ต",
+  "Password reset email sent": "ส่งอีเมลรีเซ็ตรหัสผ่านแล้ว",
+  "Failed to send reset email": "ไม่สามารถส่งอีเมลรีเซ็ตได้",
   "By completing this order, I agree to all": "เมื่อดำเนินการตามคำสั่งซื้อนี้เสร็จสิ้น ฉันยอมรับทุกประการ"
 }

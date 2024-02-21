@@ -1,3 +1,12 @@
+## [1.1.0] - 2024-02-21
+
+* Ability to add, reorder and show Shopify Collections selected from the WooSignal dashboard
+* Refactor `ForgotPassword` page
+* New `BrowseCategories` page
+* Add missing translations
+* Refactor `Wishlist` page
+* pubspec.yaml updates
+
 ## [1.0.5] - 2024-02-17
 
 * Add missing translations

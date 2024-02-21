@@ -229,6 +229,10 @@
   "Account deleted": "Conta excluída",
   "Shipping is not supported for your location, sorry": "O envio não é suportado para a sua localização, desculpe",
   "Order Summary": "Resumo do pedido",
+  "Invalid email address": "Endereço de email invalido",
+  "Send Reset Email": "Enviar e-mail de redefinição",
+  "Password reset email sent": "E-mail de redefinição de senha enviado",
+  "Failed to send reset email": "Falha ao enviar e-mail de redefinição",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) itens de {{appName}}",
   "By completing this order, I agree to all": "Ao concluir este pedido, concordo com todos"
 }

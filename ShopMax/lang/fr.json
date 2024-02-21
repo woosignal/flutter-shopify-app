@@ -230,5 +230,9 @@
   "Shipping is not supported for your location, sorry": "L'expédition n'est pas prise en charge pour votre emplacement, désolé",
   "Order Summary": "Récapitulatif de la commande",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) articles de {{appName}}",
+  "Invalid email address": "Adresse e-mail invalide",
+  "Send Reset Email": "Envoyer un e-mail de réinitialisation",
+  "Password reset email sent": "E-mail de réinitialisation du mot de passe envoyé",
+  "Failed to send reset email": "Échec de l'envoi de l'e-mail de réinitialisation",
   "By completing this order, I agree to all": "En remplissant cette commande, j'accepte toutes"
 }

@@ -230,5 +230,9 @@
   "Shipping is not supported for your location, sorry": "您所在的位置不支持送货，抱歉",
   "Order Summary": "订单摘要",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) 物品来自 {{appName}}",
+  "Invalid email address": "无效的邮件地址",
+  "Send Reset Email": "发送重置电子邮件",
+  "Password reset email sent": "密码重置电子邮件已发送",
+  "Failed to send reset email": "发送重置邮件失败",
   "By completing this order, I agree to all": "通过完成此订单，我同意所有"
 }

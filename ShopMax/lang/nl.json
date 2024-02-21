@@ -230,5 +230,9 @@
   "Shipping is not supported for your location, sorry": "Verzending wordt niet ondersteund voor uw locatie, sorry",
   "Order Summary": "Overzicht van de bestelling",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) artikelen van {{appName}}",
+  "Invalid email address": "Ongeldig e-mailadres",
+  "Send Reset Email": "Reset-e-mail verzenden",
+  "Password reset email sent": "E-mail voor wachtwoordherstel verzonden",
+  "Failed to send reset email": "Kan geen reset-e-mail verzenden",
   "By completing this order, I agree to all": "Door deze bestelling te voltooien, ga ik akkoord met alles"
 }

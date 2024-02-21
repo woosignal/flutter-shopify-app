@@ -20,12 +20,11 @@ class AppProvider implements NyProvider {
       DeviceOrientation.portraitUp,
     ]);
 
-    await shopify.WooSignalShopify.instance
-        .init(
-        appKey: getEnv('APP_KEY'),
-        debugMode: getEnv('APP_DEBUG'),
-        encryptKey: getEnv('ENCRYPT_KEY'),
-        encryptSecret: getEnv('ENCRYPT_SECRET'),
+    await shopify.WooSignalShopify.instance.init(
+      appKey: getEnv('APP_KEY'),
+      debugMode: getEnv('APP_DEBUG'),
+      encryptKey: getEnv('ENCRYPT_KEY'),
+      encryptSecret: getEnv('ENCRYPT_SECRET'),
     );
 
     AppHelper.instance.shopifyAppConfig = shopify.WooSignalApp();

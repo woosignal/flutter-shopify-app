@@ -9,11 +9,13 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/resources/pages/browse_categories_page.dart';
+import 'package:woosignal_shopify_api/models/response/collection_item_response.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/shopify/account_landing_page.dart';
 import '/resources/pages/shopify/cart_page.dart';
-import '/resources/pages/shopify/wishlist_page_widget.dart';
+import '/resources/pages/shopify/wishlist_page.dart';
 import '/resources/widgets/app_version_widget.dart';
 import '/resources/widgets/cached_image_widget.dart';
 import '/resources/widgets/woosignal_ui.dart';
@@ -24,9 +26,11 @@ import 'package:woosignal_shopify_api/models/menu_link.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 
 class HomeDrawerWidget extends StatefulWidget {
-  const HomeDrawerWidget({super.key, required this.wooSignalApp});
+  const HomeDrawerWidget(
+      {super.key, required this.wooSignalApp, required this.collections});
 
   final WooSignalApp? wooSignalApp;
+  final List<Collections> collections;
 
   @override
   createState() => _HomeDrawerWidgetState();
@@ -58,6 +62,37 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                 color: ThemeColor.get(context).background,
               ),
             ),
+            if (widget.wooSignalApp?.shopifyCollections.isNotEmpty ?? false)
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      child: Text(
+                        trans("Categories".tr()),
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                        textAlign: TextAlign.left,
+                      ),
+                      padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                    ),
+                    ...widget.collections.map((collection) {
+                      return ListTile(
+                        title: Text(
+                          collection.title ?? "",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontSize: 16),
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                        onTap: () {
+                          routeTo(BrowseCategoriesPage.path, data: collection);
+                        },
+                      );
+                    })
+                  ]),
             if (["compo"].contains(_themeType) == false)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +101,9 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                   Padding(
                     child: Text(
                       trans("Menu"),
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                     padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
                   ),
@@ -111,7 +148,9 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
               Padding(
                 child: Text(
                   trans("About Us"),
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
               ),
@@ -206,7 +245,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
 
   _actionWishlist() async {
     Navigator.pop(context);
-    routeTo(WishListPageWidget.path);
+    routeTo(WishListPage.path);
   }
 
   _actionCart() {

@@ -1,3 +1,5 @@
+import '/resources/pages/forgot_password_page.dart';
+import '/resources/pages/browse_categories_page.dart';
 import '/resources/pages/shopify/account_delete_page.dart';
 import '/resources/pages/shopify/account_landing_page.dart';
 import '/resources/pages/shopify/login_page.dart';
@@ -18,7 +20,7 @@ import '/resources/pages/shopify/home_search_page.dart';
 import '/resources/pages/shopify/no_connection_page.dart';
 import '/resources/pages/shopify/product_detail_page.dart';
 import '/resources/pages/shopify/product_image_viewer_page.dart';
-import '/resources/pages/shopify/wishlist_page_widget.dart';
+import '/resources/pages/shopify/wishlist_page.dart';
 import '/routes/guards/auth_profile_route_guard.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
@@ -43,7 +45,7 @@ appRouter() => nyRoutes((router) {
           ProductImageViewerPage.path, (context) => ProductImageViewerPage(),
           transition: PageTransitionType.fade);
 
-      router.route(WishListPageWidget.path, (context) => WishListPageWidget(),
+      router.route(WishListPage.path, (context) => WishListPage(),
           transition: PageTransitionType.rightToLeftWithFade);
 
       router.route(
@@ -90,4 +92,8 @@ appRouter() => nyRoutes((router) {
 
       router.route(AccountShippingDetailsPage.path,
           (context) => AccountShippingDetailsPage());
+      router.route(
+          BrowseCategoriesPage.path, (context) => BrowseCategoriesPage());
+      router.route(ForgotPasswordPage.path, (context) => ForgotPasswordPage());
+
     });

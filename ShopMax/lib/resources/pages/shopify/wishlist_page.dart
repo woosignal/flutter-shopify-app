@@ -17,13 +17,12 @@ import '/bootstrap/helpers.dart';
 import '/resources/widgets/cached_image_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-class WishListPageWidget extends NyStatefulWidget {
+class WishListPage extends NyStatefulWidget {
   static String path = "/wishlist";
-  WishListPageWidget() : super(path, child: _WishListPageWidgetState());
+  WishListPage() : super(path, child: _WishListPageState());
 }
 
-class _WishListPageWidgetState extends NyState<WishListPageWidget> {
-
+class _WishListPageState extends NyState<WishListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +41,9 @@ class _WishListPageWidgetState extends NyState<WishListPageWidget> {
             if (favouriteProducts.isEmpty) {
               return [];
             }
-            List<Product>? products =
-                await (appWooSignalShopify(
-                    (api) => api.getProductsRestApi(ids: favouriteProducts.map((e) => int.parse(e)).toList())));
+            List<Product>? products = await (appWooSignalShopify((api) =>
+                api.getProductsRestApi(
+                    ids: favouriteProducts.map((e) => int.parse(e)).toList())));
             return products;
           },
           child: (context, product) {
@@ -58,10 +57,11 @@ class _WishListPageWidgetState extends NyState<WishListPageWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: CachedImageWidget(
-                      image: product.image?.src ?? getEnv("PRODUCT_PLACEHOLDER_IMAGE"),
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                                            ),
+                        image: product.image?.src ??
+                            getEnv("PRODUCT_PLACEHOLDER_IMAGE"),
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
                     ),
                     width: MediaQuery.of(context).size.width / 3.5,
                     height: 160,
@@ -82,7 +82,8 @@ class _WishListPageWidgetState extends NyState<WishListPageWidget> {
                                   Icons.favorite,
                                   color: Colors.red,
                                 ),
-                                onPressed: () => _removeFromWishlist(product.id.toString()),
+                                onPressed: () =>
+                                    _removeFromWishlist(product.id.toString()),
                               ),
                             ],
                           ),

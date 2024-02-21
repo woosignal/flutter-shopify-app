@@ -230,5 +230,9 @@
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) artikel aus {{appName}}",
   "Shipping is not supported for your location, sorry": "Der Versand wird für Ihren Standort nicht unterstützt, tut mir leid",
   "Order Summary": "Bestellübersicht",
+  "Invalid email address": "Ungültige E-Mail-Adresse",
+  "Send Reset Email": "Senden Sie eine E-Mail zum Zurücksetzen",
+  "Password reset email sent": "E-Mail zum Zurücksetzen des Passworts gesendet",
+  "Failed to send reset email": "E-Mail zum Zurücksetzen konnte nicht gesendet werden",
   "By completing this order, I agree to all": "Mit Abschluss dieser Bestellung stimme ich allem zu"
 }
