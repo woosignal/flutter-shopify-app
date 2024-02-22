@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/resources/pages/browse_categories_page.dart';
+import 'package:flutter_app/resources/pages/shopify/browse_categories_page.dart';
 import 'package:woosignal_shopify_api/models/response/collection_item_response.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';

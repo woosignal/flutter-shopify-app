@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bootstrap/helpers.dart';
-import 'package:flutter_app/resources/widgets/safearea_widget.dart';
+import '/bootstrap/helpers.dart';
+import '/resources/widgets/safearea_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/collection_item_response.dart';
 import 'package:woosignal_shopify_api/models/response/product_search.dart';
 import 'package:woosignal_shopify_api/models/response/products_by_collection_id_response.dart';
-import '../widgets/woosignal_ui.dart';
+import '/resources/widgets/woosignal_ui.dart';
 
 class BrowseCategoriesPage extends NyStatefulWidget {
   static const path = '/browse-categories';
@@ -23,10 +23,6 @@ class _BrowseCategoriesPageState extends NyState<BrowseCategoriesPage> {
     _collection = data() as Collections;
   }
 
-  /// Use boot if you need to load data before the [view] is rendered.
-  @override
-  boot() async {}
-
   @override
   Widget view(BuildContext context) {
     return Scaffold(
@@ -34,6 +30,8 @@ class _BrowseCategoriesPageState extends NyState<BrowseCategoriesPage> {
       body: SafeAreaWidget(
         child: NyPullToRefresh.grid(
           crossAxisCount: 2,
+          mainAxisSpacing: 15,
+          crossAxisSpacing: 10,
           child: (context, product) {
             product as ProductSearch;
             return ProductItem.fromShopifyProductSearch(product);

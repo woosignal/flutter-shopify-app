@@ -1,5 +1,5 @@
-import '/resources/pages/forgot_password_page.dart';
-import '/resources/pages/browse_categories_page.dart';
+import '/resources/pages/shopify/forgot_password_page.dart';
+import '/resources/pages/shopify/browse_categories_page.dart';
 import '/resources/pages/shopify/account_delete_page.dart';
 import '/resources/pages/shopify/account_landing_page.dart';
 import '/resources/pages/shopify/login_page.dart';

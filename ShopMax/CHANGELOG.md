@@ -1,3 +1,8 @@
+## [1.1.1] - 2024-02-22
+
+* Refactor pages
+* pubspec.yaml updates
+
 ## [1.1.0] - 2024-02-21
 
 * Ability to add, reorder and show Shopify Collections selected from the WooSignal dashboard

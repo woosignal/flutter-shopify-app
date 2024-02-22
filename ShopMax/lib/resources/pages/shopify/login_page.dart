@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/resources/pages/forgot_password_page.dart';
+import '/resources/pages/shopify/forgot_password_page.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/shopify/register_page.dart';
 import '/resources/widgets/buttons.dart';
