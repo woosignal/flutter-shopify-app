@@ -12,7 +12,7 @@
 
 import 'package:flutter/widgets.dart';
 import '/bootstrap/helpers.dart';
-import '/resources/pages/shopify/checkout_status_page.dart';
+import '/resources/pages/checkout_status_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/order_created_response.dart';
 import 'package:woosignal_shopify_api/models/shopify_order.dart';

@@ -1,3 +1,7 @@
+## [1.1.2] - 2024-02-23
+
+* Refactor project
+
 ## [1.1.1] - 2024-02-22
 
 * Refactor pages

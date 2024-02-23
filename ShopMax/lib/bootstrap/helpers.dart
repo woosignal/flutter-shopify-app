@@ -10,8 +10,9 @@
 
 import 'dart:convert';
 import 'package:collection/collection.dart' show IterableExtension;
+import 'package:flutter_app/app/models/cart.dart';
 import '/app/models/billing_details.dart';
-import '/app/models/shopify/checkout_session.dart' as shopify;
+import '/app/models/checkout_session.dart' as shopify;
 import '/app/models/default_shipping.dart';
 import '/app/models/payment_type.dart';
 import '/app/models/user.dart';
@@ -30,7 +31,6 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:status_alert/status_alert.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
-import '/app/models/shopify/cart.dart';
 import '/resources/themes/styles/color_styles.dart';
 import 'package:flutter/services.dart' show rootBundle;
 

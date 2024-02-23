@@ -12,7 +12,7 @@ import 'package:flutter/cupertino.dart';
 import '/bootstrap/helpers.dart';
 import '/config/storage_keys.dart';
 import 'package:nylo_framework/nylo_framework.dart';
-import '/app/models/shopify/cart.dart';
+import '/app/models/cart.dart';
 
 Future<bool> authCheck() async => ((await getUser()) != null);
 

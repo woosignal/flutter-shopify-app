@@ -9,9 +9,9 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import '/app/models/billing_details.dart';
-import '/app/models/shopify/cart.dart';
-import '/app/models/shopify/cart_line_item.dart';
-import '/app/models/shopify/checkout_session.dart';
+import '/app/models/cart.dart';
+import '/app/models/cart_line_item.dart';
+import '/app/models/checkout_session.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
 import '/config/storage_keys.dart';

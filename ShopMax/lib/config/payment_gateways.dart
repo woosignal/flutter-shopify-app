@@ -1,7 +1,7 @@
 import '/app/models/payment_type.dart';
-import '/app/providers/payments/shopify/paypal_pay.dart';
-import '/app/providers/payments/shopify/razorpay_pay.dart';
-import '/app/providers/payments/shopify/stripe_pay.dart';
+import '../app/providers/payments/paypal_pay.dart';
+import '../app/providers/payments/razorpay_pay.dart';
+import '../app/providers/payments/stripe_pay.dart';
 import '/bootstrap/helpers.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/config/storage_keys.dart';
-import '/resources/pages/shopify/login_page.dart';
+import '../../resources/pages/login_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*

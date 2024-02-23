@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import '/app/models/customer_address.dart';
-import '/app/models/shopify/checkout_session.dart';
+import 'checkout_session.dart';
 
 class BillingDetails {
   CustomerAddress? billingAddress;
