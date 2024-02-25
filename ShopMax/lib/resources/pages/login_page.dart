@@ -105,7 +105,7 @@ class _LoginPageState extends NyState<LoginPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   Icon(
                     Icons.account_circle,
                     color: (Theme.of(context).brightness == Brightness.light)

@@ -1,3 +1,8 @@
+## [1.1.3] - 2024-02-25
+
+* Fix Checkout shipping page
+* pubspec.yaml updates
+
 ## [1.1.2] - 2024-02-23
 
 * Refactor project
