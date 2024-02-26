@@ -1,3 +1,7 @@
+## [1.1.4] - 2024-02-26
+
+* pubspec.yaml updates
+
 ## [1.1.3] - 2024-02-25
 
 * Fix Checkout shipping page
