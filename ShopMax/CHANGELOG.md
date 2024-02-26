@@ -1,3 +1,7 @@
+## [1.1.5] - 2024-02-26
+
+* Fix the Controller on the `CheckoutStatus` page
+
 ## [1.1.4] - 2024-02-26
 
 * pubspec.yaml updates

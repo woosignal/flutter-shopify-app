@@ -9,7 +9,6 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/controller.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/buttons.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -18,7 +17,7 @@ import '/app/models/cart.dart';
 import '/app/models/checkout_session.dart';
 import '/resources/widgets/woosignal_ui.dart';
 
-class CheckoutStatusPage extends NyStatefulWidget<Controller> {
+class CheckoutStatusPage extends NyStatefulWidget {
   static String path = "/checkout-status";
 
   CheckoutStatusPage({Key? key})
@@ -33,14 +32,12 @@ class _CheckoutStatusState extends NyState<CheckoutStatusPage> {
     _order = widget.controller.data();
     await Cart.getInstance.clear();
     CheckoutSession.getInstance.clear();
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
         title: StoreLogo(height: 60),
         automaticallyImplyLeading: false,
         centerTitle: true,
