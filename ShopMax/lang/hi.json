@@ -234,5 +234,11 @@
   "Send Reset Email": "reeset eemel bhejen",
   "Password reset email sent": "paasavard reeset eemel bheja gaya",
   "Failed to send reset email": "reeset eemel bhejane mein viphal",
+  "Checkout as guest": "atithi ke roop mein chekaut karen",
+  "Logout?": "log aaut?",
+  "Checkout as guest or login to continue": "atithi ke roop mein chekaut karen ya jaaree rakhane ke lie login karen",
+  "Login / Create an account": "log in karen / ek khaata banaen",
+  "Contact us for any questions on your order.": "apane ordar par kisee bhee prashn ke lie hamase sampark karen.",
+  "Delete my account": "mera ekaunt hata do",
   "By completing this order, I agree to all": "is aadesh ko poora karake, main sabhee ke lie sahamat hoon"
 }

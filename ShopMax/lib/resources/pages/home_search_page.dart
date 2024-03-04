@@ -9,6 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/resources/pages/product_search_page.dart';
 import '/bootstrap/app_helper.dart';
 import '/resources/widgets/buttons.dart';
 import '/resources/widgets/safearea_widget.dart';
@@ -21,25 +22,23 @@ class HomeSearchPage extends NyStatefulWidget {
   HomeSearchPage() : super(path, child: _HomeSearchPageState());
 }
 
-class _HomeSearchPageState extends State<HomeSearchPage> {
+class _HomeSearchPageState extends NyState<HomeSearchPage> {
   _HomeSearchPageState();
 
   final TextEditingController _txtSearchController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   _actionSearch() {
-    Navigator.pushNamed(context, "/product-search",
-            arguments: _txtSearchController.text)
-        .then((search) {
-      if (["notic", "compo"]
-              .contains(AppHelper.instance.shopifyAppConfig?.theme) ==
-          false) {
-        Navigator.pop(context);
-      }
+    String search = _txtSearchController.text;
+    validate(rules: {
+      "search": [search, "not_empty"]
+    }, onSuccess: () {
+      routeTo(ProductSearchPage.path, data: search, onPop: (value) {
+        if (["notic", "compo"]
+            .contains(AppHelper.instance.shopifyAppConfig?.theme) ==
+            false) {
+          Navigator.pop(context);
+        }
+      });
     });
   }
 
@@ -55,13 +54,14 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TextField(
+            NyTextField.compact(
               decoration: InputDecoration(prefixIcon: Icon(Icons.search)),
               controller: _txtSearchController,
               style: Theme.of(context).textTheme.displaySmall,
               keyboardType: TextInputType.text,
               autocorrect: false,
-              autofocus: true,
+              autoFocus: true,
+              backgroundColor: Colors.grey.shade100,
               textCapitalization: TextCapitalization.sentences,
             ),
             Container(

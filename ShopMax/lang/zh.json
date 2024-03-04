@@ -234,5 +234,11 @@
   "Send Reset Email": "发送重置电子邮件",
   "Password reset email sent": "密码重置电子邮件已发送",
   "Failed to send reset email": "发送重置邮件失败",
+  "Checkout as guest": "以访客身份结账",
+  "Logout?": "登出？",
+  "Checkout as guest or login to continue": "以访客身份结帐或登录以继续",
+  "Login / Create an account": "登录/创建帐户",
+  "Contact us for any questions on your order.": "如果您对订单有任何疑问，请联系我们。",
+  "Delete my account": "删除我的账户",
   "By completing this order, I agree to all": "通过完成此订单，我同意所有"
 }

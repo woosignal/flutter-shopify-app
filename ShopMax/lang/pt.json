@@ -234,5 +234,11 @@
   "Password reset email sent": "E-mail de redefinição de senha enviado",
   "Failed to send reset email": "Falha ao enviar e-mail de redefinição",
   "({{itemCount}}) items from {{appName}}": "({{itemCount}}) itens de {{appName}}",
+  "Checkout as guest": "Finalizar compra como convidado",
+  "Logout?": "Sair?",
+  "Checkout as guest or login to continue": "Finalize a compra como convidado ou faça login para continuar",
+  "Login / Create an account": "Entrar / Criar uma conta",
+  "Contact us for any questions on your order.": "Entre em contato conosco para qualquer dúvida sobre seu pedido.",
+  "Delete my account": "Deletar minha conta",
   "By completing this order, I agree to all": "Ao concluir este pedido, concordo com todos"
 }

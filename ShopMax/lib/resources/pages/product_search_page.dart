@@ -9,7 +9,6 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/controller.dart';
 import 'package:woosignal_shopify_api/models/response/product_search.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/safearea_widget.dart';
@@ -17,7 +16,7 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/shopify_product_search_response.dart';
 
-class ProductSearchPage extends NyStatefulWidget<Controller> {
+class ProductSearchPage extends NyStatefulWidget {
   static String path = "/product-search";
 
   ProductSearchPage({Key? key})

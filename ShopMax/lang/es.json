@@ -234,5 +234,11 @@
   "Send Reset Email": "Enviar correo electrónico de reinicio",
   "Password reset email sent": "Correo electrónico de restablecimiento de contraseña enviado",
   "Failed to send reset email": "No se pudo enviar el correo electrónico de reinicio",
+  "Checkout as guest": "Pagar como invitado",
+  "Logout?": "¿Cerrar sesión?",
+  "Checkout as guest or login to continue": "Pagar como invitado o iniciar sesión para continuar",
+  "Login / Create an account": "Iniciar sesión / Crear una cuenta",
+  "Contact us for any questions on your order.": "Contáctenos para cualquier pregunta sobre su pedido.",
+  "Delete my account": "Borrar mi cuenta",
   "By completing this order, I agree to all": "Al completar este pedido, acepto todos"
 }

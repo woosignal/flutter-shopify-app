@@ -234,5 +234,11 @@
   "Send Reset Email": "Envoyer un e-mail de réinitialisation",
   "Password reset email sent": "E-mail de réinitialisation du mot de passe envoyé",
   "Failed to send reset email": "Échec de l'envoi de l'e-mail de réinitialisation",
+  "Checkout as guest": "Commander en tant qu'invité",
+  "Logout?": "Se déconnecter?",
+  "Checkout as guest or login to continue": "Payez en tant qu'invité ou connectez-vous pour continuer",
+  "Login / Create an account": "Connexion / Créer un compte",
+  "Contact us for any questions on your order.": "Contactez-nous pour toute question sur votre commande.",
+  "Delete my account": "Supprimer mon compte",
   "By completing this order, I agree to all": "En remplissant cette commande, j'accepte toutes"
 }

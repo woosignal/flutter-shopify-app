@@ -1,3 +1,9 @@
+## [1.1.6] - 2024-03-04
+
+* Add missing translations
+* Refactor pages
+* pubspec.yaml updates
+
 ## [1.1.5] - 2024-02-26
 
 * Fix the Controller on the `CheckoutStatus` page

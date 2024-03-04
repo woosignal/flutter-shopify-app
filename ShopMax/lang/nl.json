@@ -234,5 +234,11 @@
   "Send Reset Email": "Reset-e-mail verzenden",
   "Password reset email sent": "E-mail voor wachtwoordherstel verzonden",
   "Failed to send reset email": "Kan geen reset-e-mail verzenden",
+  "Checkout as guest": "Check uit als gast",
+  "Logout?": "Uitloggen?",
+  "Checkout as guest or login to continue": "Afrekenen als gast of inloggen om verder te gaan",
+  "Login / Create an account": "Inloggen / Maak een account aan",
+  "Contact us for any questions on your order.": "Neem contact met ons op voor eventuele vragen over uw bestelling.",
+  "Delete my account": "Verwijder mijn account",
   "By completing this order, I agree to all": "Door deze bestelling te voltooien, ga ik akkoord met alles"
 }
