@@ -1,3 +1,7 @@
+## [1.1.7] - 2024-03-07
+
+* pubspec.yaml updates
+
 ## [1.1.6] - 2024-03-04
 
 * Add missing translations
