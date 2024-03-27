@@ -1,3 +1,7 @@
+## [1.2.1] - 2024-03-27
+
+* Update signing team for IOS
+
 ## [1.2.0] - 2024-03-27
 
 * Ability to click notifications and deep link to the product page or order detail page
