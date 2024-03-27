@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import '/config/storage_keys.dart';
-import '../../resources/pages/login_page.dart';
+import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
+import '/resources/pages/login_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-/*
-|--------------------------------------------------------------------------
-| AuthProfile Route Guard
-|--------------------------------------------------------------------------
-*/
+/* AuthProfile Route Guard
+|-------------------------------------------------------------------------- */
 
 class AuthProfileRouteGuard extends NyRouteGuard {
   AuthProfileRouteGuard();
 
   @override
   Future<bool> canOpen(BuildContext? context, NyArgument? data) async {
-    bool isLoggedIn = await Auth.loggedIn(key: StorageKey.shopifyCustomer);
+    bool isLoggedIn = await WooSignalShopify.authUserLoggedIn();
     return isLoggedIn;
   }
 

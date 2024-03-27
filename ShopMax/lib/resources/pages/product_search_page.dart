@@ -49,28 +49,29 @@ class _BrowseSearchState extends NyState<ProductSearchPage> {
         centerTitle: true,
       ),
       body: SafeAreaWidget(
-          child: NyPullToRefresh.grid(
-        crossAxisCount: 2,
-        child: (context, product) {
-          product as ProductSearch;
-          return ProductItem.fromShopifyProductSearch(product);
-        },
-        data: (int iteration) async {
-          if (hasNextPage == false) return [];
-          ShopifyProductSearch? productSearch = await appWooSignalShopify(
-              (api) =>
-                  api.productSearch(query: _search, after: cursor, first: 50));
-          cursor = productSearch?.pageInfo?.endCursor;
-          if (productSearch?.pageInfo?.hasNextPage != true) {
-            hasNextPage = false;
-          }
-          return productSearch?.products ?? [];
-        },
-        beforeRefresh: () {
-          cursor = null;
-          hasNextPage = true;
-        },
-      )),
+        child: NyPullToRefresh.grid(
+          crossAxisCount: 2,
+          child: (context, product) {
+            product as ProductSearch;
+            return ProductItem.fromShopifyProductSearch(product);
+          },
+          data: (int iteration) async {
+            if (hasNextPage == false) return [];
+            ShopifyProductSearch? productSearch = await appWooSignalShopify(
+                (api) => api.productSearch(
+                    query: _search, after: cursor, first: 50));
+            cursor = productSearch?.pageInfo?.endCursor;
+            if (productSearch?.pageInfo?.hasNextPage != true) {
+              hasNextPage = false;
+            }
+            return productSearch?.products ?? [];
+          },
+          beforeRefresh: () {
+            cursor = null;
+            hasNextPage = true;
+          },
+        ),
+      ),
     );
   }
 }

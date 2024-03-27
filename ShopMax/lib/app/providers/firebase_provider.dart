@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import '/bootstrap/helpers.dart';
 import '/bootstrap/app_helper.dart';
 import '/firebase_options.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -15,10 +16,7 @@ class FirebaseProvider implements NyProvider {
   afterBoot(Nylo nylo) async {
     // Shopify
     if (AppHelper.instance.shopifyAppConfig != null) {
-      bool? firebaseFcmIsEnabled =
-          AppHelper.instance.shopifyAppConfig?.firebaseFcmIsEnabled;
-
-      firebaseFcmIsEnabled ??= getEnv('FCM_ENABLED', defaultValue: false);
+      bool? firebaseFcmIsEnabled = isFirebaseEnabled();
 
       if (firebaseFcmIsEnabled != true) return;
 

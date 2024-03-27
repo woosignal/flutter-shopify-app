@@ -8,14 +8,13 @@
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
+import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
 import '/app/models/billing_details.dart';
 import '/app/models/cart.dart';
 import '/app/models/cart_line_item.dart';
 import '/app/models/checkout_session.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
-import '/config/storage_keys.dart';
-import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 import 'package:woosignal_shopify_api/models/shopify_order.dart';
@@ -43,11 +42,10 @@ Future<ShopifyOrder> buildOrderShopify({bool markPaid = true}) async {
 
   order.currency = shopifyApp.currencyMeta?.code?.toUpperCase();
 
-  if (await Auth.loggedIn(key: StorageKey.shopifyCustomer)) {
+  if (WooSignalShopify.authUserLoggedIn()) {
     AuthCustomerInfo? customer =
         await appWooSignalShopify((api) => api.authCustomer());
     order.customer = customer?.uid;
-    print(['order.customer', order.customer]);
   }
   List<LineItems> lineItems = [];
   List<CartLineItem> cartItems = await Cart.getInstance.getCart();

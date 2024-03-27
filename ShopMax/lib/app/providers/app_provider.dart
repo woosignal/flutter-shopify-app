@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
-import '/config/auth.dart';
 import '/config/decoders.dart';
 import '/config/design.dart';
 import '/config/theme.dart';
@@ -66,11 +64,10 @@ class AppProvider implements NyProvider {
 
     /// NyLocalization
     await NyLocalization.instance.init(
-        localeType: localeType,
-        languageCode: locale.languageCode,
-        languagesList: languagesList,
-        assetsDirectory: assetsDirectory,
-        valuesAsMap: valuesAsMap);
+      localeType: localeType,
+      languageCode: locale.languageCode,
+      assetsDirectory: assetsDirectory,
+    );
 
     nylo.addLoader(loader);
     nylo.addLogo(logo);
@@ -81,7 +78,7 @@ class AppProvider implements NyProvider {
     nylo.addControllers(controllers);
     nylo.addApiDecoders(apiDecoders);
 
-    await login();
+    await shopify.WooSignalShopify.authShopifyUserModel();
 
     return nylo;
   }

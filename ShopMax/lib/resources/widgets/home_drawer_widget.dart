@@ -225,6 +225,13 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                           await launchUrl(Uri.parse(menuLink.linkUrl)),
                     )),
             ListTile(
+              title: Text("Change language".tr()),
+              leading: Icon(Icons.language),
+              onTap: () {
+                NyLanguageSwitcher.showBottomModal(context);
+              },
+            ),
+            ListTile(
               title: AppVersionWidget(),
             ),
           ],

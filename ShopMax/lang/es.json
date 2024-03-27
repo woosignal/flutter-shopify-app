@@ -240,5 +240,9 @@
   "Login / Create an account": "Iniciar sesión / Crear una cuenta",
   "Contact us for any questions on your order.": "Contáctenos para cualquier pregunta sobre su pedido.",
   "Delete my account": "Borrar mi cuenta",
-  "By completing this order, I agree to all": "Al completar este pedido, acepto todos"
+  "By completing this order, I agree to all": "Al completar este pedido, acepto todos",
+  "Change language": "Cambiar idioma",
+  "Select your language": "elige tu idioma",
+  "Please check your details and try again": "Por favor revisa tus datos y vuelve a intentarlo.",
+  "Invalid email or password": "Correo electrónico o contraseña no válidos"
 }

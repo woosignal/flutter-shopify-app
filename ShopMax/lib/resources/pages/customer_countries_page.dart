@@ -98,24 +98,25 @@ class _CustomerCountriesPageState extends NyState<CustomerCountriesPage> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    ShopifyCountry defaultShipping =
-                        _activeShippingResults[index];
-                    return InkWell(
-                      onTap: () => _handleCountryTapped(defaultShipping),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.grey[200]!)),
-                        margin: EdgeInsets.symmetric(vertical: 4),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                        child: Text(defaultShipping.name ?? ""),
-                      ),
-                    );
-                  },
-                  itemCount: _activeShippingResults.length),
+                itemBuilder: (context, index) {
+                  ShopifyCountry defaultShipping =
+                      _activeShippingResults[index];
+                  return InkWell(
+                    onTap: () => _handleCountryTapped(defaultShipping),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey[200]!)),
+                      margin: EdgeInsets.symmetric(vertical: 4),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                      child: Text(defaultShipping.name ?? ""),
+                    ),
+                  );
+                },
+                itemCount: _activeShippingResults.length,
+              ),
             ),
           ],
         ),

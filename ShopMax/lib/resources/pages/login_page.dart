@@ -9,6 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import '/app/events/login_event.dart';
 import 'forgot_password_page.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/register_page.dart';
@@ -164,9 +165,11 @@ class _LoginPageState extends NyState<LoginPage> {
               api.authCustomerLogin(
                   email: email, password: password, loginUser: true));
           if (authCustomer == null) {
+            showToastOops(description: 'Invalid email or password'.tr());
             return;
           }
 
+          event<LoginEvent>(data: {'authCustomer': authCustomer});
           showToastNotification(context,
               title: trans("Hello"),
               description: trans("Welcome back"),

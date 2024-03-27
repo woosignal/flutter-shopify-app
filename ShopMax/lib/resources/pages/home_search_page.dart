@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/resources/pages/product_search_page.dart';
+import '/resources/pages/product_search_page.dart';
 import '/bootstrap/app_helper.dart';
 import '/resources/widgets/buttons.dart';
 import '/resources/widgets/safearea_widget.dart';
@@ -29,17 +29,19 @@ class _HomeSearchPageState extends NyState<HomeSearchPage> {
 
   _actionSearch() {
     String search = _txtSearchController.text;
-    validate(rules: {
-      "search": [search, "not_empty"]
-    }, onSuccess: () {
-      routeTo(ProductSearchPage.path, data: search, onPop: (value) {
-        if (["notic", "compo"]
-            .contains(AppHelper.instance.shopifyAppConfig?.theme) ==
-            false) {
-          Navigator.pop(context);
-        }
-      });
-    });
+    validate(
+        rules: {
+          "search": [search, "not_empty"]
+        },
+        onSuccess: () {
+          routeTo(ProductSearchPage.path, data: search, onPop: (value) {
+            if (["notic", "compo"]
+                    .contains(AppHelper.instance.shopifyAppConfig?.theme) ==
+                false) {
+              Navigator.pop(context);
+            }
+          });
+        });
   }
 
   @override

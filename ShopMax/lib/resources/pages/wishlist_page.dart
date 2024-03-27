@@ -9,9 +9,9 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bootstrap/extensions.dart';
-import 'package:flutter_app/resources/pages/product_detail_page.dart';
-import 'package:flutter_app/resources/widgets/safearea_widget.dart';
+import '/bootstrap/extensions.dart';
+import '/resources/pages/product_detail_page.dart';
+import '/resources/widgets/safearea_widget.dart';
 import 'package:woosignal_shopify_api/models/product.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/cached_image_widget.dart';

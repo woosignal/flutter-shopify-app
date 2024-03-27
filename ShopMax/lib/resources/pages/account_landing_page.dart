@@ -146,7 +146,7 @@ class _AccountLandingPageState extends NyState<AccountLandingPage>
 
   @override
   void dispose() {
-    _tabController!.dispose();
+    _tabController?.dispose();
     super.dispose();
   }
 

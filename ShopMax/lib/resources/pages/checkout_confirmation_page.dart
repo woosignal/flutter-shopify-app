@@ -320,7 +320,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
     try {
       await checkoutSession.paymentType!.pay(context);
     } on Exception catch (e) {
-      print(e.toString());
+      NyLogger.debug(e.toString());
     }
   }
 }

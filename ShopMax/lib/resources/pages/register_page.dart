@@ -9,6 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import '/app/events/login_event.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/widgets/buttons.dart';
@@ -158,8 +159,12 @@ class _RegisterPageState extends NyState<RegisterPage> {
                   ));
 
           if (authCustomer == null) {
+            showToastOops(
+                description: "Please check your details and try again".tr());
             return;
           }
+
+          event<LoginEvent>(data: {'authCustomer': authCustomer});
 
           showToastNotification(context,
               title: "${trans("Hello")} $firstName",

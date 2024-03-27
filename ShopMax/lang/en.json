@@ -240,5 +240,9 @@
   "Send Reset Email": "Send Reset Email",
   "Password reset email sent": "Password reset email sent",
   "Failed to send reset email": "Failed to send reset email",
-  "By completing this order, I agree to all": "By completing this order, I agree to all"
+  "By completing this order, I agree to all": "By completing this order, I agree to all",
+  "Change language": "Change language",
+  "Select your language": "Select your language",
+  "Please check your details and try again": "Please check your details and try again",
+  "Invalid email or password": "Invalid email or password"
 }

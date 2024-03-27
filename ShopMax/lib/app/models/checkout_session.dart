@@ -9,8 +9,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'dart:convert';
-import 'package:flutter_app/app/models/cart.dart';
-import 'package:flutter_app/app/models/shipping_type.dart';
+import '/app/models/cart.dart';
+import '/app/models/shipping_type.dart';
 
 import '/app/models/billing_details.dart';
 import '/app/models/customer_address.dart';

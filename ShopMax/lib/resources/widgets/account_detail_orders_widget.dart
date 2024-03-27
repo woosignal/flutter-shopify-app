@@ -11,7 +11,6 @@
 import 'package:flutter/material.dart';
 import '/bootstrap/helpers.dart';
 import '../pages/account_order_detail_page.dart';
-import '/resources/widgets/app_loader_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_order.dart';
 
@@ -135,7 +134,6 @@ class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
           nextPage = null;
           setState(() {});
         },
-        //   (nextPage == null) ? SizedBox.shrink() :
         empty: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,95 +150,90 @@ class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
             ],
           ),
         ),
-        loading: (nextPage == null)
-            ? AppLoaderWidget()
-            : ListView(
-                children: [
-                  Card(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.only(
-                        top: 5,
-                        bottom: 5,
-                        left: 8,
-                        right: 6,
-                      ),
-                      title: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Color(0xFFFCFCFC),
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Some Text",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              "Some Text",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  formatStringCurrency(total: "Some Text"),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Text(
-                                  "Some Text",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "Some Text",
-                              textAlign: TextAlign.right,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(Icons.chevron_right),
-                        ],
+        loading: ListView(
+          children: [
+            Card(
+              child: ListTile(
+                contentPadding: EdgeInsets.only(
+                  top: 5,
+                  bottom: 5,
+                  left: 8,
+                  right: 6,
+                ),
+                title: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xFFFCFCFC),
+                        width: 1,
                       ),
                     ),
-                  )
-                ],
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Some Text",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "Some Text",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            formatStringCurrency(total: "Some Text"),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            "Some Text",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "Some Text",
+                        textAlign: TextAlign.right,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontWeight: FontWeight.w400,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.chevron_right),
+                  ],
+                ),
               ),
+            )
+          ],
+        ),
         useSkeletonizer: true);
   }
 

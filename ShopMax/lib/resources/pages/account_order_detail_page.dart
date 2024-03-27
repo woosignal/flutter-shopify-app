@@ -30,7 +30,6 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
   boot() async {
     String? orderId = widget.controller.data();
     await _fetchOrder(orderId);
-    print(_order?.toJson());
   }
 
   @override
@@ -55,10 +54,42 @@ class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 8),
-              child: Text(
-                "${trans("Date Ordered").capitalize()}: ${_order?.processedAt?.toDateTime().toDateString()}",
-              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${trans("Date Ordered").capitalize()}: ${_order?.processedAt?.toDateTime().toDateString()}",
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: match(
+                          _order?.displayFulfillmentStatus,
+                          () => {
+                                "FULFILLED": Colors.green,
+                                "UNFULFILLED": Colors.orange,
+                                "PARTIALLY_FULFILLED": Colors.blue,
+                                "RESTOCKED": Colors.red,
+                              },
+                          defaultValue: Colors.grey),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      (_order?.displayFulfillmentStatus ?? "").capitalize(),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                    ),
+                  )
+                ],
+              ).paddingSymmetric(horizontal: 16),
             ),
+            // Padding(
+            //   padding: EdgeInsets.only(top: 8),
+            //   child: Text(
+            //     "${trans("Date Ordered").capitalize()}: ${_order?.processedAt?.toDateTime().toDateString()}",
+            //   ),
+            // ),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),

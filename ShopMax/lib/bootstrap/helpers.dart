@@ -10,12 +10,13 @@
 
 import 'dart:convert';
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:flutter_app/app/models/cart.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import '/app/models/cart.dart';
+import '/app/models/notification_item.dart';
 import '/app/models/billing_details.dart';
 import '/app/models/checkout_session.dart' as shopify;
 import '/app/models/default_shipping.dart';
 import '/app/models/payment_type.dart';
-import '/app/models/user.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/enums/symbol_position_enums.dart';
 import '/bootstrap/extensions.dart';
@@ -33,9 +34,6 @@ import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.da
 import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
 import '/resources/themes/styles/color_styles.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
-Future<User?> getUser() async =>
-    (await (NyStorage.read<User>(StorageKey.authUser)));
 
 Future appWooSignalShopify(Function(WooSignalShopify api) api) async {
   return await api(WooSignalShopify.instance);
@@ -357,4 +355,162 @@ Map<String, dynamic>? getThemeColorForTemplate() {
     return AppHelper.instance.shopifyAppConfig?.themeColors;
   }
   return {};
+}
+
+class NyNotification {
+  static final String _storageKey = "app_notifications";
+
+  static String storageKey() => _storageKey;
+
+  /// Add a notification
+  static addNotification(String title, String message,
+      {String? id, Map<String, dynamic>? meta}) async {
+    NotificationItem notificationItem = NotificationItem.fromJson({
+      "id": id,
+      "title": title,
+      "message": message,
+      "meta": meta,
+      "has_read": false,
+      "created_at": DateTime.now().toDateTimeString()
+    });
+    await NyStorage.addToCollection(storageKey(),
+        item: notificationItem, allowDuplicates: false);
+  }
+
+  /// Get all notifications
+  static Future<List<NotificationItem>> allNotifications() async {
+    List<NotificationItem> notifications =
+        await NyStorage.readCollection("app_notifications");
+    String? userId = await WooSignalShopify.authUserId();
+    notifications.removeWhere((notification) {
+      if (notification.meta != null &&
+          notification.meta!.containsKey('user_id')) {
+        if (notification.meta?['user_id'] != userId) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+    await NyStorage.saveCollection(storageKey(), notifications);
+
+    return notifications;
+  }
+
+  /// Get all notifications not read
+  static Future<List<NotificationItem>> allNotificationsNotRead() async {
+    List<NotificationItem> notifications = await allNotifications();
+    return notifications.where((element) => element.hasRead == false).toList();
+  }
+
+  /// Mark notification as read by index
+  static markReadByIndex(int index) async {
+    await NyStorage.updateCollectionByIndex(index, (item) {
+      item as NotificationItem;
+      item.hasRead = true;
+      return item;
+    }, key: storageKey());
+  }
+
+  /// Mark all notifications as read
+  static markReadAll() async {
+    List<NotificationItem> notifications = await allNotifications();
+    for (var i = 0; i < notifications.length; i++) {
+      await markReadByIndex(i);
+    }
+  }
+
+  /// Clear all notifications
+  static clearAllNotifications() async {
+    await NyStorage.deleteCollection(storageKey());
+  }
+
+  /// Render notifications
+  static Widget renderNotifications(
+      Widget Function(List<NotificationItem> notificationItems) child,
+      {Widget? loading}) {
+    return NyFutureBuilder(
+        future: allNotifications(),
+        child: (context, data) {
+          if (data == null) {
+            return SizedBox.shrink();
+          }
+          return child(data);
+        },
+        loading: loading);
+  }
+
+  /// Render list of notifications
+  static Widget renderListNotifications(
+      Widget Function(NotificationItem notificationItems) child,
+      {Widget? loading}) {
+    return NyFutureBuilder(
+        future: allNotifications(),
+        child: (context, data) {
+          if (data == null) {
+            return SizedBox.shrink();
+          }
+          return NyListView(child: (context, item) {
+            item as NotificationItem;
+            return child(item);
+          }, data: () async {
+            return data.reversed.toList();
+          });
+        },
+        loading: loading);
+  }
+
+  /// Render list of notifications
+  static Widget renderListNotificationsWithSeparator(
+      Widget Function(NotificationItem notificationItems) child,
+      {Widget? loading}) {
+    return NyFutureBuilder(
+        future: allNotifications(),
+        child: (context, data) {
+          if (data == null) {
+            return SizedBox.shrink();
+          }
+          return NyListView.separated(
+            child: (context, item) {
+              item as NotificationItem;
+              return child(item);
+            },
+            data: () async {
+              return data.reversed.toList();
+            },
+            separatorBuilder: (context, index) {
+              return Divider(
+                color: Colors.grey.shade100,
+              );
+            },
+          );
+        },
+        loading: loading);
+  }
+}
+
+Future<bool> canSeeRemoteMessage(RemoteMessage message) async {
+  if (!message.data.containsKey('user_id')) {
+    return true;
+  }
+
+  String userId = message.data['user_id'];
+
+  if (WooSignalShopify.authUserLoggedIn() != true) {
+    return false;
+  }
+
+  String? currentUserId = await WooSignalShopify.authUserId();
+  if (currentUserId != userId) {
+    return false;
+  }
+  return true;
+}
+
+bool isFirebaseEnabled() {
+  bool? firebaseFcmIsEnabled =
+      AppHelper.instance.shopifyAppConfig?.firebaseFcmIsEnabled;
+  firebaseFcmIsEnabled ??= getEnv('FCM_ENABLED', defaultValue: false);
+
+  return firebaseFcmIsEnabled == true;
 }

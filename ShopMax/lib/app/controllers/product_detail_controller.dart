@@ -9,7 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/controller.dart';
+import '/app/controllers/controller.dart';
 import '/app/models/cart.dart';
 import '/app/models/cart_line_item.dart';
 import '/bootstrap/enums/wishlist_action_enums.dart';

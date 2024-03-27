@@ -240,5 +240,9 @@
   "Send Reset Email": "ส่งอีเมล์รีเซ็ต",
   "Password reset email sent": "ส่งอีเมลรีเซ็ตรหัสผ่านแล้ว",
   "Failed to send reset email": "ไม่สามารถส่งอีเมลรีเซ็ตได้",
-  "By completing this order, I agree to all": "เมื่อดำเนินการตามคำสั่งซื้อนี้เสร็จสิ้น ฉันยอมรับทุกประการ"
+  "By completing this order, I agree to all": "เมื่อดำเนินการตามคำสั่งซื้อนี้เสร็จสิ้น ฉันยอมรับทุกประการ",
+  "Change language": "เปลี่ยนภาษา",
+  "Select your language": "เลือกภาษาของคุณ",
+  "Please check your details and try again": "โปรดตรวจสอบรายละเอียดของคุณแล้วลองอีกครั้ง",
+  "Invalid email or password": "อีเมลหรือรหัสผ่านไม่ถูกต้อง"
 }

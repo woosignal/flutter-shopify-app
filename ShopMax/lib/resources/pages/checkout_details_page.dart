@@ -9,12 +9,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
 import '/app/models/billing_details.dart';
 import '/app/models/checkout_session.dart';
 import '/app/models/customer_address.dart';
 import '/app/models/customer_country.dart';
 import '/bootstrap/helpers.dart';
-import '/config/storage_keys.dart';
 import 'customer_countries_page.dart';
 import '/resources/widgets/app_loader_widget.dart';
 import '/resources/widgets/buttons.dart';
@@ -93,7 +93,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
 
   @override
   boot() async {
-    isLoggedIn = (await Auth.loggedIn(key: StorageKey.shopifyCustomer));
+    isLoggedIn = WooSignalShopify.authUserLoggedIn();
 
     if (isLoggedIn == true) {
       await _fetchUserDetails();
@@ -169,7 +169,6 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
       _txtBillingPostalCode.text = postalCode ?? "";
       _txtBillingPhoneNumber.text = phoneNumber ?? "";
       _txtBillingEmailAddress.text = emailAddress ?? "";
-      _billingCountry = customerCountry;
     } else if (type == "shipping") {
       _txtShippingFirstName.text = firstName ?? "";
       _txtShippingLastName.text = lastName ?? "";
@@ -177,7 +176,6 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
       _txtShippingCity.text = city ?? "";
       _txtShippingPostalCode.text = postalCode ?? "";
       _txtShippingEmailAddress.text = emailAddress ?? "";
-      _shippingCountry = customerCountry;
     }
   }
 
@@ -379,7 +377,6 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
       }
 
       // Update Shopify shipping info for user
-      bool isLoggedIn = (await Auth.loggedIn(key: StorageKey.shopifyCustomer));
       if (isLoggedIn == true) {
         auth_customer_address_updated.AuthCustomerAddressUpdated?
             authCustomerAddressUpdated =

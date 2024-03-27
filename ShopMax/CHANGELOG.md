@@ -1,3 +1,11 @@
+## [1.2.0] - 2024-03-27
+
+* Ability to click notifications and deep link to the product page or order detail page
+* Ability to Change language from home drawer
+* New notification center
+* Bug fixes
+* pubspec.yaml updates
+
 ## [1.1.8] - 2024-03-08
 
 * Update android config that fixes https://github.com/nylo-core/nylo/issues/112

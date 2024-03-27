@@ -240,5 +240,9 @@
   "Login / Create an account": "Giriş yap / Hesap oluştur",
   "Contact us for any questions on your order.": "Siparişinizle ilgili sorularınız için bizimle iletişime geçin.",
   "Delete my account": "Hesabımı sil",
-  "By completing this order, I agree to all": "Bu siparişi tamamlayarak, tümünü kabul ediyorum"
+  "By completing this order, I agree to all": "Bu siparişi tamamlayarak, tümünü kabul ediyorum",
+  "Change language": "Dili değiştir",
+  "Select your language": "Dilinizi seçiniz",
+  "Please check your details and try again": "Lütfen bilgilerinizi kontrol edip tekrar deneyin",
+  "Invalid email or password": "Geçersiz e-posta veya şifre"
 }

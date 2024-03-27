@@ -240,5 +240,9 @@
   "Login / Create an account": "log in karen / ek khaata banaen",
   "Contact us for any questions on your order.": "apane ordar par kisee bhee prashn ke lie hamase sampark karen.",
   "Delete my account": "mera ekaunt hata do",
-  "By completing this order, I agree to all": "is aadesh ko poora karake, main sabhee ke lie sahamat hoon"
+  "By completing this order, I agree to all": "is aadesh ko poora karake, main sabhee ke lie sahamat hoon",
+  "Change language": "bhaasha badalen",
+  "Select your language": "apanee bhaasha ka chayan karen",
+  "Please check your details and try again": "krpaya apane vivaranon kee jaanch karen aur punah prayaas karen",
+  "Invalid email or password": "amaany eemel ya paasavard"
 }

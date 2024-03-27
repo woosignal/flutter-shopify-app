@@ -240,5 +240,9 @@
   "Send Reset Email": "Kirim Reset Email",
   "Password reset email sent": "Email pengaturan ulang kata sandi terkirim",
   "Failed to send reset email": "Gagal mengirim email setel ulang",
-  "By completing this order, I agree to all": "Dengan menyelesaikan pesanan ini, saya menyetujui semuanya"
+  "By completing this order, I agree to all": "Dengan menyelesaikan pesanan ini, saya menyetujui semuanya",
+  "Change language": "Ganti BAHASA",
+  "Select your language": "Pilih bahasamu",
+  "Please check your details and try again": "Silakan periksa detail Anda dan coba lagi",
+  "Invalid email or password": "Email atau kata sandi tidak valid"
 }

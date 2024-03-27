@@ -1,3 +1,4 @@
+import '/resources/pages/notifications_page.dart';
 import '/resources/pages/forgot_password_page.dart';
 import '/resources/pages/browse_categories_page.dart';
 import '/resources/pages/account_delete_page.dart';
@@ -96,4 +97,5 @@ appRouter() => nyRoutes((router) {
           BrowseCategoriesPage.path, (context) => BrowseCategoriesPage());
       router.route(ForgotPasswordPage.path, (context) => ForgotPasswordPage());
 
+      router.route(NotificationsPage.path, (context) => NotificationsPage());
     });

@@ -9,6 +9,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import '/resources/widgets/notification_icon_widget.dart';
 import 'package:woosignal_shopify_api/models/response/collection_item_response.dart';
 import '/bootstrap/helpers.dart';
 import '/resources/pages/home_search_page.dart';
@@ -77,7 +78,7 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
             },
           ),
         ),
-        actions: <Widget>[
+        actions: [
           IconButton(
             alignment: Alignment.centerLeft,
             icon: Icon(
@@ -85,6 +86,9 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
               size: 35,
             ),
             onPressed: () => routeTo(HomeSearchPage.path),
+          ),
+          Flexible(
+            child: NotificationIcon(),
           ),
           CartIconWidget(),
         ],

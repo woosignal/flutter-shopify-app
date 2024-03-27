@@ -9,12 +9,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
 import '/app/models/cart.dart';
 import '/app/models/checkout_session.dart';
 import '/app/models/customer_address.dart';
 import '/app/models/cart_line_item.dart';
 import '/bootstrap/helpers.dart';
-import '/config/storage_keys.dart';
 import '/resources/pages/checkout_confirmation_page.dart';
 import '/resources/widgets/buttons.dart';
 import '/resources/pages/account_landing_page.dart';
@@ -97,7 +97,7 @@ class _CartPageState extends NyState<CartPage> {
           sfCustomerAddress;
     }
 
-    if (!(await Auth.loggedIn(key: StorageKey.shopifyCustomer))) {
+    if (!WooSignalShopify.authUserLoggedIn()) {
       // show modal to ask customer if they would like to checkout as guest or login
       showAdaptiveDialog(
           context: context,

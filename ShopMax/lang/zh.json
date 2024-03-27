@@ -240,5 +240,9 @@
   "Login / Create an account": "登录/创建帐户",
   "Contact us for any questions on your order.": "如果您对订单有任何疑问，请联系我们。",
   "Delete my account": "删除我的账户",
-  "By completing this order, I agree to all": "通过完成此订单，我同意所有"
+  "By completing this order, I agree to all": "通过完成此订单，我同意所有",
+  "Change language": "改变语言",
+  "Select your language": "选择你的语言",
+  "Please check your details and try again": "请检查您的详细信息，然后重试",
+  "Invalid email or password": "无效的电子邮件或密码"
 }

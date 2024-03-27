@@ -11,8 +11,8 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_app/app/models/cart_line_item.dart';
-import 'package:flutter_app/app/models/shipping_type.dart';
+import '/app/models/cart_line_item.dart';
+import '/app/models/shipping_type.dart';
 import 'checkout_session.dart';
 import '/bootstrap/app_helper.dart';
 import '/config/storage_keys.dart';

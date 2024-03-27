@@ -1,4 +1,4 @@
-import 'package:flutter_app/bootstrap/app_helper.dart';
+import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
