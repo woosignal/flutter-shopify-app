@@ -1,7 +1,7 @@
 # Official WooSignal App Template for Shopify
 
 # ShopMax
-# Version: 1.3.0
+# Version: 1.4.0
 # Author: Anthony Gordon
 # Homepage: https://woosignal.com
 # Documentation: https://woosignal.com/docs/app/shopmax
@@ -29,7 +29,7 @@ dependencies:
   google_fonts: ^6.2.0
   analyzer: ^6.2.0
   intl: ^0.18.0
-  nylo_framework: ^5.24.2
+  nylo_framework: ^5.24.3
   cached_network_image: ^3.3.1
   package_info_plus: ^4.2.0
   money_formatter: ^0.0.5

@@ -15,7 +15,9 @@ class ApiService extends NyApiService {
   String get baseUrl => getEnv('API_BASE_URL');
 
   @override
-  final interceptors = {PrettyDioLogger: PrettyDioLogger()};
+  Map<Type, Interceptor> get interceptors => {
+    PrettyDioLogger: PrettyDioLogger()
+  };
 
   Future<dynamic> fetchTestData() async {
     return await network(

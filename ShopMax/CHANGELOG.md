@@ -1,3 +1,8 @@
+## [1.4.0] - 2024-03-28
+
+* Update store logo
+* Small tweak to api service
+
 ## [1.3.0] - 2024-03-28
 
 * Small refactor
