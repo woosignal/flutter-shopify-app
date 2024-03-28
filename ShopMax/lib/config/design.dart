@@ -5,14 +5,12 @@ import '/resources/widgets/toast_notification_widget.dart';
 import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-/*
+/* Design
 |--------------------------------------------------------------------------
-| Design
 | Contains widgets used in the Nylo framework.
 |
 | Learn more: https://nylo.dev/docs/5.20.0/themes
-|--------------------------------------------------------------------------
-*/
+|-------------------------------------------------------------------------- */
 
 Widget logo = StoreLogo();
 // resources/widgets/woosignal_ui.dart

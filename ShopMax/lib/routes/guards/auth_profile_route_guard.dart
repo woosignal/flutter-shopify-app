@@ -11,7 +11,7 @@ class AuthProfileRouteGuard extends NyRouteGuard {
 
   @override
   Future<bool> canOpen(BuildContext? context, NyArgument? data) async {
-    bool isLoggedIn = await WooSignalShopify.authUserLoggedIn();
+    bool isLoggedIn = WooSignalShopify.authUserLoggedIn();
     return isLoggedIn;
   }
 

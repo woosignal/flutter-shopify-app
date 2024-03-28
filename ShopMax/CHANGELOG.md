@@ -1,3 +1,7 @@
+## [1.3.0] - 2024-03-28
+
+* Small refactor
+
 ## [1.2.1] - 2024-03-27
 
 * Update signing team for IOS

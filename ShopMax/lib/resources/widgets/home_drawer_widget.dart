@@ -62,7 +62,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                 color: ThemeColor.get(context).background,
               ),
             ),
-            if (widget.wooSignalApp?.shopifyCollections.isNotEmpty ?? false)
+            if (widget.collections.isNotEmpty)
               Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,

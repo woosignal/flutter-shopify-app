@@ -58,7 +58,7 @@ class AppProvider implements NyProvider {
           wooSignalApp.locale != null) {
         locale = Locale(wooSignalApp.locale!);
       } else {
-        locale = Locale(envVal('DEFAULT_LOCALE', defaultValue: 'en'));
+        locale = Locale(getEnv('DEFAULT_LOCALE', defaultValue: 'en'));
       }
     }
 

@@ -11,9 +11,9 @@ import 'package:nylo_framework/nylo_framework.dart';
 | Docs here: https://woosignal.com/docs/app/shopmax
 |-------------------------------------------------------------------------- */
 
-const appPaymentGateways = ["Stripe", "PayPal"];
+const appPaymentGateways = [];
 // Available: "Stripe", "PayPal", "RazorPay"
-// e.g. app_payment_gateways = ["Stripe"]; will only use Stripe.
+// e.g. appPaymentGateways = ["Stripe"]; will only use Stripe.
 
 List<PaymentType> paymentTypeList = [
   addPayment(
