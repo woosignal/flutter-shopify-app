@@ -1,3 +1,7 @@
+## [1.4.1] - 2024-04-04
+
+* pubspec.yaml updates
+
 ## [1.4.0] - 2024-03-28
 
 * Update store logo
