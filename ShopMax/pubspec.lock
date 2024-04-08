@@ -221,10 +221,10 @@ packages:
     dependency: transitive
     description:
       name: device_meta
-      sha256: "0ed759a32c785f2bafad4ad264f0a81b15967a099d2bb4641a8cd885414df302"
+      sha256: "74ca44ae368cfcd52ace996b2d4941c0fe3249df630a59c8521a4f00d84d573b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.19"
+    version: "1.1.20"
   dio:
     dependency: transitive
     description:
@@ -697,18 +697,18 @@ packages:
     dependency: "direct main"
     description:
       name: nylo_framework
-      sha256: d9e787ab0a05d03d979bb8747a2b71b701bb12117f7bc4465588d4b4947349d9
+      sha256: "730fa6d118e5af9837d261bab6282f2eb9d2d1b799a32530a73dd97e44449449"
       url: "https://pub.dev"
     source: hosted
-    version: "5.24.6"
+    version: "5.25.1"
   nylo_support:
     dependency: transitive
     description:
       name: nylo_support
-      sha256: "67c3005a77fe068232a7cde2f5b8aa7077fa8db50b9b97dd5aefed0b1ad4fd68"
+      sha256: "9662d056297433385d570146b92f208e941d1fca795d5abc4f36dcacaf57bdd1"
       url: "https://pub.dev"
     source: hosted
-    version: "5.62.0"
+    version: "5.63.0"
   octo_image:
     dependency: transitive
     description:
@@ -1230,10 +1230,10 @@ packages:
     dependency: "direct main"
     description:
       name: woosignal_shopify_api
-      sha256: "9d3f0bc4802e534729de1dda05114292d2c1ddd56d0d0dbba3536431ce455c0d"
+      sha256: "489a25d3d6cd8de8086287cc33ba6e69f107361a24259a7ce2f21c73aa0f8880"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.2"
+    version: "1.3.3"
   xdg_directories:
     dependency: transitive
     description:
