@@ -1,3 +1,9 @@
+## [1.4.4] - 2024-04-24
+
+* Remove math_expressions dependency
+* Refactor helpers.dart
+* pubspec.yaml updates
+
 ## [1.4.3] - 2024-04-14
 
 * pubspec.yaml updates

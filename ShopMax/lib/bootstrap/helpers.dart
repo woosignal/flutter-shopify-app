@@ -26,7 +26,6 @@ import '/config/storage_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:math_expressions/math_expressions.dart';
 import 'package:money_formatter/money_formatter.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:status_alert/status_alert.dart';
@@ -198,16 +197,6 @@ checkoutShopify(
       shopify.CheckoutSession.getInstance.billingDetails;
   Cart cart = Cart.getInstance;
   return await completeCheckout(cartTotal, billingDetails, cart);
-}
-
-double? strCal({required String sum}) {
-  if (sum == "") {
-    return 0;
-  }
-  Parser p = Parser();
-  Expression exp = p.parse(sum);
-  ContextModel cm = ContextModel();
-  return exp.evaluate(EvaluationType.REAL, cm);
 }
 
 navigatorPush(BuildContext context,
