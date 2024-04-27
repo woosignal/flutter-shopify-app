@@ -1,3 +1,7 @@
+## [1.4.5] - 2024-04-27
+
+* pubspec.yaml updates
+
 ## [1.4.4] - 2024-04-24
 
 * Remove math_expressions dependency
