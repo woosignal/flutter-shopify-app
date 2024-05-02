@@ -77,6 +77,7 @@ class AppProvider implements NyProvider {
     nylo.addModelDecoders(modelDecoders);
     nylo.addControllers(controllers);
     nylo.addApiDecoders(apiDecoders);
+    nylo.useErrorStack();
 
     await shopify.WooSignalShopify.authShopifyUserModel();
 
