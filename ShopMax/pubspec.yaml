@@ -28,8 +28,8 @@ environment:
 dependencies:
   google_fonts: ^6.2.0
   analyzer: ^6.2.0
-  intl: ^0.18.0
-  nylo_framework: ^5.27.3
+  intl: ^0.19.0
+  nylo_framework: ^5.27.5
   cached_network_image: ^3.3.1
   package_info_plus: ^4.2.0
   money_formatter: ^0.0.5

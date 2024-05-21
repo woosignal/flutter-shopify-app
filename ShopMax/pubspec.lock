@@ -129,14 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  cli_dialog:
-    dependency: transitive
-    description:
-      name: cli_dialog
-      sha256: "47530e1c4a6190662954cefce196d35143c4ed2675ea697d6e542790bdef5641"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.0"
   cli_util:
     dependency: transitive
     description:
@@ -197,10 +189,10 @@ packages:
     dependency: transitive
     description:
       name: dart_console
-      sha256: dfa4b63eb4382325ff975fdb6b7a0db8303bb5809ee5cb4516b44153844742ed
+      sha256: eae9ddd7bb69477a6e9821c75d575874e290887da09292732a35ab510d1de713
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "4.1.0"
   device_info_plus:
     dependency: transitive
     description:
@@ -253,10 +245,10 @@ packages:
     dependency: transitive
     description:
       name: error_stack
-      sha256: "1a7391d7c33c59867c0082569339462615461afeda76b0614c59a6dcb5acf63b"
+      sha256: c5c749d7ab13d1c7ad9b11ed0a7f2c6d2d2902a0bf8d3916c7a21e896cd74d7d
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.1"
+    version: "1.3.3"
   eventify:
     dependency: transitive
     description:
@@ -601,10 +593,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.19.0"
   js:
     dependency: transitive
     description:
@@ -625,26 +617,26 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "78eb209deea09858f5269f5a5b02be4049535f568c07b275096836f01ea323fa"
+      sha256: "7f0df31977cb2c0b88585095d168e689669a2cc9b97c309665e3386f3e9d341a"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.0"
+    version: "10.0.4"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-      sha256: b46c5e37c19120a8a01918cfaf293547f47269f7cb4b0058f21531c2465d6ef0
+      sha256: "06e98f569d004c1315b991ded39924b21af84cf14cc94791b8aea337d25b57f8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "3.0.3"
   leak_tracker_testing:
     dependency: transitive
     description:
       name: leak_tracker_testing
-      sha256: a597f72a664dbd293f3bfc51f9ba69816f84dcd403cdac7066cb3f6003f3ab47
+      sha256: "6ba465d5d76e67ddf503e1161d1f4a6bc42306f9d66ca1e8f079a47290fb06d3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "3.0.1"
   lints:
     dependency: "direct dev"
     description:
@@ -681,34 +673,34 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: d584fa6707a52763a52446f02cc621b077888fb63b93bbcb1143a7be5a0c0c04
+      sha256: "7687075e408b093f36e6bbf6c91878cc0d4cd10f409506f7bc996f68220b9136"
       url: "https://pub.dev"
     source: hosted
-    version: "1.11.0"
+    version: "1.12.0"
   money_formatter:
     dependency: "direct main"
     description:
       name: money_formatter
-      sha256: "485ec13dced43238018108201a8229c531fd9270e6b2e601e42b4095dd9ac625"
+      sha256: "8e1cb4cd9c766ff9ec5caf7d1275bd738f48a3cc43c661f0790baead292989fb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5"
+    version: "0.0.6"
   nylo_framework:
     dependency: "direct main"
     description:
       name: nylo_framework
-      sha256: "2d57650c2528312ec8d821b0d89912d26f40cfddd8acebe8e8b3c4e2aac133ea"
+      sha256: b164790a0e0d21237856677d7f91ecbe93624a664bf6ba9e230b7fe1565e2cff
       url: "https://pub.dev"
     source: hosted
-    version: "5.27.3"
+    version: "5.27.5"
   nylo_support:
     dependency: transitive
     description:
       name: nylo_support
-      sha256: ab630da97299dd362536976f02896bd7cdedc453cb3839d9240e3fc3b0af8c18
+      sha256: "18c20ec0791ed7ea175089d4e255b5ffcac6fb75e75922e447dbd848b5aae8d2"
       url: "https://pub.dev"
     source: hosted
-    version: "5.69.2"
+    version: "5.69.4"
   octo_image:
     dependency: transitive
     description:
@@ -1070,10 +1062,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "5c2f730018264d276c20e4f1503fd1308dfbbae39ec8ee63c5236311ac06954b"
+      sha256: "9955ae474176f7ac8ee4e989dadfb411a58c30415bcfb648fa04b2b8a03afa7f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "0.7.0"
   theme_provider:
     dependency: transitive
     description:
@@ -1190,10 +1182,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: b3d56ff4341b8f182b96aceb2fa20e3dcb336b9f867bc0eafc0de10f1048e957
+      sha256: "3923c89304b715fb1eb6423f017651664a03bf5f4b29983627c4da791f74a4ec"
       url: "https://pub.dev"
     source: hosted
-    version: "13.0.0"
+    version: "14.2.1"
   watcher:
     dependency: transitive
     description:
@@ -1260,4 +1252,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.3 <4.0.0"
-  flutter: ">=3.16.6"
+  flutter: ">=3.18.0-18.0.pre.54"
