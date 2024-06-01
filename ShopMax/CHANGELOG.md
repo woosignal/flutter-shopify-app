@@ -1,3 +1,7 @@
+## [1.4.9] - 2024-06-01
+
+* pubspec.yaml updates
+
 ## [1.4.8] - 2024-05-21
 
 * pubspec.yaml updates
