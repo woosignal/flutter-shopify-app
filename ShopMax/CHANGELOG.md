@@ -1,3 +1,7 @@
+## [1.4.11] - 2024-06-15
+
+* remove pubspec.lock
+
 ## [1.4.10] - 2024-06-15
 
 * pubspec.yaml updates
