@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -31,13 +31,12 @@ import 'package:woosignal_shopify_api/models/response/shopify_country_response.d
 import '/app/models/default_shipping.dart';
 
 class CheckoutDetailsPage extends NyStatefulWidget {
-  CheckoutDetailsPage() : super(path, child: _CheckoutDetailsPageState());
+  static RouteView path = ("/checkout-details", (_) => CheckoutDetailsPage());
 
-  static String path = "/checkout-details";
+  CheckoutDetailsPage({super.key}) : super(child: () => _CheckoutDetailsPageState());
 }
 
-class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
-  _CheckoutDetailsPageState();
+class _CheckoutDetailsPageState extends NyPage<CheckoutDetailsPage> {
 
   bool? _hasDifferentShippingAddress = false,
       valRememberDetails = true,
@@ -92,7 +91,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
   List<ShopifyCountry> countries = [];
 
   @override
-  boot() async {
+  get init => () async {
     isLoggedIn = WooSignalShopify.authUserLoggedIn();
 
     if (isLoggedIn == true) {
@@ -119,7 +118,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
       await _setCustomersDetailsFromRemember();
       return;
     }
-  }
+  };
 
   _setCustomersDetailsFromRemember() async {
     CustomerAddress? sfCustomerBillingAddress =
@@ -349,7 +348,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
             title: trans("Oops"),
             description: trans(
                 "Invalid shipping address, please check your shipping details"),
-            style: ToastNotificationStyleType.WARNING,
+            style: ToastNotificationStyleType.warning,
           );
           return;
         }
@@ -499,7 +498,7 @@ class _CheckoutDetailsPageState extends NyState<CheckoutDetailsPage> {
         context,
         title: trans("Oops!"),
         description: trans("Something went wrong"),
-        style: ToastNotificationStyleType.DANGER,
+        style: ToastNotificationStyleType.danger,
       );
       pop();
       return;

@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -36,19 +36,19 @@ class HomeDrawerWidget extends StatefulWidget {
   createState() => _HomeDrawerWidgetState();
 }
 
-class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
+class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
   List<MenuLink> _menuLinks = [];
   String? _themeType;
+  Color? get iconStyle => color(light: Colors.black, dark: Colors.white);
 
   @override
-  void initState() {
-    super.initState();
+  get init => () {
     _menuLinks = AppHelper.instance.shopifyAppConfig?.menuLinks ?? [];
     _themeType = AppHelper.instance.shopifyAppConfig?.theme;
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     bool isDark = (Theme.of(context).brightness == Brightness.dark);
     return Drawer(
       child: Container(
@@ -86,7 +86,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                               .bodyMedium!
                               .copyWith(fontSize: 16),
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded, color: iconStyle),
                         onTap: () {
                           routeTo(BrowseCategoriesPage.path, data: collection);
                         },
@@ -101,94 +101,64 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                   Padding(
                     child: Text(
                       trans("Menu"),
-                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
+                    ).titleSmall(fontWeight: FontWeight.w600, color: color(light: Colors.black, dark: Colors.white)),
                     padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
                   ),
                   ListTile(
                     title: Text(
                       trans("Profile"),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontSize: 16),
-                    ),
-                    leading: Icon(Icons.account_circle),
+                    ).bodyMedium(fontSize: 16),
+                    leading: Icon(Icons.account_circle, color: iconStyle),
                     onTap: _actionProfile,
                   ),
-                  if (widget.wooSignalApp!.wishlistEnabled == true)
+                  if (widget.wooSignalApp?.wishlistEnabled == true)
                     ListTile(
                       title: Text(
                         trans("Wishlist"),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 16),
-                      ),
-                      leading: Icon(Icons.favorite_border),
+                      ).bodyMedium(fontSize: 16),
+                      leading: Icon(Icons.favorite_border, color: iconStyle),
                       onTap: _actionWishlist,
                     ),
                   ListTile(
                     title: Text(
                       trans("Cart"),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontSize: 16),
-                    ),
-                    leading: Icon(Icons.shopping_cart),
+                    ).bodyMedium(fontSize: 16),
+                    leading: Icon(Icons.shopping_cart, color: iconStyle),
                     onTap: _actionCart,
                   ),
                 ],
               ),
-            if (widget.wooSignalApp!.appTermsLink != null &&
-                widget.wooSignalApp!.appPrivacyLink != null)
+            if (widget.wooSignalApp?.appTermsLink != null &&
+                widget.wooSignalApp?.appPrivacyLink != null)
               Padding(
                 child: Text(
                   trans("About Us"),
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
+                ).titleSmall(fontWeight: FontWeight.w600, color: iconStyle),
                 padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
               ),
-            if (widget.wooSignalApp!.appTermsLink != null &&
-                widget.wooSignalApp!.appTermsLink!.isNotEmpty)
+            if (widget.wooSignalApp?.appTermsLink != null &&
+                (widget.wooSignalApp?.appTermsLink?.isNotEmpty ?? false))
               ListTile(
                 title: Text(
                   trans("Terms and conditions"),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 16),
-                ),
-                leading: Icon(Icons.menu_book_rounded),
-                trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                ).bodyMedium(fontSize: 16),
+                leading: Icon(Icons.menu_book_rounded, color: iconStyle),
+                trailing: Icon(Icons.keyboard_arrow_right_rounded, color: iconStyle),
                 onTap: _actionTerms,
               ),
-            if (widget.wooSignalApp!.appPrivacyLink != null &&
-                widget.wooSignalApp!.appPrivacyLink!.isNotEmpty)
+            if (widget.wooSignalApp?.appPrivacyLink != null &&
+                (widget.wooSignalApp?.appPrivacyLink?.isNotEmpty ?? false))
               ListTile(
                 title: Text(
                   trans("Privacy policy"),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 16),
-                ),
+                ).bodyMedium(fontSize: 16),
                 trailing: Icon(Icons.keyboard_arrow_right_rounded),
-                leading: Icon(Icons.account_balance),
+                leading: Icon(Icons.account_balance, color: iconStyle),
                 onTap: _actionPrivacy,
               ),
             ListTile(
-              title: Text(trans((isDark ? "Light Mode" : "Dark Mode")),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 16)),
-              leading: Icon(Icons.brightness_4_rounded),
+              title: Text(trans((isDark ? "Light Mode" : "Dark Mode"))).bodyMedium(fontSize: 16),
+              leading: Icon(Icons.brightness_4_rounded, color: iconStyle),
               onTap: () {
                 setState(() {
                   NyTheme.set(context,
@@ -202,8 +172,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
               Padding(
                 child: Text(
                   trans("Social"),
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
+                ).titleSmall(),
                 padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
               ),
             ..._menuLinks
@@ -225,8 +194,11 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                           await launchUrl(Uri.parse(menuLink.linkUrl)),
                     )),
             ListTile(
-              title: Text("Change language".tr()),
-              leading: Icon(Icons.language),
+              title: Text("Change language".tr(), style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 16),),
+              leading: Icon(Icons.language, color: iconStyle),
               onTap: () {
                 NyLanguageSwitcher.showBottomModal(context);
               },
@@ -246,7 +218,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
 
   _actionProfile() async {
     Navigator.pop(context);
-    UserAuth.instance.redirect = AccountLandingPage.path;
+    UserAuth.instance.redirect = AccountLandingPage.path.name;
     routeTo(AccountLandingPage.path);
   }
 

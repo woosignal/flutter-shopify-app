@@ -10,13 +10,13 @@ import 'package:nylo_framework/nylo_framework.dart';
 |--------------------------------------------------------------------------
 | Add your "app/events" here.
 | Events can be fired using: event<MyEvent>();
-| Learn more: https://nylo.dev/docs/5.20.0/events
-|------------------------------------------------------------------------- */
+|
+| Learn more: https://nylo.dev/docs/6.x/events
+|-------------------------------------------------------------------------- */
 
 final Map<Type, NyEvent> events = {
   LoginEvent: LoginEvent(),
   LogoutEvent: LogoutEvent(),
-  AuthUserEvent: AuthUserEvent(),
   DeleteAccountEvent: DeleteAccountEvent(),
   FirebaseOnMessageOrderEvent: FirebaseOnMessageOrderEvent(),
   OrderNotificationEvent: OrderNotificationEvent(),

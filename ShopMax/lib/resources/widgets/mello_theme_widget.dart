@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -37,9 +37,9 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
   List<Collections> _collections = [];
 
   @override
-  boot() async {
+  get init => () async {
     await _fetchCollectionData();
-  }
+  };
 
   _fetchCollectionData() async {
     if (_collections.isNotEmpty) {
@@ -63,7 +63,7 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
 
   @override
   Widget view(BuildContext context) {
-    List<String>? bannerImages = widget.wooSignalApp!.bannerImages;
+    List<String>? bannerImages = widget.wooSignalApp?.bannerImages;
     return Scaffold(
       drawer: HomeDrawerWidget(
           wooSignalApp: widget.wooSignalApp, collections: _collections),

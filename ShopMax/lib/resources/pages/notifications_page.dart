@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -16,23 +16,23 @@ import '/resources/widgets/notification_icon_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class NotificationsPage extends NyStatefulWidget {
-  static const path = '/notifications';
+  static RouteView path = ("/notifications", (_) => NotificationsPage());
 
-  NotificationsPage() : super(path, child: _NotificationsPageState());
+  NotificationsPage({super.key}) : super(child: () => _NotificationsPageState());
 }
 
-class _NotificationsPageState extends NyState<NotificationsPage> {
+class _NotificationsPageState extends NyPage<NotificationsPage> {
   String? userId;
 
   @override
-  boot() async {
+  get init => () async {
     userId = await WooSignalShopify.authUserId();
-  }
+  };
 
   @override
   Widget view(BuildContext context) {
     return PopScope(
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, data) async {
         await NyNotification.markReadAll();
         updateState(NotificationIcon.state);
       },
@@ -52,7 +52,8 @@ class _NotificationsPageState extends NyState<NotificationsPage> {
                   );
                   setState(() {});
                 },
-                child: Text("Mark all read".tr())),
+                child: Text("Mark all read".tr()),
+            ),
           ],
         ),
         body: SafeArea(

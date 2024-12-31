@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -10,6 +10,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 
 class CachedImageWidget extends StatelessWidget {
   const CachedImageWidget({
@@ -33,13 +34,15 @@ class CachedImageWidget extends StatelessWidget {
   final BoxFit fit;
 
   @override
-  Widget build(BuildContext context) => CachedNetworkImage(
-        imageUrl: image!,
-        placeholder: (context, url) => placeholder,
-        errorWidget: (context, url, error) => Icon(Icons.error),
-        height: height,
-        width: width,
-        alignment: Alignment.center,
-        fit: fit,
-      );
+  Widget build(BuildContext context) {
+    return  CachedNetworkImage(
+      imageUrl: image ?? getEnv('PRODUCT_PLACEHOLDER_IMAGE'),
+      placeholder: (context, url) => placeholder,
+      errorWidget: (context, url, error) => Icon(Icons.error),
+      height: height,
+      width: width,
+      alignment: Alignment.center,
+      fit: fit,
+    );
+  }
 }

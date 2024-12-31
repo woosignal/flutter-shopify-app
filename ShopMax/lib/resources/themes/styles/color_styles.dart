@@ -1,16 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /// Interface for your base styles.
 /// Add more styles here and then implement in
 /// light_theme_colors.dart and dark_theme_colors.dart.
+
 abstract class ColorStyles extends BaseColorStyles {
+  /// Available styles
+
   // general
   @override
   Color get background;
+
   Color get backgroundContainer;
+
   @override
-  Color get primaryContent;
+  Color get content;
   @override
   Color get primaryAccent;
 
@@ -25,11 +29,15 @@ abstract class ColorStyles extends BaseColorStyles {
   @override
   Color get appBarPrimaryContent;
 
-  // buttons
   @override
   Color get buttonBackground;
   @override
-  Color get buttonPrimaryContent;
+  Color get buttonContent;
+
+  @override
+  Color get buttonSecondaryBackground;
+  @override
+  Color get buttonSecondaryContent;
 
   // bottom tab bar
   @override
@@ -47,5 +55,14 @@ abstract class ColorStyles extends BaseColorStyles {
   @override
   Color get bottomTabBarLabelSelected;
 
-  Color get inputPrimaryContent;
+  // toast notification
+  Color get toastNotificationBackground;
+
+  // e.g. add a new style
+  // Uncomment the below:
+  // Color get iconBackground;
+
+  // Then implement in color in:
+  // /resources/themes/styles/light_theme_colors
+  // /resources/themes/styles/dark_theme_colors
 }

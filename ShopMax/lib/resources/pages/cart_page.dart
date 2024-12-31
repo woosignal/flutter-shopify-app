@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -24,18 +24,19 @@ import 'package:nylo_framework/nylo_framework.dart';
 import '/resources/widgets/cart_item_container_widget.dart';
 
 class CartPage extends NyStatefulWidget {
-  static String path = "/cart";
-  CartPage() : super(path, child: _CartPageState());
+  static RouteView path = ("/cart", (_) => CartPage());
+
+  CartPage({super.key}) : super(child: () => _CartPageState());
 }
 
-class _CartPageState extends NyState<CartPage> {
+class _CartPageState extends NyPage<CartPage> {
   List<CartLineItem> _cartLines = [];
 
   @override
-  boot() async {
+  get init => () async {
     await _cartCheck();
     CheckoutSession.getInstance.coupon = null;
-  }
+  };
 
   _cartCheck() async {
     List<CartLineItem> cart = await Cart.getInstance.getCart();
@@ -69,7 +70,7 @@ class _CartPageState extends NyState<CartPage> {
         context,
         title: trans("Cart"),
         description: trans("You need items in your cart to checkout"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.shopping_cart,
       );
       return;
@@ -80,7 +81,7 @@ class _CartPageState extends NyState<CartPage> {
         context,
         title: trans("Cart"),
         description: trans("There is an item out of stock"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.shopping_cart,
       );
       return;
@@ -104,7 +105,7 @@ class _CartPageState extends NyState<CartPage> {
           builder: (context) {
             return AlertDialog.adaptive(
               content: Text("Checkout as guest or login to continue".tr())
-                  .headingMedium(context),
+                  .headingMedium(),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -116,7 +117,7 @@ class _CartPageState extends NyState<CartPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    UserAuth.instance.redirect = CheckoutConfirmationPage.path;
+                    UserAuth.instance.redirect = CheckoutConfirmationPage.path.name;
                     routeTo(AccountLandingPage.path);
                   },
                   child: Text("Login / Create an account".tr()),
@@ -141,7 +142,7 @@ class _CartPageState extends NyState<CartPage> {
         context,
         title: trans("Cart"),
         description: trans("Maximum stock reached"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.shopping_cart,
       );
       return;
@@ -174,7 +175,7 @@ class _CartPageState extends NyState<CartPage> {
       context,
       title: trans("Updated"),
       description: trans("Item removed"),
-      style: ToastNotificationStyleType.WARNING,
+      style: ToastNotificationStyleType.warning,
       icon: Icons.remove_shopping_cart,
     );
     setState(() {});
@@ -186,13 +187,13 @@ class _CartPageState extends NyState<CartPage> {
     showToastNotification(context,
         title: trans("Success"),
         description: trans("Cart cleared"),
-        style: ToastNotificationStyleType.SUCCESS,
+        style: ToastNotificationStyleType.success,
         icon: Icons.delete_outline);
     setState(() {});
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -279,7 +280,7 @@ class _CartPageState extends NyState<CartPage> {
                 ),
                 padding: EdgeInsets.only(bottom: 15, top: 15),
               ),
-              loading: SizedBox.shrink(),
+              loadingStyle: LoadingStyle.none()
             ),
             PrimaryButton(
               title: trans("PROCEED TO CHECKOUT"),

@@ -1,3 +1,8 @@
+## [2.0.0] - 2024-12-31
+
+* Update project for Nylo 6.x
+* pubspec.yaml updates
+
 ## [1.4.12] - 2024-07-18
 
 * pubspec.yaml updates

@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -9,6 +9,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import '/app/forms/login_form.dart';
+import '/resources/widgets/buttons/buttons.dart';
 import '/app/events/login_event.dart';
 import 'forgot_password_page.dart';
 import '/bootstrap/helpers.dart';
@@ -19,18 +21,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_user.dart';
 
 class LoginPage extends NyStatefulWidget {
-  static const path = "/login";
-  final bool showBackButton;
-  LoginPage({this.showBackButton = true})
-      : super(path, child: _LoginPageState());
+  static RouteView path = ("/login", (_) => LoginPage());
+
+  LoginPage({super.key}) : super(child: () => _LoginPageState());
 }
 
-class _LoginPageState extends NyState<LoginPage> {
-  final TextEditingController _tfEmailController = TextEditingController(),
-      _tfPasswordController = TextEditingController();
+class _LoginPageState extends NyPage<LoginPage> {
+  bool get showBackButton => data(defaultValue: false) != false ? true : false;
+
+  LoginForm form = LoginForm();
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -38,70 +40,29 @@ class _LoginPageState extends NyState<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  StoreLogo(height: 100),
-                  Flexible(
-                    child: Container(
-                      height: 70,
-                      padding: EdgeInsets.only(bottom: 20),
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        trans("Login"),
-                        textAlign: TextAlign.left,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow:
-                          (Theme.of(context).brightness == Brightness.light)
-                              ? wsBoxShadow()
-                              : null,
-                      color: ThemeColor.get(context).backgroundContainer,
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 18, horizontal: 8),
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        TextEditingRow(
-                          heading: trans("Email"),
-                          controller: _tfEmailController,
-                          keyboardType: TextInputType.emailAddress,
-                          dummyData: "",
-                        ),
-                        TextEditingRow(
-                          heading: trans("Password"),
-                          controller: _tfPasswordController,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          dummyData: "",
-                        ),
-                        PrimaryButton(
-                          title: trans("Login"),
-                          isLoading: isLocked('login_button'),
-                          action: _loginUser,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+
+            StoreLogo(height: 100),
+
+            Container(
+              height: 240,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow:
+                (Theme.of(context).brightness == Brightness.light)
+                    ? wsBoxShadow()
+                    : null,
+                color: ThemeColor.get(context).backgroundContainer,
               ),
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              child: NyForm(form: form, footer: Button.primary(text: trans("Login"), submitForm: (form, (data) async {
+                await _loginUser(data['email'], data['password']);
+              })),),
             ),
+
+            Expanded(child: Container()),
+
             TextButton(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,7 +90,7 @@ class _LoginPageState extends NyState<LoginPage> {
                 action: () {
                   routeTo(ForgotPasswordPage.path);
                 }),
-            widget.showBackButton
+            showBackButton
                 ? Column(
                     children: [
                       Divider(),
@@ -148,36 +109,27 @@ class _LoginPageState extends NyState<LoginPage> {
     );
   }
 
-  _loginUser() async {
-    String email = _tfEmailController.text;
-    String password = _tfPasswordController.text;
+  _loginUser(String email, String password) async {
     if (email.isNotEmpty) {
       email = email.trim();
     }
 
-    validate(
-        rules: {
-          "email": [email, "email"],
-          "password": [password, "not_empty"],
-        },
-        onSuccess: () async {
-          AuthCustomer? authCustomer = await appWooSignalShopify((api) =>
-              api.authCustomerLogin(
-                  email: email, password: password, loginUser: true));
-          if (authCustomer == null) {
-            showToastOops(description: 'Invalid email or password'.tr());
-            return;
-          }
+    AuthCustomer? authCustomer = await appWooSignalShopify((api) =>
+        api.authCustomerLogin(
+            email: email, password: password, loginUser: true));
+    if (authCustomer == null) {
+      showToastOops(description: 'Invalid email or password'.tr());
+      return;
+    }
 
-          event<LoginEvent>(data: {'authCustomer': authCustomer});
-          showToastNotification(context,
-              title: trans("Hello"),
-              description: trans("Welcome back"),
-              style: ToastNotificationStyleType.SUCCESS,
-              icon: Icons.account_circle);
-          navigatorPush(context,
-              routeName: UserAuth.instance.redirect, forgetLast: 1);
-        },
-        lockRelease: "login_button");
+    event<LoginEvent>(data: {'authCustomer': authCustomer});
+
+    showToastNotification(context,
+        title: trans("Hello"),
+        description: trans("Welcome back"),
+        style: ToastNotificationStyleType.success,
+        icon: Icons.account_circle);
+    navigatorPush(context,
+        routeName: UserAuth.instance.redirect, forgetLast: 1);
   }
 }

@@ -5,12 +5,12 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class ForgotPasswordPage extends NyStatefulWidget {
-  static const path = '/forgot-password';
+  static RouteView path = ("/forgot-password", (_) => ForgotPasswordPage());
 
-  ForgotPasswordPage() : super(path, child: _ForgotPasswordPageState());
+  ForgotPasswordPage({super.key}) : super(child: () => _ForgotPasswordPageState());
 }
 
-class _ForgotPasswordPageState extends NyState<ForgotPasswordPage> {
+class _ForgotPasswordPageState extends NyPage<ForgotPasswordPage> {
   final TextEditingController _tfEmailController = TextEditingController();
 
   @override

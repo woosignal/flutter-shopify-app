@@ -29,73 +29,67 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 appRouter() => nyRoutes((router) {
-      router.route(HomePage.path, (context) => HomePage()).initialRoute();
+  router.add(HomePage.path).initialRoute();
 
-      router.route(CartPage.path, (context) => CartPage());
+  router.add(CartPage.path);
 
-      router.route(CheckoutConfirmationPage.path,
-          (context) => CheckoutConfirmationPage());
+  router.add(CheckoutConfirmationPage.path);
 
-      router.route(ProductSearchPage.path, (context) => ProductSearchPage(),
-          transition: PageTransitionType.fade);
+  router.add(ProductSearchPage.path,
+      transition: PageTransitionType.fade);
 
-      router.route(ProductDetailPage.path, (context) => ProductDetailPage(),
-          transition: PageTransitionType.rightToLeftWithFade);
+  router.add(ProductDetailPage.path);
 
-      router.route(
-          ProductImageViewerPage.path, (context) => ProductImageViewerPage(),
-          transition: PageTransitionType.fade);
+  router.add(
+      ProductImageViewerPage.path,
+      transition: PageTransitionType.fade);
 
-      router.route(WishListPage.path, (context) => WishListPage(),
-          transition: PageTransitionType.rightToLeftWithFade);
+  router.add(WishListPage.path);
 
-      router.route(
-          AccountOrderDetailPage.path, (context) => AccountOrderDetailPage(),
-          transition: PageTransitionType.rightToLeftWithFade);
+  router.add(
+      AccountOrderDetailPage.path);
 
-      router.route(CheckoutStatusPage.path, (context) => CheckoutStatusPage(),
-          transition: PageTransitionType.rightToLeftWithFade);
+  router.add(CheckoutStatusPage.path);
 
-      router.route(CheckoutDetailsPage.path, (context) => CheckoutDetailsPage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(CheckoutDetailsPage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(
-          CheckoutPaymentTypePage.path, (context) => CheckoutPaymentTypePage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(
+      CheckoutPaymentTypePage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(CheckoutShippingTypePage.path,
-          (context) => CheckoutShippingTypePage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(CheckoutShippingTypePage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(HomeSearchPage.path, (context) => HomeSearchPage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(HomeSearchPage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(
-          CustomerCountriesPage.path, (context) => CustomerCountriesPage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(
+      CustomerCountriesPage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(NoConnectionPage.path, (context) => NoConnectionPage());
+  router.add(NoConnectionPage.path);
 
-      // Account Section
+  // Account Section
 
-      router.route(LoginPage.path, (context) => LoginPage(),
-          transition: PageTransitionType.bottomToTop);
+  router.add(LoginPage.path,
+      transition: PageTransitionType.bottomToTop);
 
-      router.route(RegisterPage.path, (context) => RegisterPage());
+  router.add(RegisterPage.path);
 
-      router.route(AccountLandingPage.path, (context) => AccountLandingPage(),
-          routeGuards: [AuthProfileRouteGuard()]);
+  router.add(AccountLandingPage.path,
+      routeGuards: [AuthProfileRouteGuard()]);
 
-      router.route(AccountProfileUpdatePage.path,
-          (context) => AccountProfileUpdatePage());
+  router.add(AccountProfileUpdatePage.path);
 
-      router.route(AccountDeletePage.path, (context) => AccountDeletePage());
+  router.add(AccountDeletePage.path);
 
-      router.route(AccountShippingDetailsPage.path,
-          (context) => AccountShippingDetailsPage());
-      router.route(
-          BrowseCategoriesPage.path, (context) => BrowseCategoriesPage());
-      router.route(ForgotPasswordPage.path, (context) => ForgotPasswordPage());
+  router.add(AccountShippingDetailsPage.path);
 
-      router.route(NotificationsPage.path, (context) => NotificationsPage());
-    });
+  router.add(
+      BrowseCategoriesPage.path);
+
+  router.add(ForgotPasswordPage.path);
+
+  router.add(NotificationsPage.path);
+});

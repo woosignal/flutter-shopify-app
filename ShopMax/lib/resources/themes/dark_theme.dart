@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '/bootstrap/app_helper.dart';
-import '/config/font.dart';
+import '/bootstrap/extensions.dart';
+import '/config/design.dart';
 import '/resources/themes/styles/color_styles.dart';
 import '/resources/themes/text_theme/default_text_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /* Dark Theme
@@ -12,76 +11,62 @@ import 'package:nylo_framework/nylo_framework.dart';
 | Theme Config - config/theme.dart
 |-------------------------------------------------------------------------- */
 
-ThemeData darkTheme(ColorStyles darkColors) {
-  if (AppHelper.instance.shopifyAppConfig != null) {
-    try {
-      appFont = GoogleFonts.getFont(
-          AppHelper.instance.shopifyAppConfig?.themeFont ?? "Poppins");
-    } on Exception catch (e) {
-      if (getEnv('APP_DEBUG') == true) {
-        NyLogger.error(e.toString());
-      }
-    }
-  }
-
+ThemeData darkTheme(ColorStyles color) {
   TextTheme darkTheme =
-      getAppTextTheme(appFont, defaultTextTheme.merge(_textTheme(darkColors)));
+      getAppTextTheme(appFont, defaultTextTheme.merge(_textTheme(color)));
   return ThemeData(
-      primaryColor: darkColors.primaryContent,
-      primaryColorDark: darkColors.primaryContent,
-      brightness: Brightness.dark,
-      focusColor: darkColors.primaryContent,
-      scaffoldBackgroundColor: darkColors.background,
-      appBarTheme: AppBarTheme(
-          surfaceTintColor: Colors.transparent,
-          backgroundColor: darkColors.appBarBackground,
-          titleTextStyle: darkTheme.titleLarge!
-              .copyWith(color: darkColors.appBarPrimaryContent),
-          iconTheme: IconThemeData(color: darkColors.appBarPrimaryContent),
-          elevation: 1.0,
-          systemOverlayStyle: SystemUiOverlayStyle.light),
-      buttonTheme: ButtonThemeData(
-        buttonColor: darkColors.primaryAccent,
-        colorScheme: ColorScheme.light(primary: darkColors.buttonBackground),
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(foregroundColor: darkColors.primaryContent),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: TextButton.styleFrom(
-            foregroundColor: darkColors.buttonPrimaryContent,
-            backgroundColor: darkColors.buttonBackground),
-      ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: darkColors.bottomTabBarBackground,
-        unselectedIconTheme:
-            IconThemeData(color: darkColors.bottomTabBarIconUnselected),
-        selectedIconTheme:
-            IconThemeData(color: darkColors.bottomTabBarIconSelected),
-        unselectedLabelStyle:
-            TextStyle(color: darkColors.bottomTabBarLabelUnselected),
-        selectedLabelStyle:
-            TextStyle(color: darkColors.bottomTabBarLabelSelected),
-        selectedItemColor: darkColors.bottomTabBarLabelSelected,
-      ),
-      textTheme: darkTheme,
-      colorScheme: ColorScheme.dark(
-          background: darkColors.background,
-          primary: darkColors.primaryContent));
+    useMaterial3: true,
+    primaryColor: color.content,
+    primaryColorDark: color.content,
+    focusColor: color.content,
+    scaffoldBackgroundColor: color.background,
+    brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: color.appBarBackground,
+        titleTextStyle:
+            darkTheme.titleLarge!.copyWith(color: color.appBarPrimaryContent),
+        iconTheme: IconThemeData(color: color.appBarPrimaryContent),
+        elevation: 1.0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark),
+    buttonTheme: ButtonThemeData(
+      buttonColor: color.primaryAccent,
+      colorScheme: ColorScheme.light(primary: color.buttonBackground),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(foregroundColor: color.content),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: TextButton.styleFrom(
+          foregroundColor: color.buttonContent,
+          backgroundColor: color.buttonBackground),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: color.bottomTabBarBackground,
+      unselectedIconTheme:
+          IconThemeData(color: color.bottomTabBarIconUnselected),
+      selectedIconTheme: IconThemeData(color: color.bottomTabBarIconSelected),
+      unselectedLabelStyle: TextStyle(color: color.bottomTabBarLabelUnselected),
+      selectedLabelStyle: TextStyle(color: color.bottomTabBarLabelSelected),
+      selectedItemColor: color.bottomTabBarLabelSelected,
+    ),
+    textTheme: darkTheme,
+    colorScheme: ColorScheme.dark(
+      primary: color.primaryAccent,
+      onSurface: Colors.black,
+    ),
+  );
 }
 
-/*
-|--------------------------------------------------------------------------
-| Dark Text Theme
-|--------------------------------------------------------------------------
-*/
+/* Dark Text Theme
+|-------------------------------------------------------------------------*/
 
 TextTheme _textTheme(ColorStyles colors) {
-  Color primaryContent = colors.primaryContent;
-  TextTheme textTheme = TextTheme().apply(displayColor: primaryContent);
+  TextTheme textTheme = const TextTheme()
+      .apply(displayColor: colors.content, bodyColor: colors.content);
   return textTheme.copyWith(
-      titleLarge: TextStyle(color: primaryContent.withOpacity(0.8)),
-      labelLarge: TextStyle(color: primaryContent.withOpacity(0.8)),
-      bodySmall: TextStyle(color: primaryContent.withOpacity(0.8)),
-      bodyMedium: TextStyle(color: primaryContent.withOpacity(0.8)));
+      titleLarge: TextStyle(color: colors.content.applyOpacity(0.8)),
+      labelLarge: TextStyle(color: colors.content.applyOpacity(0.8)),
+      bodySmall: TextStyle(color: colors.content.applyOpacity(0.8)),
+      bodyMedium: TextStyle(color: colors.content.applyOpacity(0.8)));
 }

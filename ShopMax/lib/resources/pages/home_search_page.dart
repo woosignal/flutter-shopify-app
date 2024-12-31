@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -17,13 +17,12 @@ import 'package:nylo_framework/nylo_framework.dart';
 import '/resources/widgets/woosignal_ui.dart';
 
 class HomeSearchPage extends NyStatefulWidget {
-  static String path = "/home-search";
+  static RouteView path = ("/home-search", (_) => HomeSearchPage());
 
-  HomeSearchPage() : super(path, child: _HomeSearchPageState());
+  HomeSearchPage({super.key}) : super(child: () => _HomeSearchPageState());
 }
 
-class _HomeSearchPageState extends NyState<HomeSearchPage> {
-  _HomeSearchPageState();
+class _HomeSearchPageState extends NyPage<HomeSearchPage> {
 
   final TextEditingController _txtSearchController = TextEditingController();
 
@@ -45,7 +44,7 @@ class _HomeSearchPageState extends NyState<HomeSearchPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StoreLogo(height: 55),

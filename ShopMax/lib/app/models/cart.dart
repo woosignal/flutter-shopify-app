@@ -15,7 +15,7 @@ import '/app/models/cart_line_item.dart';
 import '/app/models/shipping_type.dart';
 import 'checkout_session.dart';
 import '/bootstrap/app_helper.dart';
-import '/config/storage_keys.dart';
+import '/config/keys.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 import '/bootstrap/helpers.dart';
@@ -26,7 +26,7 @@ class Cart {
 
   Future<List<CartLineItem>> getCart() async {
     List<CartLineItem> cartLineItems = [];
-    String? currentCartArrJSON = await (NyStorage.read(StorageKey.cart));
+    String? currentCartArrJSON = await (NyStorage.read(Keys.cart));
 
     if (currentCartArrJSON != null) {
       cartLineItems = (jsonDecode(currentCartArrJSON) as List<dynamic>)
@@ -118,12 +118,12 @@ class Cart {
   }
 
   clear() async {
-    await NyStorage.delete(StorageKey.cart);
+    await NyStorage.delete(Keys.cart);
   }
 
   saveCartToPref({required List<CartLineItem?> cartLineItems}) async {
     String json = jsonEncode(cartLineItems.map((i) => i?.toJson()).toList());
-    await NyStorage.store(StorageKey.cart, json);
+    await NyStorage.save(Keys.cart, json);
   }
 
   Future<String> taxAmount() async {

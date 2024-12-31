@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -17,21 +17,20 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/shopify_product_search_response.dart';
 
 class ProductSearchPage extends NyStatefulWidget {
-  static String path = "/product-search";
+  static RouteView path = ("/product-search", (_) => ProductSearchPage());
 
-  ProductSearchPage({Key? key})
-      : super(path, key: key, child: _BrowseSearchState());
+  ProductSearchPage({super.key}) : super(child: () => _ProductSearchPageState());
 }
 
-class _BrowseSearchState extends NyState<ProductSearchPage> {
+class _ProductSearchPageState extends NyPage<ProductSearchPage> {
   String? _search;
   bool hasNextPage = true;
   String? cursor;
 
   @override
-  boot() async {
+  get init => () async {
     _search = widget.controller.data();
-  }
+  };
 
   @override
   Widget view(BuildContext context) {

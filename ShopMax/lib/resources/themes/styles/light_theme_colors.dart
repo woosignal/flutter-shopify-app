@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
-import '/bootstrap/helpers.dart';
+import '/bootstrap/extensions.dart';
+import '../../../bootstrap/helpers.dart';
 import '/resources/themes/styles/color_styles.dart';
 
-/*
-|--------------------------------------------------------------------------
-| Light Theme Colors
-|--------------------------------------------------------------------------
-*/
+/* Light Theme Colors
+|-------------------------------------------------------------------------- */
 
 class LightThemeColors implements ColorStyles {
-  // general
 
+  Map<String, dynamic>? get colors => getThemeColorForTemplate();
+
+  Color themeColor(String key) {
+    if (colors == null || (colors?.isEmpty ?? false)) {
+      return Colors.white;
+    }
+
+    return Color(int.parse(colors?['light'][key]));
+  }
+
+  // general
   @override
-  Color get background =>
-      Color(int.parse(getThemeColorForTemplate()?['light']['background']));
+  Color get background => themeColor('background');
   @override
   Color get backgroundContainer => Colors.white;
+
   @override
-  Color get primaryContent =>
-      Color(int.parse(getThemeColorForTemplate()?['light']['primary_text']));
+  Color get content => themeColor('primary_text');
   @override
-  Color get primaryAccent => const Color(0xFF87c694);
+  Color get primaryAccent => const Color(0xFF0045a0);
 
   @override
   Color get surfaceBackground => Colors.white;
@@ -29,22 +36,20 @@ class LightThemeColors implements ColorStyles {
 
   // app bar
   @override
-  Color get appBarBackground => Color(
-      int.parse(getThemeColorForTemplate()?['light']['app_bar_background']));
+  Color get appBarBackground => themeColor('app_bar_background');
   @override
-  Color get appBarPrimaryContent =>
-      Color(int.parse(getThemeColorForTemplate()?['light']['app_bar_text']));
-
-  @override
-  Color get inputPrimaryContent => Colors.black;
+  Color get appBarPrimaryContent => themeColor('app_bar_text');
 
   // buttons
   @override
-  Color get buttonBackground => Color(
-      int.parse(getThemeColorForTemplate()?['light']['button_background']));
+  Color get buttonBackground => themeColor('button_background');
   @override
-  Color get buttonPrimaryContent =>
-      Color(int.parse(getThemeColorForTemplate()?['light']['button_text']));
+  Color get buttonContent => themeColor('button_text');
+
+  @override
+  Color get buttonSecondaryBackground => const Color(0xff151925);
+  @override
+  Color get buttonSecondaryContent => Colors.white.applyOpacity(0.9);
 
   // bottom tab bar
   @override
@@ -61,4 +66,8 @@ class LightThemeColors implements ColorStyles {
   Color get bottomTabBarLabelUnselected => Colors.black45;
   @override
   Color get bottomTabBarLabelSelected => Colors.black;
+
+  // toast notification
+  @override
+  Color get toastNotificationBackground => Colors.white;
 }

@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -45,7 +45,7 @@ class ProductDetailHeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  formatStringCurrency(total: product!.price),
+                  formatStringCurrency(total: product?.price),
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 20,
                       ),

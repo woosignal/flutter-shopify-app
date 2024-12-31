@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -18,24 +18,23 @@ import '/app/models/checkout_session.dart';
 import '/resources/widgets/woosignal_ui.dart';
 
 class CheckoutStatusPage extends NyStatefulWidget {
-  static String path = "/checkout-status";
+  static RouteView path = ("/checkout-status", (_) => CheckoutStatusPage());
 
-  CheckoutStatusPage({Key? key})
-      : super(path, key: key, child: _CheckoutStatusState());
+  CheckoutStatusPage({super.key}) : super(child: () => _CheckoutStatusPageState());
 }
 
-class _CheckoutStatusState extends NyState<CheckoutStatusPage> {
+class _CheckoutStatusPageState extends NyPage<CheckoutStatusPage> {
   OrderCreatedResponse? _order;
 
   @override
-  init() async {
+  get init => () async {
     _order = widget.controller.data();
     await Cart.getInstance.clear();
     CheckoutSession.getInstance.clear();
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StoreLogo(height: 60),

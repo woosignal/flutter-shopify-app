@@ -1,7 +1,7 @@
 //  StoreMob
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -17,23 +17,22 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 
 class NoConnectionPage extends NyStatefulWidget {
-  static String path = "/no-connection";
-  NoConnectionPage() : super(path, child: _NoConnectionPageState());
+  static RouteView path = ("/no-connection", (_) => NoConnectionPage());
+
+  NoConnectionPage({super.key}) : super(child: () => _NoConnectionPageState());
 }
 
-class _NoConnectionPageState extends State<NoConnectionPage> {
-  _NoConnectionPageState();
+class _NoConnectionPageState extends NyPage<NoConnectionPage> {
 
   @override
-  void initState() {
-    super.initState();
+  get init => () async {
     if (getEnv('APP_DEBUG') == true) {
       NyLogger.error('Shopify site is not connected');
     }
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       body: SafeAreaWidget(
         child: Center(
@@ -73,6 +72,6 @@ class _NoConnectionPageState extends State<NoConnectionPage> {
     }
 
     AppHelper.instance.shopifyAppConfig = wooSignalApp;
-    Navigator.pushNamed(context, "/home");
+    routeToInitial();
   }
 }

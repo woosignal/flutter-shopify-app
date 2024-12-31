@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
 import '/resources/pages/login_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -7,16 +6,16 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 class AuthProfileRouteGuard extends NyRouteGuard {
-  AuthProfileRouteGuard();
 
   @override
-  Future<bool> canOpen(BuildContext? context, NyArgument? data) async {
+  onRequest(PageRequest pageRequest) async {
     bool isLoggedIn = WooSignalShopify.authUserLoggedIn();
-    return isLoggedIn;
-  }
 
-  @override
-  redirectTo(BuildContext? context, NyArgument? data) async {
-    routeTo(LoginPage.path);
+    if (!isLoggedIn) {
+      await Future.delayed(Duration(microseconds: 500));
+      return redirect(LoginPage.path, data: {"showBackButton": true});
+    }
+
+    return pageRequest;
   }
 }

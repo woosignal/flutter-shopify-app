@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -132,7 +132,7 @@ class TextEditingRow extends StatelessWidget {
                   child: AutoSizeText(
                     heading!,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: ThemeColor.get(context).primaryContent),
+                        color: ThemeColor.get(context).content),
                   ),
                   padding: EdgeInsets.only(bottom: 2),
                 ),
@@ -371,7 +371,7 @@ class ProductItem extends StatelessWidget {
       : featureImage = product.featuredImage?.url,
         name = product.title,
         price = product.priceRange?.minVariantPrice?.amount,
-        productId = product.uId,
+        productId = product.uId.toString(),
         comparePrice = product.compareAtPriceRange?.minVariantPrice?.amount,
         productAddedAt = product.createdAt.toDateTime();
 
@@ -380,7 +380,7 @@ class ProductItem extends StatelessWidget {
       : featureImage = product.featuredImage?.url,
         name = product.title,
         price = product.priceRange?.minVariantPrice?.amount,
-        productId = product.uId,
+        productId = product.uId.toString(),
         comparePrice = product.compareAtPriceRange?.minVariantPrice?.amount,
         productAddedAt = product.createdAt.toDateTime();
 
@@ -392,7 +392,7 @@ class ProductItem extends StatelessWidget {
   final String? name;
   final String? featureImage;
   final String? comparePrice;
-  final int? productId;
+  final String? productId;
   final double height;
   final String? price;
 
@@ -588,7 +588,7 @@ class ShopifyCheckoutTotal extends StatelessWidget {
           child: CheckoutMetaLine(title: title, amount: data),
           padding: EdgeInsets.only(bottom: 0, top: 15),
         ),
-        loading: SizedBox.shrink(),
+        loadingStyle: LoadingStyle.none(),
       );
 }
 
@@ -630,7 +630,7 @@ class CheckoutSubtotal extends StatelessWidget {
           ),
           padding: EdgeInsets.only(bottom: 0, top: 0),
         ),
-        loading: SizedBox.shrink(),
+        loadingStyle: LoadingStyle.none(),
       );
 }
 
@@ -649,7 +649,7 @@ class ShopifyCheckoutSubtotal extends StatelessWidget {
           ),
           padding: EdgeInsets.only(bottom: 0, top: 0),
         ),
-        loading: SizedBox.shrink(),
+        loadingStyle: LoadingStyle.none(),
       );
 }
 

@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -18,21 +18,17 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class CheckoutPaymentTypePage extends NyStatefulWidget {
-  CheckoutPaymentTypePage()
-      : super(path, child: _CheckoutPaymentTypePageState());
+  static RouteView path = ("/checkout-payment-type", (_) => CheckoutPaymentTypePage());
 
-  static String path = "/checkout-payment-type";
+  CheckoutPaymentTypePage({super.key}) : super(child: () => _CheckoutPaymentTypePageState());
 }
 
-class _CheckoutPaymentTypePageState extends NyState<CheckoutPaymentTypePage> {
-  _CheckoutPaymentTypePageState();
+class _CheckoutPaymentTypePageState extends NyPage<CheckoutPaymentTypePage> {
 
   List<PaymentType?> _paymentTypes = [];
 
   @override
-  init() async {
-    super.init();
-
+  get init => () async {
     _paymentTypes = await getShopifyPaymentTypes();
 
     if (_paymentTypes.isEmpty &&
@@ -48,10 +44,10 @@ class _CheckoutPaymentTypePageState extends NyState<CheckoutPaymentTypePage> {
             orElse: () => _paymentTypes.first);
       }
     }
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

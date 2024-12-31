@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -19,24 +19,24 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 
 class AccountLandingPage extends NyStatefulWidget {
-  final bool showLeadingBackButton;
-  static String path = "/account-detail";
-  AccountLandingPage({this.showLeadingBackButton = true})
-      : super(path, child: _AccountLandingPageState());
+  static RouteView path = ("/account-landing", (_) => AccountLandingPage());
+
+  AccountLandingPage({super.key}) : super(child: () => _AccountLandingPageState());
 }
 
-class _AccountLandingPageState extends NyState<AccountLandingPage>
-    with TickerProviderStateMixin {
+class _AccountLandingPageState extends NyPage<AccountLandingPage> with SingleTickerProviderStateMixin {
+
+  bool showLeadingBackButton = false;
   TabController? _tabController;
 
   int _currentTabIndex = 0;
   AuthCustomerInfo? _customerInfo;
 
   @override
-  boot() async {
+  get init => () async {
     await _fetchCustomer();
     _tabController = TabController(vsync: this, length: 2);
-  }
+  };
 
   _fetchCustomer() async {
     _customerInfo = await appWooSignalShopify((api) => api.authCustomer());
@@ -46,7 +46,7 @@ class _AccountLandingPageState extends NyState<AccountLandingPage>
   Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: widget.showLeadingBackButton
+        leading: showLeadingBackButton
             ? Container(
                 child: IconButton(
                   icon: Icon(Icons.arrow_back_ios),
@@ -130,12 +130,12 @@ class _AccountLandingPageState extends NyState<AccountLandingPage>
               ),
             ),
             Expanded(
-              child: NySwitch(
-                widgets: [
+              child: IndexedStack(
+                children: [
                   AccountDetailOrders(),
                   AccountDetailSettings(),
                 ],
-                indexSelected: _currentTabIndex,
+                index: _currentTabIndex,
               ),
             ),
           ],

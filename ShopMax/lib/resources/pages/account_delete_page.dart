@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -16,16 +16,15 @@ import '/resources/widgets/safearea_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class AccountDeletePage extends NyStatefulWidget {
-  static String path = "/account-delete";
-  AccountDeletePage() : super(path, child: _AccountDeletePageState());
+  static RouteView path = ("/account-delete", (_) => AccountDeletePage());
+
+  AccountDeletePage({super.key}) : super(child: () => _AccountDeletePageState());
 }
 
-class _AccountDeletePageState extends NyState<AccountDeletePage> {
-  @override
-  init() async {}
+class _AccountDeletePageState extends NyPage<AccountDeletePage> {
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(trans("Delete Account")),

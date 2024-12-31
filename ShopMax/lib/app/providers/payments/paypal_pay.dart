@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -9,17 +9,17 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import 'package:flutter/material.dart';
+import '/bootstrap/paypal/paypal_checkout_view.dart';
 import '/app/models/cart_line_item.dart';
 import '/app/models/checkout_session.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
-import '../../../resources/pages/checkout_confirmation_page.dart';
-import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import '/resources/pages/checkout_confirmation_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/order_created_response.dart';
 import 'package:woosignal_shopify_api/models/shopify_order.dart';
 import '/bootstrap/data/order_shopify.dart';
-import '../../../resources/pages/checkout_status_page.dart';
+import '/resources/pages/checkout_status_page.dart';
 
 payPalPay(context) async {
   await checkoutShopify((total, billingDetails, cart) async {

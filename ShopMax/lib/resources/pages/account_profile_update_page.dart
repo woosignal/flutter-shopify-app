@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -18,89 +18,73 @@ import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.da
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_updated_response.dart';
 
 class AccountProfileUpdatePage extends NyStatefulWidget {
-  static String path = "/account-update";
-  AccountProfileUpdatePage()
-      : super(path, child: _AccountProfileUpdatePageState());
+  static RouteView path = ("/account-update", (_) => AccountProfileUpdatePage());
+
+  AccountProfileUpdatePage({super.key}) : super(child: () => _AccountProfileUpdatePageState());
 }
 
-class _AccountProfileUpdatePageState extends NyState<AccountProfileUpdatePage> {
-  _AccountProfileUpdatePageState();
+class _AccountProfileUpdatePageState extends NyPage<AccountProfileUpdatePage> {
 
   final TextEditingController _tfFirstName = TextEditingController(),
       _tfLastName = TextEditingController();
 
   @override
-  boot() async {
+  get init => () async {
     await _fetchUserDetails();
-  }
+  };
 
   @override
-  bool get useSkeletonizer => true;
-
-  @override
-  Widget loading(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          trans("Update Details"),
-          style: TextStyle(
-            fontSize: 20,
-          ),
+  LoadingStyle loadingStyle = LoadingStyle.skeletonizer(child: Scaffold(
+    appBar: AppBar(
+      title: Text(
+        trans("Update Details"),
+        style: TextStyle(
+          fontSize: 20,
         ),
-        centerTitle: true,
-        elevation: 1,
       ),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Flexible(
-                      child: Row(
-                        children: <Widget>[
-                          Flexible(
-                            child: TextEditingRow(
-                              heading: trans("First Name"),
-                              controller: _tfFirstName,
-                              keyboardType: TextInputType.text,
-                            ),
-                          ),
-                          Flexible(
-                            child: TextEditingRow(
-                              heading: trans("Last Name"),
-                              controller: _tfLastName,
-                              keyboardType: TextInputType.text,
-                            ),
-                          ),
-                        ],
-                      ),
+      centerTitle: true,
+      elevation: 1,
+    ),
+    body: SafeArea(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Flexible(
+                    child: Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: Container()
+                        ),
+                        Flexible(
+                            child: Container()
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    PrimaryButton(
-                      title: trans("Update Details"),
-                      isLoading: isLocked('update_details'),
-                      action: _updateDetails,
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(8),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                  ),
+                  PrimaryButton(
+                    title: trans("Update Details"),
+                  )
+                ],
               ),
+              margin: EdgeInsets.all(8),
+              padding: EdgeInsets.all(8),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  ));
 
   _fetchUserDetails() async {
     AuthCustomerInfo? authCustomerInfo =
@@ -205,7 +189,7 @@ class _AccountProfileUpdatePageState extends NyState<AccountProfileUpdatePage> {
           showToastNotification(context,
               title: trans("Success"),
               description: trans("Account updated"),
-              style: ToastNotificationStyleType.SUCCESS);
+              style: ToastNotificationStyleType.success);
           pop();
         },
         lockRelease: 'update_details');

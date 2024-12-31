@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -18,13 +18,15 @@ import '/resources/widgets/cached_image_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class WishListPage extends NyStatefulWidget {
-  static String path = "/wishlist";
-  WishListPage() : super(path, child: _WishListPageState());
+  static RouteView path = ("/wishlist", (_) => WishListPage());
+
+  WishListPage({super.key}) : super(child: () => _WishListPageState());
 }
 
-class _WishListPageState extends NyState<WishListPage> {
+class _WishListPageState extends NyPage<WishListPage> {
+
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -43,7 +45,7 @@ class _WishListPageState extends NyState<WishListPage> {
             }
             List<Product>? products = await (appWooSignalShopify((api) =>
                 api.getProductsRestApi(
-                    ids: favouriteProducts.map((e) => int.parse(e)).toList())));
+                    ids: favouriteProducts)));
             return products;
           },
           child: (context, product) {
@@ -121,7 +123,7 @@ class _WishListPageState extends NyState<WishListPage> {
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!
-                        .setColor(context, (color) => color!.primaryContent))
+                        .setColor(context, (color) => color.content))
               ],
             ),
           ),

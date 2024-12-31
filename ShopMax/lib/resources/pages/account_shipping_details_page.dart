@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -26,13 +26,13 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 
 class AccountShippingDetailsPage extends NyStatefulWidget {
-  static String path = "/account-shipping-details";
-  AccountShippingDetailsPage()
-      : super(path, child: _AccountShippingDetailsPageState());
+  static RouteView path = ("/account-shipping-details", (_) => AccountShippingDetailsPage());
+
+  AccountShippingDetailsPage({super.key}) : super(child: () => _AccountShippingDetailsPageState());
 }
 
 class _AccountShippingDetailsPageState
-    extends NyState<AccountShippingDetailsPage> {
+    extends NyPage<AccountShippingDetailsPage> {
   _AccountShippingDetailsPageState();
 
   int activeTabIndex = 0;
@@ -80,9 +80,9 @@ class _AccountShippingDetailsPageState
       );
 
   @override
-  boot() async {
+  get init => () async {
     await _fetchUserDetails();
-  }
+  };
 
   _setFieldsFromCustomerAddress(CustomerAddress? customerAddress,
       {required String type}) {
@@ -289,7 +289,7 @@ class _AccountShippingDetailsPageState
           showToastNotification(context,
               title: trans("Success"),
               description: trans("Account updated"),
-              style: ToastNotificationStyleType.SUCCESS);
+              style: ToastNotificationStyleType.success);
         },
         lockRelease: 'update_details');
   }
@@ -345,7 +345,7 @@ class _AccountShippingDetailsPageState
         context,
         title: trans("Oops!"),
         description: trans("Something went wrong"),
-        style: ToastNotificationStyleType.DANGER,
+        style: ToastNotificationStyleType.danger,
       );
       pop();
       return;

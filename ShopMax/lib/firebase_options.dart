@@ -42,7 +42,7 @@ class DefaultFirebaseOptions {
         }
         return FirebaseOptions(
           apiKey: AppHelper
-              .instance.shopifyAppConfig?.firebaseOptionsIos!['apiKey'],
+              .instance.shopifyAppConfig?.firebaseOptionsIos?['apiKey'],
           appId:
               AppHelper.instance.shopifyAppConfig?.firebaseOptionsIos!['appId'],
           messagingSenderId: AppHelper.instance.shopifyAppConfig

@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -30,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
         textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: ThemeColor.get(context).buttonPrimaryContent),
+            color: ThemeColor.get(context).buttonContent),
         bgColor: ThemeColor.get(context).buttonBackground,
       );
 }

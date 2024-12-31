@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -20,8 +20,6 @@ class AccountDetailOrders extends StatefulWidget {
 }
 
 class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
-  @override
-  bool get showInitialLoader => false;
 
   String? nextPage;
   bool? hasNextPage;
@@ -150,7 +148,8 @@ class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
             ],
           ),
         ),
-        loading: ListView(
+        loadingStyle: LoadingStyle.skeletonizer(child:
+        ListView(
           children: [
             Card(
               child: ListTile(
@@ -218,8 +217,8 @@ class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
                         "Some Text",
                         textAlign: TextAlign.right,
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
                   ),
@@ -233,8 +232,7 @@ class _AccountDetailOrdersState extends NyState<AccountDetailOrders> {
               ),
             )
           ],
-        ),
-        useSkeletonizer: true);
+        )),);
   }
 
   Future<AuthCustomerOrder?> fetchOrders({int? perPage, String? after}) async {

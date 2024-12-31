@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -27,7 +27,7 @@ class AppVersionWidget extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.w300)),
         padding: EdgeInsets.only(top: 15, bottom: 15),
       ),
-      loading: SizedBox.shrink(),
+      loadingStyle: LoadingStyle.none(),
     );
   }
 }

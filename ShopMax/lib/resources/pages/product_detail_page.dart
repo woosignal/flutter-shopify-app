@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -22,25 +22,21 @@ import 'package:woosignal_shopify_api/models/product.dart' as shopify;
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart'
     as shopify;
 
-class ProductDetailPage extends NyStatefulWidget {
-  static String path = "/product-detail";
+class ProductDetailPage extends NyStatefulWidget<ProductDetailController> {
+  static RouteView path = ("/product-detail", (_) => ProductDetailPage());
 
-  @override
-  final ProductDetailController controller = ProductDetailController();
-
-  ProductDetailPage({Key? key})
-      : super(path, key: key, child: _ProductDetailState());
+  ProductDetailPage({super.key}) : super(child: () => _ProductDetailPageState());
 }
 
-class _ProductDetailState extends NyState<ProductDetailPage> {
+class _ProductDetailPageState extends NyPage<ProductDetailPage> {
   shopify.Product? _product;
 
   final shopify.WooSignalApp? _wooSignalApp =
       AppHelper.instance.shopifyAppConfig;
 
   @override
-  boot() async {
-    int? productId = widget.controller.data();
+  get init => () async {
+    String? productId = widget.controller.data();
     if (productId != null) {
       _product = await appWooSignalShopify(
           (api) => api.getProduct(productId: productId));
@@ -51,10 +47,10 @@ class _ProductDetailState extends NyState<ProductDetailPage> {
       return;
     }
     widget.controller.product = _product;
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [

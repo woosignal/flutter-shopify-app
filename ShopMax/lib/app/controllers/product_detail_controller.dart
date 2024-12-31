@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -34,7 +34,7 @@ class ProductDetailController extends Controller {
             title: trans("Maximum quantity reached"),
             description:
                 "${trans("Sorry, only")} ${variant?.inventoryQuantity} ${trans("left")}",
-            style: ToastNotificationStyleType.INFO);
+            style: ToastNotificationStyleType.info);
         return;
       }
     }

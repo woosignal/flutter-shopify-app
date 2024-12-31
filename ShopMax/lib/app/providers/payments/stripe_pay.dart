@@ -2,7 +2,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -64,7 +64,7 @@ stripePay(context) async {
           title: trans("Oops!"),
           description: trans("Something went wrong, please try again."),
           icon: Icons.payment,
-          style: ToastNotificationStyleType.WARNING);
+          style: ToastNotificationStyleType.warning);
       updateState(CheckoutConfirmationPage.path, data: {"reloadState": false});
       return;
     }
@@ -93,7 +93,7 @@ stripePay(context) async {
         title: trans("Oops!"),
         description: trans("Something went wrong, please try again."),
         icon: Icons.payment,
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
       );
     }
 
@@ -128,7 +128,7 @@ stripePay(context) async {
       title: trans("Oops!"),
       description: e.error.localizedMessage!,
       icon: Icons.payment,
-      style: ToastNotificationStyleType.WARNING,
+      style: ToastNotificationStyleType.warning,
     );
     updateState(CheckoutConfirmationPage.path, data: {"reloadState": false});
   } catch (e) {
@@ -140,7 +140,7 @@ stripePay(context) async {
       title: trans("Oops!"),
       description: trans("Something went wrong, please try again."),
       icon: Icons.payment,
-      style: ToastNotificationStyleType.WARNING,
+      style: ToastNotificationStyleType.warning,
     );
     updateState(CheckoutConfirmationPage.path, data: {"showLoader": false});
   }

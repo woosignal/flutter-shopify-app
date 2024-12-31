@@ -8,20 +8,20 @@ import 'package:woosignal_shopify_api/models/response/products_by_collection_id_
 import '/resources/widgets/woosignal_ui.dart';
 
 class BrowseCategoriesPage extends NyStatefulWidget {
-  static const path = '/browse-categories';
+  static RouteView path = ("/browse-categories", (_) => BrowseCategoriesPage());
 
-  BrowseCategoriesPage() : super(path, child: _BrowseCategoriesPageState());
+  BrowseCategoriesPage({super.key}) : super(child: () => _BrowseCategoriesPageState());
 }
 
-class _BrowseCategoriesPageState extends NyState<BrowseCategoriesPage> {
+class _BrowseCategoriesPageState extends NyPage<BrowseCategoriesPage> {
   Collections? _collection;
   bool hasNextPage = true;
   String? cursor;
 
   @override
-  init() async {
+  get init => () async {
     _collection = data() as Collections;
-  }
+  };
 
   @override
   Widget view(BuildContext context) {

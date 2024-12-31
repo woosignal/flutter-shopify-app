@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -26,19 +26,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 
 class CheckoutConfirmationPage extends NyStatefulWidget {
-  static String path = "/checkout";
-  CheckoutConfirmationPage()
-      : super(path, child: CheckoutConfirmationPageState());
+  static RouteView path = ("/checkout", (_) => CheckoutConfirmationPage());
+
+  CheckoutConfirmationPage({super.key}) : super(child: () => _CheckoutConfirmationPageState());
 }
 
-class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
-  CheckoutConfirmationPageState();
+class _CheckoutConfirmationPageState extends NyPage<CheckoutConfirmationPage> {
 
   bool _showFullLoader = false;
   final WooSignalApp? _wooSignalApp = AppHelper.instance.shopifyAppConfig;
 
   @override
-  init() async {
+  get init => () async {
     CheckoutSession.getInstance.coupon = null;
     List<PaymentType?> paymentTypes = await getShopifyPaymentTypes();
 
@@ -48,7 +47,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
           (paymentType) => paymentType?.id == 1,
           orElse: () => paymentTypes.first);
     }
-  }
+  };
 
   @override
   stateUpdated(dynamic data) async {
@@ -69,7 +68,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     CheckoutSession checkoutSession = CheckoutSession.getInstance;
 
     if (_showFullLoader == true) {
@@ -100,7 +99,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
           children: [
             Text(trans("Checkout")),
             Text(_wooSignalApp?.appName ?? getEnv('APP_NAME'))
-                .bodySmall(context),
+                .bodySmall(),
           ],
         ),
         centerTitle: false,
@@ -265,7 +264,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
         title: trans("Oops"),
         description:
             trans("Please select add your billing/shipping address to proceed"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.local_shipping,
       );
       return;
@@ -277,7 +276,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
         context,
         title: trans("Oops"),
         description: trans("Your billing/shipping details are incomplete"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.local_shipping,
       );
       return;
@@ -289,7 +288,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
         context,
         title: trans("Oops"),
         description: trans("Please select a shipping method to proceed"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.local_shipping,
       );
       return;
@@ -300,7 +299,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
         context,
         title: trans("Oops"),
         description: trans("Please select a payment method to proceed"),
-        style: ToastNotificationStyleType.WARNING,
+        style: ToastNotificationStyleType.warning,
         icon: Icons.payment,
       );
       return;
@@ -312,7 +311,7 @@ class CheckoutConfirmationPageState extends NyState<CheckoutConfirmationPage> {
       showToastNotification(context,
           title: trans("Sorry"),
           description: trans("Retry later"),
-          style: ToastNotificationStyleType.INFO,
+          style: ToastNotificationStyleType.info,
           duration: Duration(seconds: 3));
       return;
     }

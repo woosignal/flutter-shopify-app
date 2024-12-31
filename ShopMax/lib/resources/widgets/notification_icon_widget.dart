@@ -1,7 +1,7 @@
 //  Label StoreMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -31,10 +31,10 @@ class _NotificationIconState extends NyState<NotificationIcon> {
   }
 
   @override
-  boot() async {
+  get init => () async {
     totalNotifications =
         (await NyNotification.allNotificationsNotRead()).length;
-  }
+  };
 
   @override
   stateUpdated(dynamic data) async {

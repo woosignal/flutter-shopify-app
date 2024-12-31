@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -17,20 +17,19 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/order_response.dart';
 
 class AccountOrderDetailPage extends NyStatefulWidget {
-  static String path = "/account-order-detail";
+  static RouteView path = ("/account-order-detail", (_) => AccountOrderDetailPage());
 
-  AccountOrderDetailPage({Key? key})
-      : super(path, key: key, child: _AccountOrderDetailPageState());
+  AccountOrderDetailPage({super.key}) : super(child: () => _AccountOrderDetailPageState());
 }
 
-class _AccountOrderDetailPageState extends NyState<AccountOrderDetailPage> {
+class _AccountOrderDetailPageState extends NyPage<AccountOrderDetailPage> {
   OrderResponse? _order;
 
   @override
-  boot() async {
+  get init => () async {
     String? orderId = widget.controller.data();
     await _fetchOrder(orderId);
-  }
+  };
 
   @override
   Widget view(BuildContext context) {

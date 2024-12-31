@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -15,26 +15,25 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class ProductImageViewerPage extends NyStatefulWidget {
-  static String path = "/product-images";
+  static RouteView path = ("/product-images", (_) => ProductImageViewerPage());
 
-  ProductImageViewerPage({Key? key})
-      : super(path, key: key, child: _ProductImageViewerPageState());
+  ProductImageViewerPage({super.key}) : super(child: () => _ProductImageViewerPageState());
 }
 
-class _ProductImageViewerPageState extends NyState<ProductImageViewerPage> {
+class _ProductImageViewerPageState extends NyPage<ProductImageViewerPage> {
   int? _initialIndex;
   List<String?> _arrImageSrc = [];
 
   @override
-  void initState() {
+  get init => () {
     Map<String, dynamic> imageData = widget.controller.data();
     _initialIndex = imageData['index'];
     _arrImageSrc = imageData['images'];
     super.initState();
-  }
+  };
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       body: SafeAreaWidget(
         child: Column(

@@ -2,7 +2,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -46,7 +46,7 @@ razorPay(context) async {
     showToastNotification(context,
         title: trans("Error"),
         description: response.message ?? "",
-        style: ToastNotificationStyleType.WARNING);
+        style: ToastNotificationStyleType.warning);
     updateState(CheckoutConfirmationPage.path, data: {"reloadState": false});
   });
 

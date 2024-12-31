@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -17,7 +17,7 @@ import '/app/models/customer_address.dart';
 import '/app/models/payment_type.dart';
 import '/bootstrap/app_helper.dart';
 import '/bootstrap/helpers.dart';
-import '/config/storage_keys.dart';
+import '/config/keys.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/discount_code.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
@@ -57,12 +57,12 @@ class CheckoutSession {
     }
 
     String billingAddress = jsonEncode(customerAddress.toJson());
-    await NyStorage.store(StorageKey.customerBillingDetails, billingAddress);
+    await NyStorage.save(Keys.customerBillingDetails, billingAddress);
   }
 
   Future<CustomerAddress?> getBillingAddress() async {
     String? strCheckoutDetails =
-        await (NyStorage.read(StorageKey.customerBillingDetails));
+        await (NyStorage.read(Keys.customerBillingDetails));
 
     if (strCheckoutDetails != null && strCheckoutDetails != "") {
       return CustomerAddress.fromJson(jsonDecode(strCheckoutDetails));
@@ -71,21 +71,21 @@ class CheckoutSession {
   }
 
   clearBillingAddress() async =>
-      await NyStorage.delete(StorageKey.customerBillingDetails);
+      await NyStorage.delete(Keys.customerBillingDetails);
 
   saveShippingAddress() async {
     CustomerAddress? customerAddress =
-        CheckoutSession.getInstance.billingDetails!.shippingAddress;
+        CheckoutSession.getInstance.billingDetails?.shippingAddress;
     if (customerAddress == null) {
       return;
     }
     String shippingAddress = jsonEncode(customerAddress.toJson());
-    await NyStorage.store(StorageKey.customerShippingDetails, shippingAddress);
+    await NyStorage.save(Keys.customerShippingDetails, shippingAddress);
   }
 
   Future<CustomerAddress?> getShippingAddress() async {
     String? strCheckoutDetails =
-        await (NyStorage.read(StorageKey.customerShippingDetails));
+        await (NyStorage.read(Keys.customerShippingDetails));
     if (strCheckoutDetails != null && strCheckoutDetails != "") {
       return CustomerAddress.fromJson(jsonDecode(strCheckoutDetails));
     }
@@ -93,7 +93,7 @@ class CheckoutSession {
   }
 
   clearShippingAddress() async =>
-      await NyStorage.delete(StorageKey.customerShippingDetails);
+      await NyStorage.delete(Keys.customerShippingDetails);
 
   Future<String> total({bool withFormat = false}) async {
     double totalCart = parseWcPrice(await Cart.getInstance.getTotal());

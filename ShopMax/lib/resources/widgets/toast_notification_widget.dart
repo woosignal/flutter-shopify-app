@@ -1,13 +1,4 @@
-//  ShopMax
-//
-//  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
-//
-
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
+import '/bootstrap/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
@@ -22,21 +13,21 @@ class ToastNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         height: 100,
         decoration: BoxDecoration(
-          color: context.isDarkMode ? "#282c34".toHexColor() : Colors.white,
+          color: context.color.toastNotificationBackground,
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
-              color: context.isDarkMode
-                  ? Colors.black12
-                  : Colors.grey.withOpacity(0.1),
+              color: context.isThemeDark
+                  ? Colors.transparent
+                  : Colors.grey.applyOpacity(0.1),
               spreadRadius: 3,
               blurRadius: 5,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -53,45 +44,35 @@ class ToastNotification extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      color: _toastMeta.color,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8),
-                          topLeft: Radius.circular(8))),
+                    color: _toastMeta.color,
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        topLeft: Radius.circular(8)),
+                  ),
                   alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  margin: const EdgeInsets.only(right: 12),
                   child: Center(child: _toastMeta.icon),
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  margin: EdgeInsets.only(right: 12),
                 ),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(right: 40),
+                    margin: const EdgeInsets.only(right: 40),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           _toastMeta.title.tr(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .copyWith(
-                                  color: context.isDarkMode
-                                      ? Colors.white.withOpacity(0.8)
-                                      : "#171717".toHexColor()),
-                        ).fontWeightBold(),
+                        ).bodyLarge(
+                            color: context.color.content,
+                            fontWeight: FontWeight.bold),
                         Flexible(
                           child: Text(
                             _toastMeta.description,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    color: context.isDarkMode
-                                        ? Colors.white70
-                                        : "#5d626b".toHexColor()),
-                          ),
+                          ).bodyMedium(
+                              color: context.color.content.applyOpacity(0.8)),
                         ),
                       ],
                     ),
@@ -110,25 +91,26 @@ class ToastNotification extends StatelessWidget {
                 width: 30,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: context.isDarkMode
+                    color: context.isThemeDark
                         ? Colors.white30
                         : "#f2f2f2".toHexColor(),
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
                   child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        if (_dismiss != null) {
-                          _dismiss!();
-                        }
-                      },
-                      icon: Icon(
-                        Icons.close,
-                        color: context.isDarkMode
-                            ? Colors.white
-                            : "#878787".toHexColor(),
-                        size: 18,
-                      )),
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      if (_dismiss != null) {
+                        _dismiss();
+                      }
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: context.isThemeDark
+                          ? Colors.white
+                          : "#878787".toHexColor(),
+                      size: 18,
+                    ),
+                  ),
                 ),
               ),
             ),

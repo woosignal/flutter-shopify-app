@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -22,21 +22,20 @@ import 'package:woosignal_shopify_api/models/shopify_shipping_zone.dart';
 import '/app/models/cart.dart';
 
 class CheckoutShippingTypePage extends NyStatefulWidget {
-  static String path = "/checkout-shipping-type";
-  CheckoutShippingTypePage()
-      : super(path, child: _CheckoutShippingTypePageState());
+  static RouteView path = ("/checkout-shipping-type", (_) => CheckoutShippingTypePage());
+
+  CheckoutShippingTypePage({super.key}) : super(child: () => _CheckoutShippingTypePageState());
 }
 
-class _CheckoutShippingTypePageState extends NyState<CheckoutShippingTypePage> {
-  _CheckoutShippingTypePageState();
+class _CheckoutShippingTypePageState extends NyPage<CheckoutShippingTypePage> {
 
   final List<ShippingMethod> _shippingMethods = [];
   ShopifyShippingZone? _shipping;
 
   @override
-  boot() async {
+  get init => () async {
     await _getShippingMethods();
-  }
+  };
 
   _getShippingMethods() async {
     _shipping = await appWooSignalShopify((api) => api.fetchShippingZones());
@@ -163,7 +162,7 @@ class _CheckoutShippingTypePageState extends NyState<CheckoutShippingTypePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

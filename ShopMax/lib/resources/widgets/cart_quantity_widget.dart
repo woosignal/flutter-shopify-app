@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -61,7 +61,7 @@ class _CartQuantityState extends NyState<CartQuantity> {
           textAlign: TextAlign.center,
         );
       },
-      loading: SizedBox.shrink(),
+      loadingStyle: LoadingStyle.none(),
     );
   }
 }

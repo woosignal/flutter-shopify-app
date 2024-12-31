@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -73,6 +73,7 @@ class ProductDetailFooterActionsWidget extends StatelessWidget {
                     ),
                     onPressed: onRemoveQuantity as void Function()?,
                   ),
+                  if (product != null)
                   ProductQuantity(productId: product!.id!),
                   IconButton(
                     icon: Icon(
@@ -94,7 +95,7 @@ class ProductDetailFooterActionsWidget extends StatelessWidget {
                 child: AutoSizeText(
                   formatStringCurrency(
                       total:
-                          (parseWcPrice(product!.price) * quantity).toString()),
+                          (parseWcPrice(product?.price) * quantity).toString()),
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center,
                 ),

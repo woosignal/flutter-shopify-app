@@ -1,7 +1,7 @@
 //  ShopMax
 //
 //  Created by Anthony Gordon.
-//  2024, WooSignal Ltd. All rights reserved.
+//  2025, WooSignal Ltd. All rights reserved.
 //
 
 //  Unless required by applicable law or agreed to in writing, software
@@ -21,17 +21,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 
 class HomePage extends NyStatefulWidget {
-  static String path = "/home";
-  HomePage() : super(path, child: _HomePageState());
+  static RouteView path = ("/home", (_) => HomePage());
+
+  HomePage({super.key}) : super(child: () => _HomePageState());
 }
 
-class _HomePageState extends NyState<HomePage> {
+class _HomePageState extends NyPage<HomePage> {
   final WooSignalApp? _wooSignalApp = AppHelper.instance.shopifyAppConfig;
 
   @override
-  init() async {
+  get init => () async {
     _enableFcmNotifications();
-  }
+  };
 
   _enableFcmNotifications() {
     bool? firebaseFcmIsEnabled =
@@ -98,7 +99,7 @@ class _HomePageState extends NyState<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     Widget theme = MelloThemeWidget(wooSignalApp: _wooSignalApp);
     return theme;
   }
