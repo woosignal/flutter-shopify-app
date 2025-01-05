@@ -17,8 +17,6 @@ class AuthRouteGuard extends NyRouteGuard {
 
   @override
   onRequest(PageRequest pageRequest) async {
-    // print(data); // will give you access to the data passed to the route
-    // print(queryParameters); // will give you access to the BuildContext
 
     bool isLoggedIn = (await Auth.isAuthenticated());
     if (!isLoggedIn) {

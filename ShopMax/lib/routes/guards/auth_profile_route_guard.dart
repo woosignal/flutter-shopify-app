@@ -12,7 +12,6 @@ class AuthProfileRouteGuard extends NyRouteGuard {
     bool isLoggedIn = WooSignalShopify.authUserLoggedIn();
 
     if (!isLoggedIn) {
-      await Future.delayed(Duration(microseconds: 500));
       return redirect(LoginPage.path, data: {"showBackButton": true});
     }
 
