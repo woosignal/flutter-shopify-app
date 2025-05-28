@@ -28,26 +28,26 @@ import 'package:woosignal_shopify_api/models/response/woosignal_app.dart';
 class CheckoutConfirmationPage extends NyStatefulWidget {
   static RouteView path = ("/checkout", (_) => CheckoutConfirmationPage());
 
-  CheckoutConfirmationPage({super.key}) : super(child: () => _CheckoutConfirmationPageState());
+  CheckoutConfirmationPage({super.key})
+      : super(child: () => _CheckoutConfirmationPageState());
 }
 
 class _CheckoutConfirmationPageState extends NyPage<CheckoutConfirmationPage> {
-
   bool _showFullLoader = false;
   final WooSignalApp? _wooSignalApp = AppHelper.instance.shopifyAppConfig;
 
   @override
   get init => () async {
-    CheckoutSession.getInstance.coupon = null;
-    List<PaymentType?> paymentTypes = await getShopifyPaymentTypes();
+        CheckoutSession.getInstance.coupon = null;
+        List<PaymentType?> paymentTypes = await getShopifyPaymentTypes();
 
-    if (CheckoutSession.getInstance.paymentType == null &&
-        paymentTypes.isNotEmpty) {
-      CheckoutSession.getInstance.paymentType = paymentTypes.firstWhere(
-          (paymentType) => paymentType?.id == 1,
-          orElse: () => paymentTypes.first);
-    }
-  };
+        if (CheckoutSession.getInstance.paymentType == null &&
+            paymentTypes.isNotEmpty) {
+          CheckoutSession.getInstance.paymentType = paymentTypes.firstWhere(
+              (paymentType) => paymentType?.id == 1,
+              orElse: () => paymentTypes.first);
+        }
+      };
 
   @override
   stateUpdated(dynamic data) async {
@@ -98,8 +98,7 @@ class _CheckoutConfirmationPageState extends NyPage<CheckoutConfirmationPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(trans("Checkout")),
-            Text(_wooSignalApp?.appName ?? getEnv('APP_NAME'))
-                .bodySmall(),
+            Text(_wooSignalApp?.appName ?? getEnv('APP_NAME')).bodySmall(),
           ],
         ),
         centerTitle: false,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:woosignal_shopify_api/money_formatter/money_formatter.dart';
 import '/bootstrap/status_alert/models/status_alert_media_configuration.dart';
 import '/bootstrap/status_alert/status_alert.dart';
 import '/app/models/cart.dart';
@@ -18,7 +19,6 @@ import '/config/currency.dart';
 import '/config/payment_gateways.dart';
 import '/config/keys.dart';
 import 'package:html/parser.dart';
-import 'package:money_formatter/money_formatter.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 import 'package:woosignal_shopify_api/woosignal_shopify_api.dart';
@@ -38,7 +38,6 @@ class ThemeColor {
   static Color fromHex(String hexColor) => nyHexColor(hexColor);
 }
 
-
 Future appWooSignalShopify(Function(WooSignalShopify api) api) async {
   return await api(WooSignalShopify.instance);
 }
@@ -53,7 +52,7 @@ bool isProductNew(DateTime? createdAt) {
   if (createdAt == null) false;
   try {
     return createdAt.isBetween(
-        DateTime.now().subtract(Duration(days: 2)), DateTime.now()) ??
+            DateTime.now().subtract(Duration(days: 2)), DateTime.now()) ??
         false;
   } on Exception catch (e) {
     NyLogger.error(e.toString());
@@ -82,18 +81,18 @@ Future<List<PaymentType?>> getShopifyPaymentTypes() async {
 
   for (var appPaymentGateway in appPaymentGateways) {
     paymentTypes.add(paymentTypeList.firstWhereOrNull(
-            (paymentTypeList) => paymentTypeList.name == appPaymentGateway));
+        (paymentTypeList) => paymentTypeList.name == appPaymentGateway));
   }
 
   return paymentTypes.where((v) => v != null).toList();
 }
 
 PaymentType addPayment(
-    {required int id,
-      required String name,
-      required String description,
-      required String assetImage,
-      required Function pay}) =>
+        {required int id,
+        required String name,
+        required String description,
+        required String assetImage,
+        required Function pay}) =>
     PaymentType(
       id: id,
       name: name,
@@ -104,9 +103,9 @@ PaymentType addPayment(
 
 showStatusAlert(context,
     {required String title,
-      required String subtitle,
-      IconData? icon,
-      int? duration}) {
+    required String subtitle,
+    IconData? icon,
+    int? duration}) {
   StatusAlert.show(
     context,
     duration: Duration(seconds: duration ?? 2),
@@ -127,7 +126,7 @@ String moneyFormatter(double amount) {
       amount: amount,
       settings: MoneyFormatterSettings(
           symbol:
-          AppHelper.instance.shopifyAppConfig?.currencyMeta?.symbolNative,
+              AppHelper.instance.shopifyAppConfig?.currencyMeta?.symbolNative,
           symbolAndNumberSeparator: ""),
     );
     if (appCurrencySymbolPosition == SymbolPositionType.left) {
@@ -177,9 +176,9 @@ bool isNumeric(String? str) {
 
 checkoutShopify(
     Function(String total, BillingDetails? billingDetails, Cart cart)
-    completeCheckout) async {
+        completeCheckout) async {
   String cartTotal =
-  await shopify.CheckoutSession.getInstance.total(withFormat: false);
+      await shopify.CheckoutSession.getInstance.total(withFormat: false);
   BillingDetails? billingDetails =
       shopify.CheckoutSession.getInstance.billingDetails;
   Cart cart = Cart.getInstance;
@@ -188,9 +187,9 @@ checkoutShopify(
 
 navigatorPush(BuildContext context,
     {required String routeName,
-      Object? arguments,
-      bool forgetAll = false,
-      int? forgetLast}) {
+    Object? arguments,
+    bool forgetAll = false,
+    int? forgetLast}) {
   if (forgetAll) {
     Navigator.of(context).pushNamedAndRemoveUntil(
         routeName, (Route<dynamic> route) => false,
@@ -216,13 +215,13 @@ class UserAuth {
 
 Future<List<DefaultShipping>> getDefaultShipping() async {
   String data =
-  await rootBundle.loadString('public/json/default_shipping.json');
+      await rootBundle.loadString('public/json/default_shipping.json');
   dynamic dataJson = json.decode(data);
   List<DefaultShipping> shipping = [];
 
   dataJson.forEach((key, value) {
     DefaultShipping defaultShipping =
-    DefaultShipping(code: key, country: value['country'], states: []);
+        DefaultShipping(code: key, country: value['country'], states: []);
     if (value['states'] != null) {
       value['states'].forEach((key1, value2) {
         defaultShipping.states
@@ -237,7 +236,7 @@ Future<List<DefaultShipping>> getDefaultShipping() async {
 Future<DefaultShipping?> findCountryMetaForShipping(String countryCode) async {
   List<DefaultShipping> defaultShipping = await getDefaultShipping();
   List<DefaultShipping> shippingByCountryCode =
-  defaultShipping.where((element) => element.code == countryCode).toList();
+      defaultShipping.where((element) => element.code == countryCode).toList();
   if (shippingByCountryCode.isNotEmpty) {
     return shippingByCountryCode.first;
   }
@@ -247,7 +246,7 @@ Future<DefaultShipping?> findCountryMetaForShipping(String countryCode) async {
 DefaultShippingState? findDefaultShippingStateByCode(
     DefaultShipping defaultShipping, String code) {
   List<DefaultShippingState> defaultShippingStates =
-  defaultShipping.states.where((state) => state.code == code).toList();
+      defaultShipping.states.where((state) => state.code == code).toList();
   if (defaultShippingStates.isEmpty) {
     return null;
   }
@@ -262,7 +261,7 @@ String truncateString(String data, int length) {
 
 Future<List<String>> getWishlistProducts() async {
   List<String> currentProductsJSON =
-  await (NyStorage.readCollection(Keys.wishlistProducts));
+      await (NyStorage.readCollection(Keys.wishlistProducts));
 
   return currentProductsJSON;
 }
@@ -350,7 +349,7 @@ class NyNotification {
   /// Get all notifications
   static Future<List<NotificationItem>> allNotifications() async {
     List<NotificationItem> notifications =
-    await NyStorage.readCollection("app_notifications");
+        await NyStorage.readCollection("app_notifications");
     String? userId = await WooSignalShopify.authUserId();
     notifications.removeWhere((notification) {
       if (notification.meta != null &&

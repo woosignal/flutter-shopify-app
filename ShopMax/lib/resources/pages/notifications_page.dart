@@ -18,7 +18,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 class NotificationsPage extends NyStatefulWidget {
   static RouteView path = ("/notifications", (_) => NotificationsPage());
 
-  NotificationsPage({super.key}) : super(child: () => _NotificationsPageState());
+  NotificationsPage({super.key})
+      : super(child: () => _NotificationsPageState());
 }
 
 class _NotificationsPageState extends NyPage<NotificationsPage> {
@@ -26,8 +27,8 @@ class _NotificationsPageState extends NyPage<NotificationsPage> {
 
   @override
   get init => () async {
-    userId = await WooSignalShopify.authUserId();
-  };
+        userId = await WooSignalShopify.authUserId();
+      };
 
   @override
   Widget view(BuildContext context) {
@@ -41,18 +42,18 @@ class _NotificationsPageState extends NyPage<NotificationsPage> {
           title: Text("Notifications".tr()),
           actions: [
             TextButton(
-                onPressed: () async {
-                  await NyNotification.markReadAll();
-                  showStatusAlert(
-                    context,
-                    title: trans("Success"),
-                    subtitle: trans("All notifications marked as read"),
-                    duration: 1,
-                    icon: Icons.notifications,
-                  );
-                  setState(() {});
-                },
-                child: Text("Mark all read".tr()),
+              onPressed: () async {
+                await NyNotification.markReadAll();
+                showStatusAlert(
+                  context,
+                  title: trans("Success"),
+                  subtitle: trans("All notifications marked as read"),
+                  duration: 1,
+                  icon: Icons.notifications,
+                );
+                setState(() {});
+              },
+              child: Text("Mark all read".tr()),
             ),
           ],
         ),

@@ -23,7 +23,6 @@ class HomeSearchPage extends NyStatefulWidget {
 }
 
 class _HomeSearchPageState extends NyPage<HomeSearchPage> {
-
   final TextEditingController _txtSearchController = TextEditingController();
 
   _actionSearch() {

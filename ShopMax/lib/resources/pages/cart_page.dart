@@ -34,9 +34,9 @@ class _CartPageState extends NyPage<CartPage> {
 
   @override
   get init => () async {
-    await _cartCheck();
-    CheckoutSession.getInstance.coupon = null;
-  };
+        await _cartCheck();
+        CheckoutSession.getInstance.coupon = null;
+      };
 
   _cartCheck() async {
     List<CartLineItem> cart = await Cart.getInstance.getCart();
@@ -117,7 +117,8 @@ class _CartPageState extends NyPage<CartPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    UserAuth.instance.redirect = CheckoutConfirmationPage.path.name;
+                    UserAuth.instance.redirect =
+                        CheckoutConfirmationPage.path.name;
                     routeTo(AccountLandingPage.path);
                   },
                   child: Text("Login / Create an account".tr()),
@@ -272,16 +273,15 @@ class _CartPageState extends NyPage<CartPage> {
               color: Colors.black45,
             ),
             NyFutureBuilder<String>(
-              future: Cart.getInstance.getTotal(withFormat: true),
-              child: (BuildContext context, data) => Padding(
-                child: TextRowWidget(
-                  title: trans("Total"),
-                  text: isLoading() ? '' : data,
-                ),
-                padding: EdgeInsets.only(bottom: 15, top: 15),
-              ),
-              loadingStyle: LoadingStyle.none()
-            ),
+                future: Cart.getInstance.getTotal(withFormat: true),
+                child: (BuildContext context, data) => Padding(
+                      child: TextRowWidget(
+                        title: trans("Total"),
+                        text: isLoading() ? '' : data,
+                      ),
+                      padding: EdgeInsets.only(bottom: 15, top: 15),
+                    ),
+                loadingStyle: LoadingStyle.none()),
             PrimaryButton(
               title: trans("PROCEED TO CHECKOUT"),
               action: _actionProceedToCheckout,

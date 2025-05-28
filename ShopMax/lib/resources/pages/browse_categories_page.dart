@@ -10,7 +10,8 @@ import '/resources/widgets/woosignal_ui.dart';
 class BrowseCategoriesPage extends NyStatefulWidget {
   static RouteView path = ("/browse-categories", (_) => BrowseCategoriesPage());
 
-  BrowseCategoriesPage({super.key}) : super(child: () => _BrowseCategoriesPageState());
+  BrowseCategoriesPage({super.key})
+      : super(child: () => _BrowseCategoriesPageState());
 }
 
 class _BrowseCategoriesPageState extends NyPage<BrowseCategoriesPage> {
@@ -20,8 +21,8 @@ class _BrowseCategoriesPageState extends NyPage<BrowseCategoriesPage> {
 
   @override
   get init => () async {
-    _collection = data() as Collections;
-  };
+        _collection = data() as Collections;
+      };
 
   @override
   Widget view(BuildContext context) {

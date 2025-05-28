@@ -158,47 +158,43 @@ class __TDBaseWidgetState extends State<StatusAlertBaseWidget>
       if (widget.title != null) {
         content.add(Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: Text(
-            widget.title!,
-            key: widget.titleOptions!.key,
-            style: widget.titleOptions!.style.copyWith(
-              color: widget.titleOptions!.style.color ?? getThemeColor(),
-            ),
-            locale: widget.titleOptions!.locale,
-            softWrap: widget.titleOptions!.softWrap,
-            maxLines: widget.titleOptions!.maxLines,
-            overflow: widget.titleOptions!.overflow,
-            textAlign: widget.titleOptions!.textAlign,
-            strutStyle: widget.titleOptions!.strutStyle,
-            textDirection: widget.titleOptions!.textDirection,
-            textWidthBasis: widget.titleOptions!.textWidthBasis,
-            semanticsLabel: widget.titleOptions!.semanticsLabel,
-              textScaler: TextScaler.noScaling
-          ),
+          child: Text(widget.title!,
+              key: widget.titleOptions!.key,
+              style: widget.titleOptions!.style.copyWith(
+                color: widget.titleOptions!.style.color ?? getThemeColor(),
+              ),
+              locale: widget.titleOptions!.locale,
+              softWrap: widget.titleOptions!.softWrap,
+              maxLines: widget.titleOptions!.maxLines,
+              overflow: widget.titleOptions!.overflow,
+              textAlign: widget.titleOptions!.textAlign,
+              strutStyle: widget.titleOptions!.strutStyle,
+              textDirection: widget.titleOptions!.textDirection,
+              textWidthBasis: widget.titleOptions!.textWidthBasis,
+              semanticsLabel: widget.titleOptions!.semanticsLabel,
+              textScaler: TextScaler.noScaling),
         ));
       }
       if (widget.subtitle != null) {
         content.add(Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: Text(
-            widget.subtitle!,
-            key: widget.subtitleOptions!.key,
-            style: widget.subtitleOptions!.style.copyWith(
-                color: widget.subtitleOptions!.style.color ??
-                    (Theme.of(context).brightness == Brightness.light
-                        ? lightAccent
-                        : darkAccent)),
-            locale: widget.subtitleOptions!.locale,
-            softWrap: widget.subtitleOptions!.softWrap,
-            maxLines: widget.subtitleOptions!.maxLines,
-            overflow: widget.subtitleOptions!.overflow,
-            textAlign: widget.subtitleOptions!.textAlign,
-            strutStyle: widget.subtitleOptions!.strutStyle,
-            textDirection: widget.subtitleOptions!.textDirection,
-            textWidthBasis: widget.subtitleOptions!.textWidthBasis,
-            semanticsLabel: widget.subtitleOptions!.semanticsLabel,
-            textScaler: TextScaler.noScaling
-          ),
+          child: Text(widget.subtitle!,
+              key: widget.subtitleOptions!.key,
+              style: widget.subtitleOptions!.style.copyWith(
+                  color: widget.subtitleOptions!.style.color ??
+                      (Theme.of(context).brightness == Brightness.light
+                          ? lightAccent
+                          : darkAccent)),
+              locale: widget.subtitleOptions!.locale,
+              softWrap: widget.subtitleOptions!.softWrap,
+              maxLines: widget.subtitleOptions!.maxLines,
+              overflow: widget.subtitleOptions!.overflow,
+              textAlign: widget.subtitleOptions!.textAlign,
+              strutStyle: widget.subtitleOptions!.strutStyle,
+              textDirection: widget.subtitleOptions!.textDirection,
+              textWidthBasis: widget.subtitleOptions!.textWidthBasis,
+              semanticsLabel: widget.subtitleOptions!.semanticsLabel,
+              textScaler: TextScaler.noScaling),
         ));
       }
     }

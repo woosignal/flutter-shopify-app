@@ -24,12 +24,12 @@ class PaypalServices {
         utf8.encode("$clientId:$secretKey"),
       );
       final body = await api<ApiService>(
-              (request) => request.post('$baseUrl/v1/oauth2/token?grant_type=client_credentials'),
-        headers: {
-          'Authorization': 'Basic $authToken',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      );
+          (request) => request
+              .post('$baseUrl/v1/oauth2/token?grant_type=client_credentials'),
+          headers: {
+            'Authorization': 'Basic $authToken',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
 
       return {
         'error': false,

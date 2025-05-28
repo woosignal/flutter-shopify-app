@@ -43,43 +43,46 @@ class _RegisterPageState extends NyPage<RegisterPage> {
       ),
       resizeToAvoidBottomInset: false,
       body: SafeAreaWidget(
-        child: NyForm.list(form: form, children: [
-          Padding(
-            child: PrimaryButton(
-              title: trans("Sign up"),
-              isLoading: isLocked('register_user'),
-              action: _signUpTapped,
-            ),
-            padding: EdgeInsets.only(top: 10),
-          ),
-          Padding(
-            child: InkWell(
-              child: RichText(
-                text: TextSpan(
-                  text:
-                  '${trans("By tapping \"Register\" you agree to ")} ${AppHelper.instance.shopifyAppConfig?.appName!}\'s ',
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: trans("terms and conditions"),
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: '  ${trans("and")}  '),
-                    TextSpan(
-                        text: trans("privacy policy"),
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ],
-                  style: TextStyle(
-                      color:
-                      (Theme.of(context).brightness == Brightness.light)
-                          ? Colors.black45
-                          : Colors.white70),
-                ),
-                textAlign: TextAlign.center,
+        child: NyForm.list(
+          form: form,
+          children: [
+            Padding(
+              child: PrimaryButton(
+                title: trans("Sign up"),
+                isLoading: isLocked('register_user'),
+                action: _signUpTapped,
               ),
-              onTap: _viewTOSModal,
+              padding: EdgeInsets.only(top: 10),
             ),
-            padding: EdgeInsets.symmetric(vertical: 16),
-          ),
-        ],),
+            Padding(
+              child: InkWell(
+                child: RichText(
+                  text: TextSpan(
+                    text:
+                        '${trans("By tapping \"Register\" you agree to ")} ${AppHelper.instance.shopifyAppConfig?.appName!}\'s ',
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: trans("terms and conditions"),
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: '  ${trans("and")}  '),
+                      TextSpan(
+                          text: trans("privacy policy"),
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                    style: TextStyle(
+                        color:
+                            (Theme.of(context).brightness == Brightness.light)
+                                ? Colors.black45
+                                : Colors.white70),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                onTap: _viewTOSModal,
+              ),
+              padding: EdgeInsets.symmetric(vertical: 16),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -96,10 +99,10 @@ class _RegisterPageState extends NyPage<RegisterPage> {
 
       AuthCustomer? authCustomer =
           await appWooSignalShopify((api) => api.authCustomerRegister(
-        email: email,
-        password: password,
-        loginUser: true,
-      ));
+                email: email,
+                password: password,
+                loginUser: true,
+              ));
 
       if (authCustomer == null) {
         showToastOops(

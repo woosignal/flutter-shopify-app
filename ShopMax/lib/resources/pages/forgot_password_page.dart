@@ -7,7 +7,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 class ForgotPasswordPage extends NyStatefulWidget {
   static RouteView path = ("/forgot-password", (_) => ForgotPasswordPage());
 
-  ForgotPasswordPage({super.key}) : super(child: () => _ForgotPasswordPageState());
+  ForgotPasswordPage({super.key})
+      : super(child: () => _ForgotPasswordPageState());
 }
 
 class _ForgotPasswordPageState extends NyPage<ForgotPasswordPage> {

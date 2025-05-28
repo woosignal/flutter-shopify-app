@@ -6,7 +6,6 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 class AuthProfileRouteGuard extends NyRouteGuard {
-
   @override
   onRequest(PageRequest pageRequest) async {
     bool isLoggedIn = WooSignalShopify.authUserLoggedIn();

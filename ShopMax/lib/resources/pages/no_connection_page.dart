@@ -23,13 +23,12 @@ class NoConnectionPage extends NyStatefulWidget {
 }
 
 class _NoConnectionPageState extends NyPage<NoConnectionPage> {
-
   @override
   get init => () async {
-    if (getEnv('APP_DEBUG') == true) {
-      NyLogger.error('Shopify site is not connected');
-    }
-  };
+        if (getEnv('APP_DEBUG') == true) {
+          NyLogger.error('Shopify site is not connected');
+        }
+      };
 
   @override
   Widget view(BuildContext context) {

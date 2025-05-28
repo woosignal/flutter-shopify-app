@@ -20,7 +20,8 @@ import '/resources/widgets/woosignal_ui.dart';
 class CheckoutStatusPage extends NyStatefulWidget {
   static RouteView path = ("/checkout-status", (_) => CheckoutStatusPage());
 
-  CheckoutStatusPage({super.key}) : super(child: () => _CheckoutStatusPageState());
+  CheckoutStatusPage({super.key})
+      : super(child: () => _CheckoutStatusPageState());
 }
 
 class _CheckoutStatusPageState extends NyPage<CheckoutStatusPage> {
@@ -28,10 +29,10 @@ class _CheckoutStatusPageState extends NyPage<CheckoutStatusPage> {
 
   @override
   get init => () async {
-    _order = widget.controller.data();
-    await Cart.getInstance.clear();
-    CheckoutSession.getInstance.clear();
-  };
+        _order = widget.controller.data();
+        await Cart.getInstance.clear();
+        CheckoutSession.getInstance.clear();
+      };
 
   @override
   Widget view(BuildContext context) {

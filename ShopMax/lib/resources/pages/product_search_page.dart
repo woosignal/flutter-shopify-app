@@ -19,7 +19,8 @@ import 'package:woosignal_shopify_api/models/response/shopify_product_search_res
 class ProductSearchPage extends NyStatefulWidget {
   static RouteView path = ("/product-search", (_) => ProductSearchPage());
 
-  ProductSearchPage({super.key}) : super(child: () => _ProductSearchPageState());
+  ProductSearchPage({super.key})
+      : super(child: () => _ProductSearchPageState());
 }
 
 class _ProductSearchPageState extends NyPage<ProductSearchPage> {
@@ -29,8 +30,8 @@ class _ProductSearchPageState extends NyPage<ProductSearchPage> {
 
   @override
   get init => () async {
-    _search = widget.controller.data();
-  };
+        _search = widget.controller.data();
+      };
 
   @override
   Widget view(BuildContext context) {

@@ -26,9 +26,11 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.dart';
 
 class AccountShippingDetailsPage extends NyStatefulWidget {
-  static RouteView path = ("/account-shipping-details", (_) => AccountShippingDetailsPage());
+  static RouteView path =
+      ("/account-shipping-details", (_) => AccountShippingDetailsPage());
 
-  AccountShippingDetailsPage({super.key}) : super(child: () => _AccountShippingDetailsPageState());
+  AccountShippingDetailsPage({super.key})
+      : super(child: () => _AccountShippingDetailsPageState());
 }
 
 class _AccountShippingDetailsPageState
@@ -81,8 +83,8 @@ class _AccountShippingDetailsPageState
 
   @override
   get init => () async {
-    await _fetchUserDetails();
-  };
+        await _fetchUserDetails();
+      };
 
   _setFieldsFromCustomerAddress(CustomerAddress? customerAddress,
       {required String type}) {

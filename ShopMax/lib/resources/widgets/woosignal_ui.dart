@@ -131,8 +131,10 @@ class TextEditingRow extends StatelessWidget {
                 child: Padding(
                   child: AutoSizeText(
                     heading!,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: ThemeColor.get(context).content),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: ThemeColor.get(context).content),
                   ),
                   padding: EdgeInsets.only(bottom: 2),
                 ),

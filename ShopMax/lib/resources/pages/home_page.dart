@@ -10,6 +10,7 @@
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/resources/pages/no_connection_page.dart';
 import '/app/events/firebase_on_message_order_event.dart';
 import '/app/events/order_notification_event.dart';
 import '/app/events/product_notification_event.dart';
@@ -31,8 +32,8 @@ class _HomePageState extends NyPage<HomePage> {
 
   @override
   get init => () async {
-    _enableFcmNotifications();
-  };
+        _enableFcmNotifications();
+      };
 
   _enableFcmNotifications() {
     bool? firebaseFcmIsEnabled =
@@ -100,6 +101,9 @@ class _HomePageState extends NyPage<HomePage> {
 
   @override
   Widget view(BuildContext context) {
+    if (_wooSignalApp?.appStatus == null) {
+      return NoConnectionPage();
+    }
     Widget theme = MelloThemeWidget(wooSignalApp: _wooSignalApp);
     return theme;
   }

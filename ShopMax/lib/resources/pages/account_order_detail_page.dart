@@ -17,9 +17,11 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/order_response.dart';
 
 class AccountOrderDetailPage extends NyStatefulWidget {
-  static RouteView path = ("/account-order-detail", (_) => AccountOrderDetailPage());
+  static RouteView path =
+      ("/account-order-detail", (_) => AccountOrderDetailPage());
 
-  AccountOrderDetailPage({super.key}) : super(child: () => _AccountOrderDetailPageState());
+  AccountOrderDetailPage({super.key})
+      : super(child: () => _AccountOrderDetailPageState());
 }
 
 class _AccountOrderDetailPageState extends NyPage<AccountOrderDetailPage> {
@@ -27,9 +29,9 @@ class _AccountOrderDetailPageState extends NyPage<AccountOrderDetailPage> {
 
   @override
   get init => () async {
-    String? orderId = widget.controller.data();
-    await _fetchOrder(orderId);
-  };
+        String? orderId = widget.controller.data();
+        await _fetchOrder(orderId);
+      };
 
   @override
   Widget view(BuildContext context) {

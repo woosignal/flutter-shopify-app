@@ -18,11 +18,11 @@ import 'package:nylo_framework/nylo_framework.dart';
 class AccountDeletePage extends NyStatefulWidget {
   static RouteView path = ("/account-delete", (_) => AccountDeletePage());
 
-  AccountDeletePage({super.key}) : super(child: () => _AccountDeletePageState());
+  AccountDeletePage({super.key})
+      : super(child: () => _AccountDeletePageState());
 }
 
 class _AccountDeletePageState extends NyPage<AccountDeletePage> {
-
   @override
   Widget view(BuildContext context) {
     return Scaffold(

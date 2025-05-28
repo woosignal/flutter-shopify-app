@@ -4,13 +4,11 @@ import '/bootstrap/helpers.dart';
 import '/bootstrap/app_helper.dart';
 import 'package:woosignal_shopify_api/woosignal_shopify_api.dart' as shopify;
 import 'package:woosignal_shopify_api/models/response/woosignal_app.dart'
-as shopify;
+    as shopify;
 
 class WoosignalProvider implements NyProvider {
-
   @override
   boot(Nylo nylo) async {
-
     await shopify.WooSignalShopify.instance.init(
       appKey: getEnv('APP_KEY'),
       debugMode: getEnv('APP_DEBUG'),
@@ -41,7 +39,7 @@ class WoosignalProvider implements NyProvider {
 
     // WooSignal Setup
     shopify.WooSignalApp? wooSignalApp = await (appWooSignalShopify(
-            (api) => api.getApp(encrypted: shouldEncrypt())));
+        (api) => api.getApp(encrypted: shouldEncrypt())));
 
     Locale? locale;
 
@@ -58,17 +56,16 @@ class WoosignalProvider implements NyProvider {
 
     await NyLocalization.instance.init(
       localeType: localeType,
-      languageCode: locale?.languageCode ?? languageCode,
+      languageCode: (locale?.languageCode ?? languageCode) ?? "en",
       assetsDirectory: assetsDirectory,
     );
-   
-     return nylo;
+
+    return nylo;
   }
-  
+
   @override
   afterBoot(Nylo nylo) async {
-   
-     // Called after Nylo has finished booting
-     // ...
+    // Called after Nylo has finished booting
+    // ...
   }
 }

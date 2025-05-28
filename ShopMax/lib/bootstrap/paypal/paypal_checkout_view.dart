@@ -119,7 +119,8 @@ class PaypalCheckoutViewState extends State<PaypalCheckoutView> {
                   return NavigationActionPolicy.ALLOW;
                 }
               },
-              initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse(checkoutUrl!))),
+              initialUrlRequest:
+                  URLRequest(url: WebUri.uri(Uri.parse(checkoutUrl!))),
               initialSettings: InAppWebViewSettings(
                 useShouldOverrideUrlLoading: true,
               ),

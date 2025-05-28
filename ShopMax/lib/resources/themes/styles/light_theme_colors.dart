@@ -7,7 +7,6 @@ import '/resources/themes/styles/color_styles.dart';
 |-------------------------------------------------------------------------- */
 
 class LightThemeColors implements ColorStyles {
-
   Map<String, dynamic>? get colors => getThemeColorForTemplate();
 
   Color themeColor(String key) {

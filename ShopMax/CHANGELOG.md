@@ -1,3 +1,8 @@
+## [2.3.0] - 2025-05-28
+
+* Upgrade project
+* pubspec.yaml updates
+
 ## [2.2.0] - 2025-02-07
 
 * pubspec.yaml updates

@@ -17,7 +17,6 @@ class AuthRouteGuard extends NyRouteGuard {
 
   @override
   onRequest(PageRequest pageRequest) async {
-
     bool isLoggedIn = (await Auth.isAuthenticated());
     if (!isLoggedIn) {
       return redirect(HomePage.path);

@@ -32,9 +32,9 @@ class _NotificationIconState extends NyState<NotificationIcon> {
 
   @override
   get init => () async {
-    totalNotifications =
-        (await NyNotification.allNotificationsNotRead()).length;
-  };
+        totalNotifications =
+            (await NyNotification.allNotificationsNotRead()).length;
+      };
 
   @override
   stateUpdated(dynamic data) async {

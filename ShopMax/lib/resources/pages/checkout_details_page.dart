@@ -33,11 +33,11 @@ import '/app/models/default_shipping.dart';
 class CheckoutDetailsPage extends NyStatefulWidget {
   static RouteView path = ("/checkout-details", (_) => CheckoutDetailsPage());
 
-  CheckoutDetailsPage({super.key}) : super(child: () => _CheckoutDetailsPageState());
+  CheckoutDetailsPage({super.key})
+      : super(child: () => _CheckoutDetailsPageState());
 }
 
 class _CheckoutDetailsPageState extends NyPage<CheckoutDetailsPage> {
-
   bool? _hasDifferentShippingAddress = false,
       valRememberDetails = true,
       isLoggedIn;
@@ -92,33 +92,36 @@ class _CheckoutDetailsPageState extends NyPage<CheckoutDetailsPage> {
 
   @override
   get init => () async {
-    isLoggedIn = WooSignalShopify.authUserLoggedIn();
+        isLoggedIn = WooSignalShopify.authUserLoggedIn();
 
-    if (isLoggedIn == true) {
-      await _fetchUserDetails();
-      return;
-    }
+        if (isLoggedIn == true) {
+          await _fetchUserDetails();
+          return;
+        }
 
-    if (CheckoutSession.getInstance.billingDetails?.billingAddress == null) {
-      CheckoutSession.getInstance.billingDetails!.initSession();
-      CheckoutSession.getInstance.billingDetails!.shippingAddress!
-          .initAddress();
-      CheckoutSession.getInstance.billingDetails!.billingAddress?.initAddress();
-    }
-    BillingDetails billingDetails = CheckoutSession.getInstance.billingDetails!;
-    _setFieldsFromCustomerAddress(billingDetails.billingAddress,
-        type: "billing");
-    _setFieldsFromCustomerAddress(billingDetails.shippingAddress,
-        type: "shipping");
+        if (CheckoutSession.getInstance.billingDetails?.billingAddress ==
+            null) {
+          CheckoutSession.getInstance.billingDetails!.initSession();
+          CheckoutSession.getInstance.billingDetails!.shippingAddress!
+              .initAddress();
+          CheckoutSession.getInstance.billingDetails!.billingAddress
+              ?.initAddress();
+        }
+        BillingDetails billingDetails =
+            CheckoutSession.getInstance.billingDetails!;
+        _setFieldsFromCustomerAddress(billingDetails.billingAddress,
+            type: "billing");
+        _setFieldsFromCustomerAddress(billingDetails.shippingAddress,
+            type: "shipping");
 
-    _hasDifferentShippingAddress =
-        CheckoutSession.getInstance.shipToDifferentAddress;
-    valRememberDetails = billingDetails.rememberDetails ?? true;
-    if (valRememberDetails == true) {
-      await _setCustomersDetailsFromRemember();
-      return;
-    }
-  };
+        _hasDifferentShippingAddress =
+            CheckoutSession.getInstance.shipToDifferentAddress;
+        valRememberDetails = billingDetails.rememberDetails ?? true;
+        if (valRememberDetails == true) {
+          await _setCustomersDetailsFromRemember();
+          return;
+        }
+      };
 
   _setCustomersDetailsFromRemember() async {
     CustomerAddress? sfCustomerBillingAddress =

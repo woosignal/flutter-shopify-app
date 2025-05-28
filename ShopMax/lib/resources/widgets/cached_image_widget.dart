@@ -35,7 +35,7 @@ class CachedImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  CachedNetworkImage(
+    return CachedNetworkImage(
       imageUrl: image ?? getEnv('PRODUCT_PLACEHOLDER_IMAGE'),
       placeholder: (context, url) => placeholder,
       errorWidget: (context, url, error) => Icon(Icons.error),

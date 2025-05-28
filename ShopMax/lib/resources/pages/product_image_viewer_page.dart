@@ -17,7 +17,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 class ProductImageViewerPage extends NyStatefulWidget {
   static RouteView path = ("/product-images", (_) => ProductImageViewerPage());
 
-  ProductImageViewerPage({super.key}) : super(child: () => _ProductImageViewerPageState());
+  ProductImageViewerPage({super.key})
+      : super(child: () => _ProductImageViewerPageState());
 }
 
 class _ProductImageViewerPageState extends NyPage<ProductImageViewerPage> {
@@ -26,11 +27,11 @@ class _ProductImageViewerPageState extends NyPage<ProductImageViewerPage> {
 
   @override
   get init => () {
-    Map<String, dynamic> imageData = widget.controller.data();
-    _initialIndex = imageData['index'];
-    _arrImageSrc = imageData['images'];
-    super.initState();
-  };
+        Map<String, dynamic> imageData = widget.controller.data();
+        _initialIndex = imageData['index'];
+        _arrImageSrc = imageData['images'];
+        super.initState();
+      };
 
   @override
   Widget view(BuildContext context) {

@@ -43,9 +43,9 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
 
   @override
   get init => () {
-    _menuLinks = AppHelper.instance.shopifyAppConfig?.menuLinks ?? [];
-    _themeType = AppHelper.instance.shopifyAppConfig?.theme;
-  };
+        _menuLinks = AppHelper.instance.shopifyAppConfig?.menuLinks ?? [];
+        _themeType = AppHelper.instance.shopifyAppConfig?.theme;
+      };
 
   @override
   Widget view(BuildContext context) {
@@ -86,7 +86,8 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
                               .bodyMedium!
                               .copyWith(fontSize: 16),
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded, color: iconStyle),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
+                            color: iconStyle),
                         onTap: () {
                           routeTo(BrowseCategoriesPage.path, data: collection);
                         },
@@ -101,7 +102,9 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
                   Padding(
                     child: Text(
                       trans("Menu"),
-                    ).titleSmall(fontWeight: FontWeight.w600, color: color(light: Colors.black, dark: Colors.white)),
+                    ).titleSmall(
+                        fontWeight: FontWeight.w600,
+                        color: color(light: Colors.black, dark: Colors.white)),
                     padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
                   ),
                   ListTile(
@@ -143,7 +146,8 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
                   trans("Terms and conditions"),
                 ).bodyMedium(fontSize: 16),
                 leading: Icon(Icons.menu_book_rounded, color: iconStyle),
-                trailing: Icon(Icons.keyboard_arrow_right_rounded, color: iconStyle),
+                trailing:
+                    Icon(Icons.keyboard_arrow_right_rounded, color: iconStyle),
                 onTap: _actionTerms,
               ),
             if (widget.wooSignalApp?.appPrivacyLink != null &&
@@ -157,7 +161,8 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
                 onTap: _actionPrivacy,
               ),
             ListTile(
-              title: Text(trans((isDark ? "Light Mode" : "Dark Mode"))).bodyMedium(fontSize: 16),
+              title: Text(trans((isDark ? "Light Mode" : "Dark Mode")))
+                  .bodyMedium(fontSize: 16),
               leading: Icon(Icons.brightness_4_rounded, color: iconStyle),
               onTap: () {
                 setState(() {
@@ -194,10 +199,13 @@ class _HomeDrawerWidgetState extends NyState<HomeDrawerWidget> {
                           await launchUrl(Uri.parse(menuLink.linkUrl)),
                     )),
             ListTile(
-              title: Text("Change language".tr(), style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 16),),
+              title: Text(
+                "Change language".tr(),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 16),
+              ),
               leading: Icon(Icons.language, color: iconStyle),
               onTap: () {
                 NyLanguageSwitcher.showBottomModal(context);

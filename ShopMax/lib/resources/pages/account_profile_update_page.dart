@@ -18,23 +18,25 @@ import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.da
 import 'package:woosignal_shopify_api/models/response/auth/auth_customer_updated_response.dart';
 
 class AccountProfileUpdatePage extends NyStatefulWidget {
-  static RouteView path = ("/account-update", (_) => AccountProfileUpdatePage());
+  static RouteView path =
+      ("/account-update", (_) => AccountProfileUpdatePage());
 
-  AccountProfileUpdatePage({super.key}) : super(child: () => _AccountProfileUpdatePageState());
+  AccountProfileUpdatePage({super.key})
+      : super(child: () => _AccountProfileUpdatePageState());
 }
 
 class _AccountProfileUpdatePageState extends NyPage<AccountProfileUpdatePage> {
-
   final TextEditingController _tfFirstName = TextEditingController(),
       _tfLastName = TextEditingController();
 
   @override
   get init => () async {
-    await _fetchUserDetails();
-  };
+        await _fetchUserDetails();
+      };
 
   @override
-  LoadingStyle loadingStyle = LoadingStyle.skeletonizer(child: Scaffold(
+  LoadingStyle loadingStyle = LoadingStyle.skeletonizer(
+      child: Scaffold(
     appBar: AppBar(
       title: Text(
         trans("Update Details"),
@@ -57,12 +59,8 @@ class _AccountProfileUpdatePageState extends NyPage<AccountProfileUpdatePage> {
                   Flexible(
                     child: Row(
                       children: <Widget>[
-                        Flexible(
-                          child: Container()
-                        ),
-                        Flexible(
-                            child: Container()
-                        ),
+                        Flexible(child: Container()),
+                        Flexible(child: Container()),
                       ],
                     ),
                   ),

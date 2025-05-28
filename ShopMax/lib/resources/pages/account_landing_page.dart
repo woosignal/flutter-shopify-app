@@ -21,11 +21,12 @@ import 'package:woosignal_shopify_api/models/response/auth/auth_customer_info.da
 class AccountLandingPage extends NyStatefulWidget {
   static RouteView path = ("/account-landing", (_) => AccountLandingPage());
 
-  AccountLandingPage({super.key}) : super(child: () => _AccountLandingPageState());
+  AccountLandingPage({super.key})
+      : super(child: () => _AccountLandingPageState());
 }
 
-class _AccountLandingPageState extends NyPage<AccountLandingPage> with SingleTickerProviderStateMixin {
-
+class _AccountLandingPageState extends NyPage<AccountLandingPage>
+    with SingleTickerProviderStateMixin {
   bool showLeadingBackButton = false;
   TabController? _tabController;
 
@@ -34,9 +35,9 @@ class _AccountLandingPageState extends NyPage<AccountLandingPage> with SingleTic
 
   @override
   get init => () async {
-    await _fetchCustomer();
-    _tabController = TabController(vsync: this, length: 2);
-  };
+        await _fetchCustomer();
+        _tabController = TabController(vsync: this, length: 2);
+      };
 
   _fetchCustomer() async {
     _customerInfo = await appWooSignalShopify((api) => api.authCustomer());

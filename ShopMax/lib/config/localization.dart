@@ -12,7 +12,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 | Define the language code you want to use. E.g. en, es, ar.
 | The language code should match the name of the file i.e /lang/es.json
 |-------------------------------------------------------------------------- */
-final String languageCode = getEnv('DEFAULT_LOCALE', defaultValue: "en");
+final String? languageCode = getEnv('DEFAULT_LOCALE', defaultValue: "en");
 
 /* localeType
 | -------------------------------------------------------------------------

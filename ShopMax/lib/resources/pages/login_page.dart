@@ -40,15 +40,12 @@ class _LoginPageState extends NyPage<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-
             StoreLogo(height: 100),
-
             Container(
               height: 240,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                boxShadow:
-                (Theme.of(context).brightness == Brightness.light)
+                boxShadow: (Theme.of(context).brightness == Brightness.light)
                     ? wsBoxShadow()
                     : null,
                 color: ThemeColor.get(context).backgroundContainer,
@@ -56,13 +53,17 @@ class _LoginPageState extends NyPage<LoginPage> {
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 8),
               margin: EdgeInsets.symmetric(horizontal: 16),
-              child: NyForm(form: form, footer: Button.primary(text: trans("Login"), submitForm: (form, (data) async {
-                await _loginUser(data['email'], data['password']);
-              })),),
+              child: NyForm(
+                form: form,
+                footer: Button.primary(text: trans("Login"), submitForm: (
+                  form,
+                  (data) async {
+                    await _loginUser(data['email'], data['password']);
+                  }
+                )),
+              ),
             ),
-
             Expanded(child: Container()),
-
             TextButton(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,9 +115,8 @@ class _LoginPageState extends NyPage<LoginPage> {
       email = email.trim();
     }
 
-    AuthCustomer? authCustomer = await appWooSignalShopify((api) =>
-        api.authCustomerLogin(
-            email: email, password: password, loginUser: true));
+    AuthCustomer? authCustomer = await appWooSignalShopify((api) => api
+        .authCustomerLogin(email: email, password: password, loginUser: true));
     if (authCustomer == null) {
       showToastOops(description: 'Invalid email or password'.tr());
       return;

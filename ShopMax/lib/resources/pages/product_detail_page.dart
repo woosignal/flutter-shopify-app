@@ -25,7 +25,8 @@ import 'package:woosignal_shopify_api/models/response/woosignal_app.dart'
 class ProductDetailPage extends NyStatefulWidget<ProductDetailController> {
   static RouteView path = ("/product-detail", (_) => ProductDetailPage());
 
-  ProductDetailPage({super.key}) : super(child: () => _ProductDetailPageState());
+  ProductDetailPage({super.key})
+      : super(child: () => _ProductDetailPageState());
 }
 
 class _ProductDetailPageState extends NyPage<ProductDetailPage> {
@@ -36,18 +37,18 @@ class _ProductDetailPageState extends NyPage<ProductDetailPage> {
 
   @override
   get init => () async {
-    String? productId = widget.controller.data();
-    if (productId != null) {
-      _product = await appWooSignalShopify(
-          (api) => api.getProduct(productId: productId));
-    }
-    if (_product == null) {
-      showToastOops(description: "Product not found".tr());
-      pop();
-      return;
-    }
-    widget.controller.product = _product;
-  };
+        String? productId = widget.controller.data();
+        if (productId != null) {
+          _product = await appWooSignalShopify(
+              (api) => api.getProduct(productId: productId));
+        }
+        if (_product == null) {
+          showToastOops(description: "Product not found".tr());
+          pop();
+          return;
+        }
+        widget.controller.product = _product;
+      };
 
   @override
   Widget view(BuildContext context) {

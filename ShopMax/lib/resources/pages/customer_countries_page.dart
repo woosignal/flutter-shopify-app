@@ -17,9 +17,11 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:woosignal_shopify_api/models/response/shopify_country_response.dart';
 
 class CustomerCountriesPage extends NyStatefulWidget {
-  static RouteView path = ("/customer-countries", (_) => CustomerCountriesPage());
+  static RouteView path =
+      ("/customer-countries", (_) => CustomerCountriesPage());
 
-  CustomerCountriesPage({super.key}) : super(child: () => _CustomerCountriesPageState());
+  CustomerCountriesPage({super.key})
+      : super(child: () => _CustomerCountriesPageState());
 }
 
 class _CustomerCountriesPageState extends NyPage<CustomerCountriesPage> {
@@ -29,17 +31,17 @@ class _CustomerCountriesPageState extends NyPage<CustomerCountriesPage> {
 
   @override
   get init => () async {
-    ShopifyCountryResponse? shopifyCountryResponse =
-        await appWooSignalShopify((api) => api.getCountries());
-    if (shopifyCountryResponse == null) {
-      showToastDanger(description: trans("Something went wrong"));
-      pop();
-      return;
-    }
+        ShopifyCountryResponse? shopifyCountryResponse =
+            await appWooSignalShopify((api) => api.getCountries());
+        if (shopifyCountryResponse == null) {
+          showToastDanger(description: trans("Something went wrong"));
+          pop();
+          return;
+        }
 
-    _countries = shopifyCountryResponse.countries ?? [];
-    _activeShippingResults = _countries;
-  };
+        _countries = shopifyCountryResponse.countries ?? [];
+        _activeShippingResults = _countries;
+      };
 
   @override
   Widget view(BuildContext context) {

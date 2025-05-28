@@ -22,20 +22,21 @@ import 'package:woosignal_shopify_api/models/shopify_shipping_zone.dart';
 import '/app/models/cart.dart';
 
 class CheckoutShippingTypePage extends NyStatefulWidget {
-  static RouteView path = ("/checkout-shipping-type", (_) => CheckoutShippingTypePage());
+  static RouteView path =
+      ("/checkout-shipping-type", (_) => CheckoutShippingTypePage());
 
-  CheckoutShippingTypePage({super.key}) : super(child: () => _CheckoutShippingTypePageState());
+  CheckoutShippingTypePage({super.key})
+      : super(child: () => _CheckoutShippingTypePageState());
 }
 
 class _CheckoutShippingTypePageState extends NyPage<CheckoutShippingTypePage> {
-
   final List<ShippingMethod> _shippingMethods = [];
   ShopifyShippingZone? _shipping;
 
   @override
   get init => () async {
-    await _getShippingMethods();
-  };
+        await _getShippingMethods();
+      };
 
   _getShippingMethods() async {
     _shipping = await appWooSignalShopify((api) => api.fetchShippingZones());

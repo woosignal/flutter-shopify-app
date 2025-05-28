@@ -18,33 +18,34 @@ import '/resources/widgets/woosignal_ui.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class CheckoutPaymentTypePage extends NyStatefulWidget {
-  static RouteView path = ("/checkout-payment-type", (_) => CheckoutPaymentTypePage());
+  static RouteView path =
+      ("/checkout-payment-type", (_) => CheckoutPaymentTypePage());
 
-  CheckoutPaymentTypePage({super.key}) : super(child: () => _CheckoutPaymentTypePageState());
+  CheckoutPaymentTypePage({super.key})
+      : super(child: () => _CheckoutPaymentTypePageState());
 }
 
 class _CheckoutPaymentTypePageState extends NyPage<CheckoutPaymentTypePage> {
-
   List<PaymentType?> _paymentTypes = [];
 
   @override
   get init => () async {
-    _paymentTypes = await getShopifyPaymentTypes();
+        _paymentTypes = await getShopifyPaymentTypes();
 
-    if (_paymentTypes.isEmpty &&
-        getEnv('APP_DEBUG', defaultValue: false) == true) {
-      NyLogger.info(
-          'You have no payment methods set. Visit the WooSignal dashboard (https://woosignal.com/dashboard) to set a payment method.');
-    }
+        if (_paymentTypes.isEmpty &&
+            getEnv('APP_DEBUG', defaultValue: false) == true) {
+          NyLogger.info(
+              'You have no payment methods set. Visit the WooSignal dashboard (https://woosignal.com/dashboard) to set a payment method.');
+        }
 
-    if (CheckoutSession.getInstance.paymentType == null) {
-      if (_paymentTypes.isNotEmpty) {
-        CheckoutSession.getInstance.paymentType = _paymentTypes.firstWhere(
-            (paymentType) => paymentType?.id == 20,
-            orElse: () => _paymentTypes.first);
-      }
-    }
-  };
+        if (CheckoutSession.getInstance.paymentType == null) {
+          if (_paymentTypes.isNotEmpty) {
+            CheckoutSession.getInstance.paymentType = _paymentTypes.firstWhere(
+                (paymentType) => paymentType?.id == 20,
+                orElse: () => _paymentTypes.first);
+          }
+        }
+      };
 
   @override
   Widget view(BuildContext context) {

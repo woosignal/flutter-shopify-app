@@ -29,67 +29,60 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 appRouter() => nyRoutes((router) {
-  router.add(HomePage.path).initialRoute();
+      router.add(HomePage.path).initialRoute();
 
-  router.add(CartPage.path);
+      router.add(CartPage.path);
 
-  router.add(CheckoutConfirmationPage.path);
+      router.add(CheckoutConfirmationPage.path);
 
-  router.add(ProductSearchPage.path,
-      transition: PageTransitionType.fade);
+      router.add(ProductSearchPage.path, transitionType: TransitionType.fade());
 
-  router.add(ProductDetailPage.path);
+      router.add(ProductDetailPage.path);
 
-  router.add(
-      ProductImageViewerPage.path,
-      transition: PageTransitionType.fade);
+      router.add(ProductImageViewerPage.path,
+          transitionType: TransitionType.fade());
 
-  router.add(WishListPage.path);
+      router.add(WishListPage.path);
 
-  router.add(
-      AccountOrderDetailPage.path);
+      router.add(AccountOrderDetailPage.path);
 
-  router.add(CheckoutStatusPage.path);
+      router.add(CheckoutStatusPage.path);
 
-  router.add(CheckoutDetailsPage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(CheckoutDetailsPage.path,
+          transitionType: TransitionType.bottomToTop());
 
-  router.add(
-      CheckoutPaymentTypePage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(CheckoutPaymentTypePage.path,
+          transitionType: TransitionType.bottomToTop());
 
-  router.add(CheckoutShippingTypePage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(CheckoutShippingTypePage.path,
+          transitionType: TransitionType.bottomToTop());
 
-  router.add(HomeSearchPage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(HomeSearchPage.path,
+          transitionType: TransitionType.bottomToTop());
 
-  router.add(
-      CustomerCountriesPage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(CustomerCountriesPage.path,
+          transitionType: TransitionType.bottomToTop());
 
-  router.add(NoConnectionPage.path);
+      router.add(NoConnectionPage.path);
 
-  // Account Section
+      // Account Section
 
-  router.add(LoginPage.path,
-      transition: PageTransitionType.bottomToTop);
+      router.add(LoginPage.path, transitionType: TransitionType.bottomToTop());
 
-  router.add(RegisterPage.path);
+      router.add(RegisterPage.path);
 
-  router.add(AccountLandingPage.path,
-      routeGuards: [AuthProfileRouteGuard()]);
+      router
+          .add(AccountLandingPage.path, routeGuards: [AuthProfileRouteGuard()]);
 
-  router.add(AccountProfileUpdatePage.path);
+      router.add(AccountProfileUpdatePage.path);
 
-  router.add(AccountDeletePage.path);
+      router.add(AccountDeletePage.path);
 
-  router.add(AccountShippingDetailsPage.path);
+      router.add(AccountShippingDetailsPage.path);
 
-  router.add(
-      BrowseCategoriesPage.path);
+      router.add(BrowseCategoriesPage.path);
 
-  router.add(ForgotPasswordPage.path);
+      router.add(ForgotPasswordPage.path);
 
-  router.add(NotificationsPage.path);
-});
+      router.add(NotificationsPage.path);
+    });

@@ -73,8 +73,7 @@ class ProductDetailFooterActionsWidget extends StatelessWidget {
                     ),
                     onPressed: onRemoveQuantity as void Function()?,
                   ),
-                  if (product != null)
-                  ProductQuantity(productId: product!.id!),
+                  if (product != null) ProductQuantity(productId: product!.id!),
                   IconButton(
                     icon: Icon(
                       Icons.add_circle_outline,

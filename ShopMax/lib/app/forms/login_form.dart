@@ -8,18 +8,19 @@ import 'package:nylo_framework/nylo_framework.dart';
 |-------------------------------------------------------------------------- */
 
 class LoginForm extends NyFormData {
-
   LoginForm({String? name}) : super(name ?? "login");
 
   @override
   fields() => [
-     Field.email("Email",
-        style: "compact",
-       validate: FormValidator.email(),
-    ),
-    Field.password("Password",
-        style: "compact",
-      validate: FormValidator.password(strength: 1),
-    ),
-  ];
+        Field.email(
+          "Email",
+          style: "compact",
+          validate: FormValidator.email(),
+        ),
+        Field.password(
+          "Password",
+          style: "compact",
+          validate: FormValidator.password(strength: 1),
+        ),
+      ];
 }

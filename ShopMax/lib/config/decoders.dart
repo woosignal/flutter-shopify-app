@@ -5,7 +5,7 @@ import '/app/models/user.dart';
 import '/app/models/notification_item.dart';
 import '/app/networking/api_service.dart';
 import 'package:woosignal_shopify_api/models/response/auth/auth_user.dart'
-as shopify;
+    as shopify;
 
 /* Model Decoders
 |--------------------------------------------------------------------------

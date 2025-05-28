@@ -24,7 +24,6 @@ class WishListPage extends NyStatefulWidget {
 }
 
 class _WishListPageState extends NyPage<WishListPage> {
-
   @override
   Widget view(BuildContext context) {
     return Scaffold(
@@ -43,9 +42,8 @@ class _WishListPageState extends NyPage<WishListPage> {
             if (favouriteProducts.isEmpty) {
               return [];
             }
-            List<Product>? products = await (appWooSignalShopify((api) =>
-                api.getProductsRestApi(
-                    ids: favouriteProducts)));
+            List<Product>? products = await (appWooSignalShopify(
+                (api) => api.getProductsRestApi(ids: favouriteProducts)));
             return products;
           },
           child: (context, product) {

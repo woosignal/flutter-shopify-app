@@ -38,8 +38,8 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
 
   @override
   get init => () async {
-    await _fetchCollectionData();
-  };
+        await _fetchCollectionData();
+      };
 
   _fetchCollectionData() async {
     if (_collections.isNotEmpty) {
@@ -122,13 +122,13 @@ class _MelloThemeWidgetState extends NyState<MelloThemeWidget> {
             },
             data: (int iteration) async {
               if (hasNextPage == false) return [];
-              ShopifyProductResponse product = await appWooSignalShopify(
+              ShopifyProductResponse? product = await appWooSignalShopify(
                   (api) => api.getProducts(after: endCursor, first: 50));
-              if (product.pageInfo?.hasNextPage != true) {
+              if (product?.pageInfo?.hasNextPage != true) {
                 hasNextPage = false;
               }
-              endCursor = product.pageInfo?.endCursor;
-              return product.products;
+              endCursor = product?.pageInfo?.endCursor;
+              return product?.products;
             },
             beforeRefresh: () {
               hasNextPage = true;
